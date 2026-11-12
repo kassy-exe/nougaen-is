@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#111522">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="砮幻 IS">
+  <meta name="apple-mobile-web-app-title" content="">
   <meta name="color-scheme" content="dark light">
   <title></title>
   <style>
@@ -31,10 +31,10 @@
   </style>
 </head>
 <body>
-  <main class="phone" aria-label="砮幻 IS">
+  <main class="phone">
     <header class="topbar">
-      <a class="brand" href="#/home" aria-label="砮幻 IS"><span class="mark" aria-hidden="true"><span>砮</span></span><span class="brandname" id="brandName"></span></a>
-      <nav class="languages" aria-label="Language">
+      <a class="brand" href="#/home"><span class="mark" aria-hidden="true"><span>砮</span></span><span class="brandname" id="brandName"></span></a>
+      <nav class="languages">
         <button class="lang" type="button" data-lang="ja" aria-pressed="true">日</button>
         <button class="lang" type="button" data-lang="en" aria-pressed="false">英</button>
         <button class="lang" type="button" data-lang="nu" aria-pressed="false">砮</button>
@@ -91,7 +91,7 @@ function renderNotFound(){return `<a class="backlink" href="#/home">‹ ${esc(t(
 function route(){const raw=location.hash.replace(/^#\/?/,"");const parts=raw.split("/").filter(Boolean);if(!parts.length||parts[0]==="home")return {kind:"screen",render:renderHome,nav:"home"};if(parts[0]==="apps")return {kind:"screen",render:renderApps,nav:"apps"};if(parts[0]==="settings")return {kind:"screen",render:renderSettings,nav:"settings"};if(parts[0]==="game")return {kind:"screen",render:()=>renderGameStub(parts[1]),nav:"apps"};if(parts[0]==="app"){const item=APPS.find(x=>x.id===parts[1]);return item?{kind:"app",item,nav:"apps"}:{kind:"screen",render:renderNotFound,nav:"apps"}}return {kind:"screen",render:renderNotFound,nav:"home"}}
 function updateClock(){const now=new Date();document.querySelectorAll("[data-clock]").forEach(el=>el.textContent=now.toLocaleTimeString(locale(),{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}));document.querySelectorAll("[data-date]").forEach(el=>el.textContent=now.toLocaleDateString(locale(),{weekday:"long",year:"numeric",month:"long",day:"numeric"}))}
 function drawNav(active){nav.setAttribute("aria-label",t("mainNavigation"));const entries=[["home","home","⌂"],["apps","apps","▦"],["settings","settings","⚙"]];nav.innerHTML=entries.map(([id,key,icon])=>`<a class="navlink" href="#/${id}" ${active===id?'aria-current="page"':""}><span class="navicon" aria-hidden="true">${icon}</span><span>${esc(t(key))}</span></a>`).join("")}
-function applyLanguage(){document.documentElement.lang=lang;document.title=t("appTitle");document.querySelector(".phone").setAttribute("aria-label",t("appTitle"));document.getElementById("brandName").textContent=t("appTitle");document.querySelectorAll(".lang").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));document.querySelector(".languages").setAttribute("aria-label",t("languageNav"))}
+function applyLanguage(){document.documentElement.lang=lang;document.title=t("appTitle");document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute("content",t("appTitle"));document.querySelector(".phone").setAttribute("aria-label",t("appTitle"));document.querySelector(".brand").setAttribute("aria-label",t("appTitle"));document.getElementById("brandName").textContent=t("appTitle");document.querySelectorAll(".lang").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));document.querySelector(".languages").setAttribute("aria-label",t("languageNav"))}
 function render(){applyLanguage();const r=route();app.innerHTML=r.kind==="app"?r.item.render():r.render();drawNav(r.nav);updateClock();const reset=document.getElementById("resetButton");if(reset)reset.addEventListener("click",()=>{if(window.confirm(t("resetConfirm"))){lang="ja";theme="dark";try{localStorage.removeItem(LANG_KEY);localStorage.removeItem(THEME_KEY)}catch(_){ }document.documentElement.dataset.theme=theme;render();window.alert(t("resetDone"))}})}
 function setLanguage(next){if(!["ja","en","nu"].includes(next))return;lang=next;try{localStorage.setItem(LANG_KEY,lang)}catch(_){ }render()}
 function setTheme(next){if(!["dark","light"].includes(next))return;theme=next;document.documentElement.dataset.theme=theme;try{localStorage.setItem(THEME_KEY,theme)}catch(_){ }render()}
