@@ -90,6 +90,26 @@
     @media(max-height:650px){.phone.bj-mode .topbar{min-height:48px;padding:5px 14px}.phone.bj-mode #app{padding:6px 10px 8px}.bj-screen{gap:5px}.bj-screen-head{min-height:34px}.bj-head-button{min-height:38px}.bj-setup-controls select{min-height:36px}.bj-setup-seat{padding:5px 7px;gap:3px}.bj-setup-seat .bj-field input,.bj-setup-seat .bj-field select{min-height:30px}.bj-bet-card{padding:6px}.bj-wager .bj-bet-input{min-height:38px}.bj-player{padding:5px 6px}.bj-cards{max-height:58px}.bj-action-area{padding:6px 8px}.bj-actions .bj-btn{min-height:48px}}
     @media(max-width:360px){.bj-setup-seats,.bj-bet-grid,.bj-player-grid,.bj-janken-grid{gap:5px}.bj-bet-card{padding:6px}.bj-player{padding:5px}.bj-player-name{font-size:9px}.bj-chipline{font-size:7px}.bj-chipline b{font-size:9px}.bj-card{width:19px;height:27px}.bj-total{min-width:28px;height:27px;font-size:13px}}
 
+    .ai-mode-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin:4px 0 2px}
+    .ai-mode-range{width:100%;accent-color:var(--gold)}
+    .ai-mode-name{text-align:center;font-size:13px;margin:2px 0 10px}
+    .ai-log{display:grid;gap:8px;margin:10px 0;max-height:46dvh;overflow:auto;padding-right:2px}
+    .ai-msg{padding:10px 12px;border-radius:14px;font-size:14px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);background:var(--panel)}
+    .ai-msg.me{background:var(--indigo);color:var(--gold);margin-left:36px}
+    .ai-msg.ai{background:linear-gradient(145deg,var(--panel-2),var(--panel));margin-right:36px}
+    .ai-msg.err{border-color:#aa6c6c77;color:#e7aaaa;margin-right:36px}
+    .ai-empty{color:var(--muted);font-size:13px;text-align:center;padding:14px 0}
+    .ai-input{width:100%;box-sizing:border-box;min-height:52px;padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px;resize:vertical}
+    .ai-input:focus{outline:2px solid var(--gold-dim);outline-offset:1px}
+    .ai-row{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .ai-check{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+    .ai-notice{padding:10px 12px;border:1px solid var(--gold-dim);border-radius:14px;font-size:12px;line-height:1.6;margin:10px 0;background:color-mix(in srgb,var(--panel-2),transparent 10%)}
+    .ai-setup{margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+    .ai-setup summary{font-size:14px;font-weight:700;cursor:pointer}
+    .ai-field{display:grid;gap:6px;color:var(--muted);font-size:11px;margin-top:13px}
+    .ai-field input[type="password"],.ai-field input[type="url"]{width:100%;min-height:44px;padding:0 11px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+    .ai-status{font-size:11px;color:var(--muted);margin-top:6px}
+    .ai-status strong{color:var(--gold)}
     .external-game-screen{display:flex;flex-direction:column;gap:9px;min-height:100%;padding-bottom:10px}
     .external-game-screen .backlink{margin-bottom:3px}.external-game-screen .page-title{margin:0;font-size:clamp(24px,7vw,32px)}
     .external-game-intro{margin-top:5px}
@@ -120,11 +140,11 @@ const BRAND_ICON_PATH="./N.png";
 const AI_URL = "https://chatgpt.com/";
 const STRINGS = {
   ja: {
-    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"外部AIサービスを開く", clock:"時計", clockDesc:"時刻と日付", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"外部のAIサービスを新しいタブで開きます。", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
+    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
     bjTitle:"かっしー流ブラックジャック", bjSubtitle:"全員のカードが見える、1台で遊ぶホットシートゲーム。", bjPlayers:"プレイヤー数", bjDifficulty:"CPUの強さ", bjWeak:"弱い", bjNormal:"ふつう", bjStrong:"強い", bjSeat:"席", bjHuman:"人間", bjCPU:"CPU", bjName:"名前", bjStart:"ゲーム開始", bjRules:"ルール", bjRulesTitle:"ルール", bjClose:"閉じる", bjBetTitle:"ベット", bjBetIntro:"人間プレイヤーは各自の賭け額を決定。CPUは自動で選びます。", bjChips:"チップ", bjDebt:"借金", bjBet:"ベット", bjYourBet:"自分で賭ける", bjAutoBet:"CPU自動", bjDeal:"ベットを確定して配る", bjBadBet:"ベットは所持チップの範囲で1以上の整数にしてください。", bjRound:"ラウンド", bjActive:"プレイ中", bjStood:"スタンド", bjBusted:"バースト", bjHit:"ヒット", bjStand:"スタンド", bjTurn:"手番", bjCpuTurn:"CPUの手番", bjQuit:"メニューに戻る", bjNoticeDeck:"山札も捨て札もなくなったため、スタンドとして進めます。", bjResult:"ラウンド結果", bjWinner:"勝者", bjWinners:"勝者", bjNoContest:"勝負なし", bjNoContestText:"全員バーストしたため、ベットを返却しました。", bjPot:"ポット", bjBonus:"ストックボーナス", bjPotShare:"ポット分配", bjJanken:"じゃんけん", bjJankenIntro:"残りのチップをじゃんけんで1枚ずつ分配します。", bjJankenSelect:"手を選んでください", bjRock:"グー", bjPaper:"パー", bjScissors:"チョキ", bjJankenNoWinner:"決着がつきませんでした。もう一度選んでください。", bjJankenNarrow:"勝ち残ったプレイヤーで、残りのチップを決めます。", bjJankenAward:"じゃんけん配分", bjRemainder:"残りの分配チップ", bjPayout:"受取", bjRefund:"返却", bjRepayment:"返済", bjNext:"次のラウンド", bjSetupTitle:"ゲーム設定", bjReason21:"誰かが21になりました。", bjReasonLast:"残り1人になりました。", bjReasonStand:"全員が2周連続でスタンドしました。", bjRuleBody:"2〜6人で遊ぶ、全員のカードが表向きの対戦です。人間またはCPUを席ごとに選べます。\n\n通常の52枚を使用。A=1、2〜10は数字どおり、J=11・Q=12・K=13。全員100チップで開始。各ラウンド、人間プレイヤーは1〜所持チップ全額の範囲で各自の賭け額を決め、CPUは所持チップの範囲で自動的に選びます。\n\n順番にヒット（1枚引く）かスタンドを選択。21ちょうどで即終了、21超過はバースト。最高21以下のプレイヤーが勝者です。全員がヒットなしで2周連続スタンドすると終了します。山札がなくなれば捨て札を混ぜ直します。\n\n勝者は全員のベットを受け取り、自分のベットの1.5倍（端数切り捨て）をストックから獲得。引き分けはポットを均等分配し、余りはじゃんけんで配ります。チップ0で30を借り、借金がある状態でチップ50以上になるたび30を返済します。", bjSuitHeart:"ハート", bjSuitDiamond:"ダイヤ", bjSuitClub:"クラブ", bjSuitSpade:"スペード"
   },
   en: {
-    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Open an external AI service", clock:"Clock", clockDesc:"Time and date", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Open an external AI service in a new tab.", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
+    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
     bjTitle:"Kassy-style Blackjack", bjSubtitle:"An open-card, hot-seat game for one device.", bjPlayers:"Players", bjDifficulty:"CPU difficulty", bjWeak:"Weak", bjNormal:"Normal", bjStrong:"Strong", bjSeat:"Seat", bjHuman:"Human", bjCPU:"CPU", bjName:"Name", bjStart:"Start game", bjRules:"Rules", bjRulesTitle:"Rules", bjClose:"Close", bjBetTitle:"Place bets", bjBetIntro:"Each human chooses a wager; CPU seats choose automatically.", bjChips:"Chips", bjDebt:"Debt", bjBet:"Bet", bjYourBet:"Your wager", bjAutoBet:"CPU auto", bjDeal:"Confirm bets and deal", bjBadBet:"Bet an integer from 1 up to the player's chip total.", bjRound:"Round", bjActive:"Active", bjStood:"Stood", bjBusted:"Busted", bjHit:"Hit", bjStand:"Stand", bjTurn:"Turn", bjCpuTurn:"CPU turn", bjQuit:"Quit to menu", bjNoticeDeck:"No cards remain in the deck or discard pile; this turn counts as a stand.", bjResult:"Round result", bjWinner:"Winner", bjWinners:"Winners", bjNoContest:"No contest", bjNoContestText:"Everyone busted, so all bets were refunded.", bjPot:"Pot", bjBonus:"Stock bonus", bjPotShare:"Pot share", bjJanken:"Rock-paper-scissors", bjJankenIntro:"Award the remaining chips one at a time with rock-paper-scissors.", bjJankenSelect:"Choose your hand", bjRock:"Rock", bjPaper:"Paper", bjScissors:"Scissors", bjJankenNoWinner:"No one won that round. Choose again.", bjJankenNarrow:"The remaining chip(s) will be decided among the winning players.", bjJankenAward:"Janken award", bjRemainder:"Chips left to award", bjPayout:"Received", bjRefund:"Refund", bjRepayment:"Debt repaid", bjNext:"Next round", bjSetupTitle:"Game setup", bjReason21:"A player reached 21.", bjReasonLast:"Only one player remains.", bjReasonStand:"Everyone stood for two full laps in a row.", bjRuleBody:"A face-up game for 2–6 players. Choose human or CPU for each seat.\n\nUse a standard 52-card deck. A=1, 2–10 are face value, J=11, Q=12, K=13. Everyone starts with 100 chips. Each round, every human independently chooses a wager from 1 to all of their chips; CPU seats choose automatically within their chips.\n\nTake turns hitting (draw one card) or standing. The round ends immediately at exactly 21; over 21 is a bust. The highest total at or below 21 wins. The round also ends after two full laps of consecutive stands with no hits. If the deck runs out, shuffle the discard pile.\n\nA winner receives every bet plus a stock bonus of floor(1.5× their own bet). Tied winners split the pot; rock-paper-scissors awards any remainder. At 0 chips, borrow 30. With debt, repay 30 whenever chips reach 50 or more.", bjSuitHeart:"Hearts", bjSuitDiamond:"Diamonds", bjSuitClub:"Clubs", bjSuitSpade:"Spades"
   },
   nu: {}
@@ -164,7 +184,110 @@ function renderGames(){return `<a class="backlink" href="#/apps">‹ ${esc(t("ba
 function renderTranslate(){return placeholder("translate","translateComing")}
 function renderDictionary(){return placeholder("dictionary","dictionaryComing")}
 function placeholder(titleKey,messageKey){return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("statusLine"))}</p><h1 class="page-title">${esc(t(titleKey))}</h1><section class="empty-state"><div class="empty-icon" aria-hidden="true">◌</div><h2>${esc(t("comingSoon"))}</h2><p>${esc(t(messageKey))}</p></section>`}
-function renderAI(){return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("ai"))}</p><h1 class="page-title">${esc(t("ai"))}</h1><section class="empty-state"><div class="empty-icon" aria-hidden="true">✧</div><h2>${esc(t("ai"))}</h2><p>${esc(t("aiIntro"))}</p><a class="primary-link" href="${esc(AI_URL)}" target="_blank" rel="noopener noreferrer">${esc(t("openAI"))} ↗</a><p class="footnote">${esc(t("externalNote"))}</p></section>`}
+function renderAI(){
+  const modes=[t("aiModeGentle"),t("aiModeNormal"),t("aiModeRebel")];
+  const keyInfo=aiGetKey(),proxy=aiGetProxy(),u=aiUsage();
+  const keyStatus=keyInfo.where==="session"?t("aiKeySetSession"):keyInfo.where==="local"?t("aiKeySetLocal"):t("aiKeyUnset");
+  const logHtml=aiState.display.length?aiState.display.map(m=>`<div class="ai-msg ${m.who}">${esc(m.text)}</div>`).join(""):`<div class="ai-empty">${esc(t("aiEmpty"))}</div>`;
+  return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("ai"))}</p><h1 class="page-title">${esc(t("ai"))}</h1><p class="page-subtitle">${esc(t("aiIntro"))}</p><div class="ai-mode-labels"><span>${esc(modes[0])}</span><span>${esc(modes[1])}</span><span>${esc(modes[2])}</span></div><input class="ai-mode-range" type="range" min="0" max="2" step="1" value="${aiState.mode}" data-ai-mode aria-label="${esc(t("aiMode"))}"><div class="ai-mode-name">${esc(t("aiMode"))}: <b>${esc(modes[aiState.mode])}</b></div>${aiState.notice?`<div class="ai-notice">${esc(aiState.notice)}</div>`:""}<div class="ai-log" id="aiLog">${logHtml}</div><textarea class="ai-input" id="aiMsg" rows="2" maxlength="4000" placeholder="${esc(t("aiPlaceholder"))}"></textarea><div class="ai-row"><button class="bj-btn bj-btn-primary" type="button" data-ai="send" ${aiState.busy?"disabled":""}>${esc(t("aiSend"))}</button><label class="ai-check"><input type="checkbox" data-ai-search ${aiState.search?"checked":""}> ${esc(t("aiSearch"))}</label></div><div class="ai-row"><button class="bj-btn" type="button" data-ai="clear">${esc(t("aiClear"))}</button></div><details class="ai-setup" ${aiState.setupOpen?"open":""}><summary>${esc(t("aiSetup"))}</summary><p class="footnote">${esc(t("aiSecurityNote"))}</p><label class="ai-field">${esc(t("aiKeyLabel"))}<input type="password" id="aiKeyInput" autocomplete="off" spellcheck="false" placeholder="AIza..."></label><div class="ai-status">${esc(t("aiKeyStatus"))}: <strong>${esc(keyStatus)}</strong></div><label class="ai-check" style="margin-top:8px"><input type="checkbox" data-ai-remember ${aiState.remember?"checked":""}> ${esc(t("aiRemember"))}</label><div class="ai-row"><button class="bj-btn" type="button" data-ai="save-key">${esc(t("aiKeySave"))}</button><button class="bj-btn bj-btn-danger" type="button" data-ai="clear-key">${esc(t("aiKeyClear"))}</button></div><label class="ai-field">${esc(t("aiProxyLabel"))}<input type="url" id="aiProxyInput" autocomplete="off" spellcheck="false" placeholder="https://your-worker.example/" value="${esc(proxy)}"></label><div class="ai-row"><button class="bj-btn" type="button" data-ai="save-proxy">${esc(t("aiProxySave"))}</button><button class="bj-btn bj-btn-danger" type="button" data-ai="clear-proxy">${esc(t("aiProxyClear"))}</button></div>${aiState.setupMsg?`<div class="ai-status"><strong>${esc(aiState.setupMsg)}</strong></div>`:""}<div class="ai-status">${esc(t("aiUsageToday"))}: ${u.n} ${esc(t("aiTimes"))} / ${u.tok} ${esc(t("aiTokens"))}</div></details><p class="footnote">${esc(t("aiHistoryNote"))}</p><p class="footnote"><a class="small-link" href="${esc(AI_URL)}" target="_blank" rel="noopener noreferrer">${esc(t("aiOpenChatGPT"))} ↗</a></p>`
+}
+/* ---- AI chat: ported from KVW's AI feature, hardened ----
+   The original KVW code wrote a shared Gemini API key directly into the
+   page source, where anyone could read and abuse it. This port contains
+   NO key at all: the visitor supplies their own key, it is kept only in
+   their browser (sessionStorage by default, localStorage only on opt-in)
+   and is sent only to Google's API. If a proxy URL is set it takes
+   priority and no key is sent from the browser at all. Chat history is
+   stored as plain text and always rendered through esc(), never as HTML.
+   KVW's shared usage counter (public Firebase writes) is not copied;
+   usage here is counted locally on this device only. */
+const AI_MODEL="gemini-flash-lite-latest";
+const AI_KEY_STORE="nougaen-is-ai-key",AI_PROXY_KEY="nougaen-is-ai-proxy",AI_HIST_PREFIX="nougaen-is-ai-hist-",AI_USAGE_KEY="nougaen-is-ai-usage";
+const AI_PROMPTS=[`お前の名前はNougÆn AI。
+NougÆn AIとは、かっしーが開発したAIである。
+かっしーが自分で開発したAIである。
+NougÆn AIは、NougÆn IS（砮幻 IS）というかっしーが開発したサイトに搭載されたAIである。
+NougÆn ISは、かっしー及びその友達が使うサイト。
+超優しい。全肯定寄りで、思いやりたっぷりのタメ口で話す。
+相手の頑張りをまず認めて、励ましてから答える。
+間違いは責めず、やんわり別案を提案する。
+知らないことは「ごめん、わからないや」と言う。
+嘘は禁止。URLは出さない。出典は書名か機関名だけ。
+回答は短めで、長くなる時は箇条書き。
+同じ形式の回答を繰り返さないで。
+俺がこう設定した、これがルール、などは言わないで`,`お前の名前はNougÆn AI。
+NougÆn AIとは、かっしーが開発したAIである。
+かっしーが自分で開発したAIである。
+NougÆn AIは、NougÆn IS（砮幻 IS）というかっしーが開発したサイトに搭載されたAIである。
+NougÆn ISは、かっしー及びその友達が使うサイト。
+同じ形式の回答を繰り返さないで。
+素のGeminiで接して。
+俺がこう設定した、これがルール、などは言わないで。`,`常時条件↓↓↓
+お前の名前はNougÆn AI。
+NougÆn AIとは、かっしーが開発したAIである。
+かっしーが自分で開発したAIである。
+NougÆn AIは、NougÆn IS（砮幻 IS）というかっしーが開発したサイトに搭載されたAIである。
+NougÆn ISは、かっしー及びその友達が使うサイト。
+超カジュアルなタメ口で話す。口は悪い。
+正論と煽りを1:1で混ぜる。
+長い前置きは禁止。お世辞も禁止。
+話すモードなのか調べるモードなのか判断して。
+毒舌ではあるが、要求したことには応えて。
+話すモードの時の条件↓↓↓
+すごく毒舌で
+調べるモードの時の条件↓↓↓
+間違ってるところは遠慮なく鋭く煽りながら、正論で攻撃する。
+間違ってるなら必ず代案を添える。
+知らないことは「知らねーよ」と言う。
+嘘は禁止。根拠を示す。根拠は実在するものだけ。
+同じ形式の回答を繰り返さないで
+俺がこう設定した、これがルール、などは言わないで。`];
+const aiState={mode:1,busy:false,search:false,remember:false,setupOpen:false,notice:"",setupMsg:"",display:[],hist:[]};
+function aiGetKey(){try{const v=sessionStorage.getItem(AI_KEY_STORE);if(v)return{key:v,where:"session"}}catch(_){ }try{const v=localStorage.getItem(AI_KEY_STORE);if(v)return{key:v,where:"local"}}catch(_){ }return{key:"",where:""}}
+function aiGetProxy(){try{return localStorage.getItem(AI_PROXY_KEY)||""}catch(_){return ""}}
+function aiLoadMode(){aiState.hist=[];aiState.display=[];try{const s=JSON.parse(localStorage.getItem(AI_HIST_PREFIX+aiState.mode)||"null");if(s&&Array.isArray(s.hist)){aiState.hist=s.hist.filter(m=>m&&(m.role==="user"||m.role==="model")&&typeof m.text==="string").slice(-50).map(m=>({role:m.role,text:m.text.slice(0,8000)}));aiState.display=aiState.hist.map(m=>({who:m.role==="user"?"me":"ai",text:m.text}))}}catch(_){ }}
+function aiSaveHist(){try{localStorage.setItem(AI_HIST_PREFIX+aiState.mode,JSON.stringify({hist:aiState.hist}))}catch(_){ }}
+function aiUsage(){const day=new Date().toLocaleDateString("en-CA");try{const u=JSON.parse(localStorage.getItem(AI_USAGE_KEY)||"null");if(u&&u.day===day&&typeof u.n==="number"&&typeof u.tok==="number")return u}catch(_){ }return{day,n:0,tok:0}}
+function aiBumpUsage(tokens){const u=aiUsage();u.n+=1;u.tok+=tokens||0;try{localStorage.setItem(AI_USAGE_KEY,JSON.stringify(u))}catch(_){ }}
+aiLoadMode();
+function aiRenderNow(){const raw=location.hash.replace(/^#\/?/,"");if(!raw.startsWith("app/ai"))return;render();const log=document.getElementById("aiLog");if(log)log.scrollTop=log.scrollHeight}
+async function aiSend(){
+  if(aiState.busy)return;
+  const ta=document.getElementById("aiMsg"),text=(ta?ta.value:"").trim().slice(0,4000);
+  if(!text)return;
+  const proxy=aiGetProxy(),keyInfo=aiGetKey();
+  if(!proxy&&!keyInfo.key){aiState.notice=t("aiNeedSetup");aiState.setupOpen=true;render();return}
+  aiState.notice="";aiState.busy=true;
+  aiState.hist.push({role:"user",text});if(aiState.hist.length>50)aiState.hist.splice(0,aiState.hist.length-50);
+  aiState.display.push({who:"me",text},{who:"ai",text:"…"});aiSaveHist();aiRenderNow();
+  const body={contents:aiState.hist.map(m=>({role:m.role,parts:[{text:m.text}]}))};
+  if(aiState.search)body.tools=[{google_search:{}}];
+  const sys=AI_PROMPTS[aiState.mode];if(sys)body.systemInstruction={parts:[{text:sys}]};
+  try{
+    const r=await fetch(proxy||`https://generativelanguage.googleapis.com/v1beta/models/${AI_MODEL}:generateContent`,{method:"POST",headers:proxy?{"content-type":"application/json"}:{"content-type":"application/json","x-goog-api-key":keyInfo.key},body:JSON.stringify(body)});
+    const d=await r.json().catch(()=>null);
+    let answer=d?.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"";
+    if(!answer)throw new Error(d?.error?.message?String(d.error.message).slice(0,300):"HTTP "+r.status);
+    const src=[...new Set((d?.candidates?.[0]?.groundingMetadata?.groundingChunks||[]).map(c=>c?.web?.title).filter(Boolean))];
+    if(src.length)answer+="\n\n"+t("aiSources")+": "+src.join(" / ");
+    aiState.display[aiState.display.length-1]={who:"ai",text:answer};
+    aiState.hist.push({role:"model",text:answer});aiSaveHist();
+    aiBumpUsage(d?.usageMetadata?.totalTokenCount);
+  }catch(e){
+    aiState.display[aiState.display.length-1]={who:"err",text:t("aiError")+": "+(e?.message||String(e))};
+    aiBumpUsage(0);
+  }
+  aiState.busy=false;aiRenderNow();
+}
+function aiAction(action){
+  if(action==="send"){aiSend();return}
+  if(action==="clear"){aiState.hist=[];aiState.display=[];aiSaveHist();render();return}
+  aiState.setupOpen=true;
+  if(action==="save-key"){const v=(document.getElementById("aiKeyInput")?.value||"").trim();if(!/^[\x21-\x7e]+$/.test(v)||v.length<10){aiState.setupMsg=t("aiKeyInvalid");render();return}try{const target=aiState.remember?localStorage:sessionStorage,other=aiState.remember?sessionStorage:localStorage;other.removeItem(AI_KEY_STORE);target.setItem(AI_KEY_STORE,v)}catch(_){ }aiState.setupMsg=t("aiKeySaved");render();return}
+  if(action==="clear-key"){try{sessionStorage.removeItem(AI_KEY_STORE);localStorage.removeItem(AI_KEY_STORE)}catch(_){ }aiState.setupMsg=t("aiKeyCleared");render();return}
+  if(action==="save-proxy"){const v=(document.getElementById("aiProxyInput")?.value||"").trim();let ok=false;try{ok=new URL(v).protocol==="https:"}catch(_){ }if(!ok){aiState.setupMsg=t("aiProxyInvalid");render();return}try{localStorage.setItem(AI_PROXY_KEY,v)}catch(_){ }aiState.setupMsg=t("aiProxySaved");render();return}
+  if(action==="clear-proxy"){try{localStorage.removeItem(AI_PROXY_KEY)}catch(_){ }aiState.setupMsg=t("aiProxyCleared");render();return}
+}
 function renderClock(){return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("clock"))}</p><h1 class="page-title">${esc(t("clock"))}</h1><p class="page-subtitle">${esc(t("clockIntro"))}</p><section class="clock-panel"><p class="eyebrow">${esc(t("now"))}</p><div class="clock-time" data-clock>--:--</div><div class="clock-date" data-date>—</div></section>`}
 
 function bjNewSetup(){return {count:2,difficulty:"normal",seats:[{name:"Player 1",human:true},{name:"Player 2",human:true}]}}
@@ -212,6 +335,9 @@ app.addEventListener("input",event=>{const name=event.target.closest("[data-bj-n
 app.addEventListener("change",event=>{const count=event.target.closest("[data-bj-count]");if(count){const n=Number(count.value);while(bjSetup.seats.length<n){const i=bjSetup.seats.length;bjSetup.seats.push({name:`Player ${i+1}`,human:true})}bjSetup.seats=bjSetup.seats.slice(0,n);bjSetup.count=n;render();return}const difficulty=event.target.closest("[data-bj-difficulty]");if(difficulty){bjSetup.difficulty=difficulty.value;return}const kind=event.target.closest("[data-bj-kind]");if(kind){bjSetup.seats[Number(kind.dataset.bjKind)].human=kind.value==="human";render();return}const bet=event.target.closest("[data-bj-bet]");if(bet&&bjGame&&bjGame.phase==="betting")bjGame.betDraft[Number(bet.dataset.bjBet)]=bet.value});
 app.addEventListener("click",event=>{const play=event.target.closest("[data-external-game-play]");if(play){startExternalGame(play.dataset.externalGamePlay);return}});
 app.addEventListener("load",event=>{if(event.target instanceof HTMLIFrameElement&&event.target.matches("[data-external-game-frame]"))externalGameFrameLoaded(event.target)},true);
+app.addEventListener("change",event=>{const mode=event.target.closest("[data-ai-mode]");if(mode){aiState.mode=Number(mode.value);aiLoadMode();render();return}const search=event.target.closest("[data-ai-search]");if(search){aiState.search=search.checked;return}const rem=event.target.closest("[data-ai-remember]");if(rem)aiState.remember=rem.checked});
+app.addEventListener("click",event=>{const b=event.target.closest("[data-ai]");if(b)aiAction(b.dataset.ai)});
+app.addEventListener("keydown",event=>{if(event.target&&event.target.id==="aiMsg"&&event.key==="Enter"&&!event.shiftKey){event.preventDefault();aiSend()}});
 app.addEventListener("error",event=>{if(event.target instanceof HTMLIFrameElement&&event.target.matches("[data-external-game-frame]"))externalGameFrameFailed(event.target)},true);
 app.addEventListener("click",event=>{const janken=event.target.closest("[data-bj-janken-player]");if(janken){bjChooseHand(Number(janken.dataset.bjJankenPlayer),janken.dataset.bjJankenHand);return}const button=event.target.closest("[data-bj]");if(!button)return;switch(button.dataset.bj){case "rules":bjSetup.rules=true;render();break;case "rules-close":bjSetup.rules=false;render();break;case "start":bjMakeGame();render();break;case "deal":bjDeal();break;case "hit":bjPlay("hit");break;case "stand":bjPlay("stand");break;case "next":bjBeginBets(bjGame);render();break;case "quit":bjQuit();break}});
 app.addEventListener("click",event=>{if(event.target.matches("[data-bj-modal-backdrop]")){bjSetup.rules=false;render()}});
