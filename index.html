@@ -274,13 +274,14 @@ const KB_DIGIT_ROWS=[
  [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""]],
  [["7",""],["8",""],["9",""],["0",""],["Ƨ","10"],["Ɛ","11"]]
 ];
+const KB_PUNCT=[["."],["?"],["!"],["¿"],[","]];
 let kbText="";try{kbText=localStorage.getItem("nougaen-is-kb-text")||""}catch(_){}
 let kbMsg="";
 let kbMode="phon";
 function kbSave(){try{localStorage.setItem("nougaen-is-kb-text",kbText)}catch(_){}}
 function kbKey2(cp,label){return `<button type="button" class="kb-key2" data-kb="${cp}"><span class="kb-glyph">${esc(String.fromCodePoint(cp))}</span>${label?`<span class="kb-lab">${esc(label)}</span>`:""}</button>`}
 function kbKeysHtml(){
-  if(kbMode==="stem"){return [KB_STEMS.slice(0,6),KB_STEMS.slice(6)].map(r=>`<div class="kb-krow">${r.map(([n,cp])=>kbKey2(cp,n)).join("")}</div>`).join("")}
+  if(kbMode==="stem"){return [KB_STEMS.slice(0,6),KB_STEMS.slice(6)].map(r=>`<div class="kb-krow">${r.map(([n,cp])=>kbKey2(cp,n)).join("")}</div>`).join("")+`<div class="kb-krow">${KB_PUNCT.map(([ch])=>kbKey2(ch.codePointAt(0),"")).join("")}</div>`}
   const rows=kbMode==="digit"?KB_DIGIT_ROWS:KB_PHON_ROWS;
   return rows.map(r=>`<div class="kb-krow">${r.map(([c,l])=>kbKey2(c.codePointAt(0),l)).join("")}</div>`).join("");
 }
