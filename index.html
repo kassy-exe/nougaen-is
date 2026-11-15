@@ -797,12 +797,42 @@ const AR_ABILITIES=[
 ];
 let arState=null,arRAF=0,arKeys={};
 function arBestStage(){try{return Number(localStorage.getItem("nougaen-is-archer-beststage")||0)}catch(_){return 0}}
+let arAC=null,arLastShootSfx=0,arLastDieSfx=0;
+function arAudio(){if(!arAC){try{arAC=new (window.AudioContext||window.webkitAudioContext)()}catch(_){}}if(arAC&&arAC.state==="suspended")arAC.resume();return arAC}
+function arTone(f0,f1,dur,type,vol,delay){
+  const ac=arAudio();if(!ac)return;
+  const t0=ac.currentTime+(delay||0);
+  const o=ac.createOscillator(),g=ac.createGain();
+  o.type=type||"square";
+  o.frequency.setValueAtTime(f0,t0);
+  o.frequency.exponentialRampToValueAtTime(Math.max(30,f1),t0+dur);
+  g.gain.setValueAtTime(vol,t0);
+  g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
+  o.connect(g);g.connect(ac.destination);
+  o.start(t0);o.stop(t0+dur+0.02);
+}
+function arSfx(name){
+  if(name==="shoot"){const now=performance.now();if(now-arLastShootSfx<70)return;arLastShootSfx=now;arTone(880,320,0.07,"square",0.05)}
+  else if(name==="hit")arTone(300,180,0.05,"triangle",0.08);
+  else if(name==="die"){const now=performance.now();if(now-arLastDieSfx<60)return;arLastDieSfx=now;arTone(420,60,0.22,"sawtooth",0.10)}
+  else if(name==="hurt")arTone(160,70,0.2,"sawtooth",0.14);
+  else if(name==="clear"){arTone(660,660,0.09,"sine",0.12);arTone(990,990,0.14,"sine",0.12,0.09)}
+  else if(name==="over"){arTone(392,392,0.16,"triangle",0.12);arTone(311,311,0.16,"triangle",0.12,0.16);arTone(262,180,0.32,"triangle",0.12,0.32)}
+  else if(name==="pick")arTone(520,780,0.09,"sine",0.12);
+  else if(name==="levelup"){arTone(523,523,0.09,"square",0.09);arTone(659,659,0.09,"square",0.09,0.08);arTone(784,784,0.09,"square",0.09,0.16);arTone(1047,1047,0.16,"square",0.10,0.24)}
+}
+function arGemSfx(){
+  const s=arState;if(!s)return;
+  s.gemCombo=(s.gemT>0?(s.gemCombo||0)+1:0);s.gemT=0.9;
+  const f=620*Math.pow(2,Math.min(s.gemCombo,12)/12);
+  arTone(f,f*1.01,0.07,"sine",0.10);
+}
 function arNewGame(){
   arState={phase:"play",stage:0,kills:0,time:0,
-    p:{x:AR_W/2,y:AR_H-70,r:14,hp:100,maxhp:100,lv:1,xp:0,xpNeed:6,invuln:0,fireT:0,
+    p:{x:AR_W/2,y:AR_H-70,r:14,hp:100,maxhp:100,lv:1,xp:0,xpNeed:8,invuln:0,fireT:0,
        dmg:12,interval:0.55,multi:1,front:0,diag:false,bounce:0,pierce:0,moveMul:1,crit:0.05,arrowSpd:380,abilities:[]},
     enemies:[],arrows:[],bullets:[],gems:[],obs:[],doorOpen:false,
-    joy:{active:false,ox:0,oy:0,cx:0,cy:0},offers:[],best:arBestStage(),msg:""};
+    joy:{active:false,ox:0,oy:0,cx:0,cy:0},offers:[],best:arBestStage(),msg:"",gemCombo:0,gemT:0};
   arNextStage();
 }
 function arNextStage(){
@@ -863,7 +893,7 @@ function arApplyAbility(id){
   p.abilities.push(id);
 }
 function arLevelUp(){
-  const s=arState;s.phase="choose";
+  const s=arState;s.phase="choose";arSfx("levelup");
   const pool=AR_ABILITIES.map(a=>a.id).filter(id=>id!=="diag"||!s.p.diag);
   const offers=[];
   while(offers.length<3&&pool.length){
@@ -893,6 +923,7 @@ function arMoveCircle(e,dx,dy){
 function arTick(dt){
   const s=arState,p=s.p;
   s.time+=dt;
+  if(s.gemT>0)s.gemT-=dt;
   if(p.invuln>0)p.invuln-=dt;
   // --- move input: joystick or keys ---
   let mx=0,my=0,moving=false;
@@ -940,7 +971,7 @@ function arTick(dt){
     }
     // contact damage
     if(dist<e.r+p.r&&p.invuln<=0){
-      p.hp-=e.dmg;p.invuln=0.6;
+      p.hp-=e.dmg;p.invuln=0.6;arSfx("hurt");
       if(p.hp<=0){arGameOver();return}
     }
   }
@@ -969,6 +1000,7 @@ function arTick(dt){
         a.hitSet.add(e);
         const crit=Math.random()<p.crit;
         e.hp-=crit?a.dmg*2:a.dmg;
+        arSfx("hit");
         e.flash=0.1;
         if(a.pierce>0)a.pierce--;else{a.dead=true}
         break;
@@ -981,7 +1013,7 @@ function arTick(dt){
     b.x+=b.vx*dt;b.y+=b.vy*dt;
     if(b.x<6||b.x>AR_W-6||b.y<6||b.y>AR_H-6)b.dead=true;
     if(!b.dead&&p.invuln<=0&&Math.hypot(p.x-b.x,p.y-b.y)<p.r+b.r){
-      b.dead=true;p.hp-=b.dmg;p.invuln=0.6;
+      b.dead=true;p.hp-=b.dmg;p.invuln=0.6;arSfx("hurt");
       if(p.hp<=0){arGameOver();return}
     }
   }
@@ -991,17 +1023,22 @@ function arTick(dt){
   s.enemies=s.enemies.filter(e=>{
     if(e.hp>0)return true;
     s.kills++;
-    s.gems.push({x:e.x,y:e.y,v:e.type==="boss"?6:1});
-    if(e.type==="boss")for(let i=0;i<3;i++)s.gems.push({x:e.x+(Math.random()*40-20),y:e.y+(Math.random()*40-20),v:2});
+    arSfx("die");
+    const gn=e.type==="boss"?12:(e.type==="bat"?3:4);
+    for(let i=0;i<gn;i++){
+      const ga=Math.random()*Math.PI*2,gsp=60+Math.random()*130;
+      s.gems.push({x:e.x,y:e.y,v:e.type==="boss"?2:1,vx:Math.cos(ga)*gsp,vy:Math.sin(ga)*gsp});
+    }
     return false;
   });
-  if(before&&!s.enemies.length)s.doorOpen=true;
+  if(before&&!s.enemies.length){s.doorOpen=true;arSfx("clear")}
   for(const g of s.gems){
+    if(g.vx||g.vy){g.x+=g.vx*dt;g.y+=g.vy*dt;g.vx*=Math.max(0,1-4.5*dt);g.vy*=Math.max(0,1-4.5*dt);if(Math.abs(g.vx)<5)g.vx=0;if(Math.abs(g.vy)<5)g.vy=0}
     const d=Math.hypot(p.x-g.x,p.y-g.y);
-    if(d<80){g.x+=(p.x-g.x)*dt*6;g.y+=(p.y-g.y)*dt*6}
-    if(d<p.r+8){
-      g.dead=true;p.xp+=g.v;
-      if(p.xp>=p.xpNeed){p.xp-=p.xpNeed;p.lv++;p.xpNeed=6+p.lv*2;arLevelUp();return}
+    if(d<95){g.x+=(p.x-g.x)*dt*7;g.y+=(p.y-g.y)*dt*7}
+    if(d<p.r+9){
+      g.dead=true;p.xp+=g.v;arGemSfx();
+      if(p.xp>=p.xpNeed){p.xp-=p.xpNeed;p.lv++;p.xpNeed=8+p.lv*3;arLevelUp();return}
     }
   }
   s.gems=s.gems.filter(g=>!g.dead);
@@ -1012,6 +1049,7 @@ function arTick(dt){
 }
 function arFireVolley(tgt){
   const s=arState,p=s.p;
+  arSfx("shoot");
   const base=Math.atan2(tgt.y-p.y,tgt.x-p.x);
   const shots=[];
   for(let i=0;i<p.multi;i++)shots.push(base+(i-(p.multi-1)/2)*0.13);
@@ -1025,7 +1063,7 @@ function arFireVolley(tgt){
   }
 }
 function arGameOver(){
-  const s=arState;s.phase="over";
+  const s=arState;s.phase="over";arSfx("over");
   if(s.stage>s.best){s.best=s.stage;try{localStorage.setItem("nougaen-is-archer-beststage",String(s.best))}catch(_){ }}
   render();
 }
@@ -1073,8 +1111,12 @@ function arDraw(){
   // obstacles
   for(const o of s.obs){g.fillStyle="#54677f";g.fillRect(o.x,o.y,o.w,o.h);g.strokeStyle="#7d92b2";g.lineWidth=2;g.strokeRect(o.x,o.y,o.w,o.h)}
   // gems
-  g.fillStyle="#39d5e8";
-  for(const gm of s.gems){g.save();g.translate(gm.x,gm.y);g.rotate(Math.PI/4);g.fillRect(-4,-4,8,8);g.restore()}
+  for(const gm of s.gems){
+    const gs=(gm.v>=2?6.5:5)*(1+0.18*Math.sin(s.time*7+gm.x*0.7+gm.y));
+    g.fillStyle=gm.v>=2?"#ffd94d":"#39d5e8";
+    g.save();g.translate(gm.x,gm.y);g.rotate(Math.PI/4);g.fillRect(-gs/2,-gs/2,gs,gs);g.restore();
+    g.fillStyle="rgba(255,255,255,.75)";g.fillRect(gm.x-1,gm.y-1,2,2);
+  }
   // enemy bullets
   g.fillStyle="#ff5d47";
   for(const b of s.bullets){g.beginPath();g.arc(b.x,b.y,b.r,0,Math.PI*2);g.fill()}
@@ -1135,6 +1177,7 @@ app.addEventListener("pointerdown",event=>{
   const cv=event.target.closest("#arCanvas");
   if(!cv||!arState||arState.phase!=="play")return;
   event.preventDefault();
+  arAudio();
   const p=arCanvasPos(event);
   arState.joy.active=true;arState.joy.ox=p.x;arState.joy.oy=p.y;arState.joy.cx=p.x;arState.joy.cy=p.y;
 });
@@ -1153,12 +1196,14 @@ document.addEventListener("keydown",event=>{
 document.addEventListener("keyup",event=>{arKeys[event.key.toLowerCase()]=false});
 app.addEventListener("click",event=>{
   if(event.target.closest("[data-ar-start]")){
+    arAudio();arSfx("pick");
     arNewGame();render();
     if(!arRAF)arRAF=requestAnimationFrame(arLoop);
     return;
   }
   const ab=event.target.closest("[data-ar-ab]");
   if(ab&&arState&&arState.phase==="choose"){
+    arSfx("pick");
     arApplyAbility(ab.dataset.arAb);
     arState.phase="play";
     render();
