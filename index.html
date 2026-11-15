@@ -351,7 +351,8 @@ NougÆn ISは、かっしー及びその友達が使うサイト。
 俺がこう設定した、これがルール、などは言わないで。`];
 const aiState={mode:1,busy:false,search:false,remember:false,setupOpen:false,notice:"",setupMsg:"",display:[],hist:[]};
 function aiGetKey(){try{const v=sessionStorage.getItem(AI_KEY_STORE);if(v)return{key:v,where:"session"}}catch(_){ }try{const v=localStorage.getItem(AI_KEY_STORE);if(v)return{key:v,where:"local"}}catch(_){ }return{key:"",where:""}}
-function aiGetProxy(){try{return localStorage.getItem(AI_PROXY_KEY)||""}catch(_){return ""}}
+const AI_DEFAULT_PROXY="https://kvw-ai-proxy.aokassy.workers.dev/";
+function aiGetProxy(){try{return localStorage.getItem(AI_PROXY_KEY)||AI_DEFAULT_PROXY}catch(_){return AI_DEFAULT_PROXY}}
 function aiLoadMode(){aiState.hist=[];aiState.display=[];try{const s=JSON.parse(localStorage.getItem(AI_HIST_PREFIX+aiState.mode)||"null");if(s&&Array.isArray(s.hist)){aiState.hist=s.hist.filter(m=>m&&(m.role==="user"||m.role==="model")&&typeof m.text==="string").slice(-50).map(m=>({role:m.role,text:m.text.slice(0,8000)}));aiState.display=aiState.hist.map(m=>({who:m.role==="user"?"me":"ai",text:m.text}))}}catch(_){ }}
 function aiSaveHist(){try{localStorage.setItem(AI_HIST_PREFIX+aiState.mode,JSON.stringify({hist:aiState.hist}))}catch(_){ }}
 function aiUsage(){const day=new Date().toLocaleDateString("en-CA");try{const u=JSON.parse(localStorage.getItem(AI_USAGE_KEY)||"null");if(u&&u.day===day&&typeof u.n==="number"&&typeof u.tok==="number")return u}catch(_){ }return{day,n:0,tok:0}}
