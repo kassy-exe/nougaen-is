@@ -971,7 +971,7 @@ function arLevelUp(){
     offers.push(pool.splice(i,1)[0]);
   }
   s.offers=offers;
-  render();
+  arShowOverlay(arChooseOverlayHtml());
 }
 function arCircleRect(cx,cy,r,rc){
   const nx=Math.max(rc.x,Math.min(cx,rc.x+rc.w)),ny=Math.max(rc.y,Math.min(cy,rc.y+rc.h));
@@ -1212,10 +1212,31 @@ function arFireVolley(tgt){
     }
   }
 }
+function arChooseOverlayHtml(){
+  const s=arState;
+  const cards=s.offers.map(id=>{
+    const a=AR_ABILITIES.find(x=>x.id===id);const tx=a[lang==="ja"?"ja":"en"];
+    return `<button type="button" class="ar-card" data-ar-ab="${id}"><b>${esc(tx[0])}</b><span>${esc(tx[1])}</span></button>`;
+  }).join("");
+  return `<div class="ar-overlay"><div class="ar-choose-title">${esc(t("arChoose"))}</div><div class="ar-cards">${cards}</div></div>`;
+}
+function arOverOverlayHtml(){
+  const s=arState,p=s.p;
+  return `<div class="ar-overlay"><div class="ar-over">${esc(t("arGameOver"))}</div><div class="rh-rline">${esc(t("arReach"))}: <b>${s.stage}</b> / ${esc(t("arBestStage"))}: <b>${s.best}</b></div><div class="rh-rline">Lv ${p.lv} ・ ${s.kills} ${esc(t("arKills"))}</div><button type="button" class="primary-link external-game-play" data-ar-start>${esc(t("arAgain"))}</button></div>`;
+}
+function arChipsHtml(){
+  if(!arState)return "";
+  return arState.p.abilities.map(id=>{const a=AR_ABILITIES.find(x=>x.id===id);return `<span class="ar-chip">${esc(a?a[lang==="ja"?"ja":"en"][0]:id)}</span>`}).join("");
+}
+function arShowOverlay(htmlStr){
+  const wrap=document.querySelector(".ar-wrap");
+  if(wrap){const old=wrap.querySelector(".ar-overlay");if(old)old.remove();wrap.insertAdjacentHTML("beforeend",htmlStr)}
+  else render();
+}
 function arGameOver(){
   const s=arState;s.phase="over";arSfx("over");
   if(s.stage>s.best){s.best=s.stage;try{localStorage.setItem("nougaen-is-archer-beststage",String(s.best))}catch(_){ }}
-  render();
+  arShowOverlay(arOverOverlayHtml());
 }
 function arHud(){
   const s=arState;if(!s)return;
@@ -1230,20 +1251,12 @@ function renderArcher(){
     return `${head}<p class="page-subtitle">${esc(t("arIntro"))}</p><button type="button" class="primary-link external-game-play" data-ar-start>${esc(t("arStart"))}</button><p class="footnote">${esc(t("arHow"))}</p>`;
   }
   const s=arState,p=s.p;
-  const chips=p.abilities.map(id=>{const a=AR_ABILITIES.find(x=>x.id===id);return `<span class="ar-chip">${esc(a?a[lang==="ja"?"ja":"en"][0]:id)}</span>`}).join("");
+  const chips=arChipsHtml();
   let overlay="";
-  if(s.phase==="choose"){
-    const cards=s.offers.map(id=>{
-      const a=AR_ABILITIES.find(x=>x.id===id);const tx=a[lang==="ja"?"ja":"en"];
-      return `<button type="button" class="ar-card" data-ar-ab="${id}"><b>${esc(tx[0])}</b><span>${esc(tx[1])}</span></button>`;
-    }).join("");
-    overlay=`<div class="ar-overlay"><div class="ar-choose-title">${esc(t("arChoose"))}</div><div class="ar-cards">${cards}</div></div>`;
-  }
-  if(s.phase==="over"){
-    overlay=`<div class="ar-overlay"><div class="ar-over">${esc(t("arGameOver"))}</div><div class="rh-rline">${esc(t("arReach"))}: <b>${s.stage}</b> / ${esc(t("arBestStage"))}: <b>${s.best}</b></div><div class="rh-rline">Lv ${p.lv} ・ ${s.kills} ${esc(t("arKills"))}</div><button type="button" class="primary-link external-game-play" data-ar-start>${esc(t("arAgain"))}</button></div>`;
-  }
+  if(s.phase==="choose")overlay=arChooseOverlayHtml();
+  if(s.phase==="over")overlay=arOverOverlayHtml();
   setTimeout(()=>{arDraw();arHud()},0);
-  return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><div class="ar-stage"><div class="mj-bar"><span>${esc(t("arStage"))} <b>${s.stage}</b></span><span>Lv <b>${p.lv}</b></span><span>${esc(t("arKills"))} <b>${s.kills}</b></span></div><div class="ar-hud"><div class="ar-bar ar-hpbar"><i id="arHpBar"></i></div><span id="arHpText"></span></div><div class="ar-hud"><div class="ar-bar ar-xpbar"><i id="arXpBar"></i></div><span>XP</span></div>${chips?`<div class="ar-chips">${chips}</div>`:""}<div class="ar-wrap"><canvas id="arCanvas" width="${AR_W}" height="${AR_H}" class="ar-canvas2"></canvas><button type="button" class="ar-fs" data-ar-fs title="${esc(t("arFs"))}">⛶</button>${overlay}</div></div>`;
+  return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><div class="ar-stage"><div class="mj-bar"><span>${esc(t("arStage"))} <b>${s.stage}</b></span><span>Lv <b>${p.lv}</b></span><span>${esc(t("arKills"))} <b>${s.kills}</b></span></div><div class="ar-hud"><div class="ar-bar ar-hpbar"><i id="arHpBar"></i></div><span id="arHpText"></span></div><div class="ar-hud"><div class="ar-bar ar-xpbar"><i id="arXpBar"></i></div><span>XP</span></div><div class="ar-chips" id="arChips">${chips}</div><div class="ar-wrap"><canvas id="arCanvas" width="${AR_W}" height="${AR_H}" class="ar-canvas2"></canvas><button type="button" class="ar-fs" data-ar-fs title="${esc(t("arFs"))}">⛶</button>${overlay}</div></div>`;
 }
 // ----- drawing -----
 function arShadow(g,x,y,r){
@@ -1519,13 +1532,25 @@ function arCanvasPos(event){
   const cv=document.getElementById("arCanvas");const r=cv.getBoundingClientRect();
   return {x:(event.clientX-r.left)*AR_W/r.width,y:(event.clientY-r.top)*AR_H/r.height};
 }
+let arFsWanted=false;
 function arToggleFs(btn){
   const wrap=btn.closest(".ar-stage");
   if(!wrap)return;
-  if(wrap.classList.contains("ar-max")){wrap.classList.remove("ar-max");return}
-  if(document.fullscreenElement){document.exitFullscreen().catch(()=>{})}
-  else if(wrap.requestFullscreen){wrap.requestFullscreen().catch(()=>wrap.classList.add("ar-max"))}
-  else wrap.classList.add("ar-max");
+  if(wrap.classList.contains("ar-max")){wrap.classList.remove("ar-max");arFsWanted=false;return}
+  if(document.fullscreenElement){arFsWanted=false;document.exitFullscreen().catch(()=>{})}
+  else if(wrap.requestFullscreen){arFsWanted=true;wrap.requestFullscreen().catch(()=>{if(arFsWanted)wrap.classList.add("ar-max")})}
+  else{arFsWanted=true;wrap.classList.add("ar-max")}
+}
+document.addEventListener("fullscreenchange",()=>{
+  if(document.fullscreenElement)arFsWanted=true;
+  else if(document.querySelector(".ar-stage"))arFsWanted=false;
+});
+function arRestoreFs(){
+  if(!arFsWanted||document.fullscreenElement)return;
+  const st=document.querySelector(".ar-stage");
+  if(!st)return;
+  if(st.requestFullscreen)st.requestFullscreen().catch(()=>st.classList.add("ar-max"));
+  else st.classList.add("ar-max");
 }
 app.addEventListener("pointerdown",event=>{
   const cv=event.target.closest("#arCanvas");
@@ -1553,7 +1578,7 @@ app.addEventListener("click",event=>{
   if(fsBtn){arAudio();arToggleFs(fsBtn);return}
   if(event.target.closest("[data-ar-start]")){
     arAudio();arSfx("pick");
-    arNewGame();render();
+    arNewGame();render();arRestoreFs();
     if(!arRAF)arRAF=requestAnimationFrame(arLoop);
     return;
   }
@@ -1562,7 +1587,10 @@ app.addEventListener("click",event=>{
     arSfx("pick");
     arApplyAbility(ab.dataset.arAb);
     arState.phase="play";
-    render();
+    const ov=document.querySelector(".ar-wrap .ar-overlay");
+    const ch=document.getElementById("arChips");
+    if(ov&&ch){ov.remove();ch.innerHTML=arChipsHtml()}
+    else render();
   }
 });
 function route(){const raw=location.hash.replace(/^#\/?/,"");const parts=raw.split("/").filter(Boolean);if(!parts.length||parts[0]==="home")return {kind:"screen",render:renderHome,nav:"home"};if(parts[0]==="apps")return {kind:"screen",render:renderApps,nav:"apps"};if(parts[0]==="settings")return {kind:"screen",render:renderSettings,nav:"settings"};if(parts[0]==="game"){if(parts[1]==="blackjack")return {kind:"screen",render:renderBlackjack,nav:"apps"};if(parts[1]==="mahjong")return {kind:"screen",render:renderMahjong,nav:"apps"};if(parts[1]==="rhythm")return {kind:"screen",render:renderRhythm,nav:"apps"};if(parts[1]==="archer")return {kind:"screen",render:renderArcher,nav:"apps"};const externalGame=EXTERNAL_GAMES.find(item=>item.id===parts[1]);if(externalGame)return {kind:"screen",render:()=>renderExternalGame(externalGame),nav:"apps",externalGame};return {kind:"screen",render:()=>renderGameStub(parts[1]),nav:"apps"}}if(parts[0]==="app"){const item=APPS.find(x=>x.id===parts[1]);return item?{kind:"app",item,nav:"apps"}:{kind:"screen",render:renderNotFound,nav:"apps"}}return {kind:"screen",render:renderNotFound,nav:"home"}}
