@@ -156,7 +156,12 @@
 .mj-bar{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0 8px}
 .mj-bar b{color:var(--ink)}
 .ar-wrap{position:relative;max-width:430px;margin:10px auto}
-.ar-canvas2{width:100%;height:auto;display:block;border-radius:14px;touch-action:none;background:#12233a}
+.ar-canvas2{height:min(72dvh,620px);width:auto;max-width:100%;display:block;margin:0 auto;border-radius:14px;touch-action:none;background:#12233a}
+.ar-fs{position:absolute;top:8px;right:8px;z-index:6;width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.35);background:rgba(8,14,26,.55);color:#fff;font-size:18px;line-height:1;cursor:pointer}
+.ar-wrap:fullscreen{background:#0b1626;display:flex;align-items:center;justify-content:center}
+.ar-wrap:fullscreen .ar-canvas2{height:100dvh;max-height:100dvh;border-radius:0}
+.ar-wrap.ar-max{position:fixed;inset:0;z-index:999;background:#0b1626;display:flex;align-items:center;justify-content:center}
+.ar-wrap.ar-max .ar-canvas2{height:100dvh;max-height:100dvh;border-radius:0}
 .ar-hud{display:flex;align-items:center;gap:8px;max-width:430px;margin:6px auto 0;font-size:11px;color:var(--muted)}
 .ar-bar{flex:1;height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
 .ar-bar i{display:block;height:100%;width:100%;border-radius:99px}
@@ -222,11 +227,11 @@ const BRAND_ICON_PATH="./N.png";
 const AI_URL = "https://chatgpt.com/";
 const STRINGS = {
   ja: {
-    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。",mjIntro:"同じ牌を2つ消していく麻雀ソリティア。端が開いている牌だけ取れる。",mjNew:"最初から",mjHint:"ヒント",mjShuffle:"シャッフル",mjLeft:"残り",mjMoves:"手数",mjWin:"全消し成功！",mjStuck:"詰み。シャッフルか最初からで再挑戦",rhIntro:"ヨルシカの9曲で遊ぶリズムゲーム。曲を選ぶとGoogle Driveから再生します（音が出ます）。",rhStart:"スタート",rhScore:"スコア",rhCombo:"コンボ",rhMaxCombo:"最大コンボ",rhAgain:"もう一度",rhHow:"ノーツが金の線に重なった瞬間にレーンをタップ",rhLoading:"読み込み中…",rhLoadError:"再生できませんでした。通信状態を確認して、もう一度試してください",rhBack:"曲を選ぶ",arIntro:"アーチャー伝説風のローグライト。ドラッグで移動、指を離すと一番近い敵を自動で撃つ。敵を倒して経験値を集め、レベルアップでアビリティを3択から選んで強くなれ。全ステージ踏破を目指せ",arScore:"スコア",arShot:"矢",arWind:"風",arLast:"前回",arBest:"ベスト",arResult:"合計",arAgain:"もう一度",arBestStage:"ベスト",arReach:"到達ステージ",arGameOver:"ゲームオーバー",arChoose:"アビリティを選んで",arStart:"ゲームスタート",arKills:"撃破",arStage:"ステージ",arHow:"操作: キャンバスをドラッグで移動（WASD/矢印キーでも可）。止まっている間だけ自動射撃するから、敵の弾は動き回って避け、撃つときは止まるのがコツ。全滅させると上の扉が開く。5ステージごとにボス", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
+    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。",mjIntro:"同じ牌を2つ消していく麻雀ソリティア。端が開いている牌だけ取れる。",mjNew:"最初から",mjHint:"ヒント",mjShuffle:"シャッフル",mjLeft:"残り",mjMoves:"手数",mjWin:"全消し成功！",mjStuck:"詰み。シャッフルか最初からで再挑戦",rhIntro:"ヨルシカの9曲で遊ぶリズムゲーム。曲を選ぶとGoogle Driveから再生します（音が出ます）。",rhStart:"スタート",rhScore:"スコア",rhCombo:"コンボ",rhMaxCombo:"最大コンボ",rhAgain:"もう一度",rhHow:"ノーツが金の線に重なった瞬間にレーンをタップ",rhLoading:"読み込み中…",rhLoadError:"再生できませんでした。通信状態を確認して、もう一度試してください",rhBack:"曲を選ぶ",arIntro:"アーチャー伝説風のローグライト。ドラッグで移動、指を離すと一番近い敵を自動で撃つ。敵を倒して経験値を集め、レベルアップでアビリティを3択から選んで強くなれ。全ステージ踏破を目指せ",arScore:"スコア",arShot:"矢",arWind:"風",arLast:"前回",arBest:"ベスト",arResult:"合計",arAgain:"もう一度",arBestStage:"ベスト",arFs:"全画面",arReach:"到達ステージ",arGameOver:"ゲームオーバー",arChoose:"アビリティを選んで",arStart:"ゲームスタート",arKills:"撃破",arStage:"ステージ",arHow:"操作: キャンバスをドラッグで移動（WASD/矢印キーでも可）。止まっている間だけ自動射撃するから、敵の弾は動き回って避け、撃つときは止まるのがコツ。全滅させると上の扉が開く。5ステージごとにボス", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
     bjTitle:"かっしー流ブラックジャック", bjSubtitle:"全員のカードが見える、1台で遊ぶホットシートゲーム。", bjPlayers:"プレイヤー数", bjDifficulty:"CPUの強さ", bjWeak:"弱い", bjNormal:"ふつう", bjStrong:"強い", bjSeat:"席", bjHuman:"人間", bjCPU:"CPU", bjName:"名前", bjStart:"ゲーム開始", bjRules:"ルール", bjRulesTitle:"ルール", bjClose:"閉じる", bjBetTitle:"ベット", bjBetIntro:"人間プレイヤーは各自の賭け額を決定。CPUは自動で選びます。", bjChips:"チップ", bjDebt:"借金", bjBet:"ベット", bjYourBet:"自分で賭ける", bjAutoBet:"CPU自動", bjDeal:"ベットを確定して配る", bjBadBet:"ベットは所持チップの範囲で1以上の整数にしてください。", bjRound:"ラウンド", bjActive:"プレイ中", bjStood:"スタンド", bjBusted:"バースト", bjHit:"ヒット", bjStand:"スタンド", bjTurn:"手番", bjCpuTurn:"CPUの手番", bjQuit:"メニューに戻る", bjNoticeDeck:"山札も捨て札もなくなったため、スタンドとして進めます。", bjResult:"ラウンド結果", bjWinner:"勝者", bjWinners:"勝者", bjNoContest:"勝負なし", bjNoContestText:"全員バーストしたため、ベットを返却しました。", bjPot:"ポット", bjBonus:"ストックボーナス", bjPotShare:"ポット分配", bjJanken:"じゃんけん", bjJankenIntro:"残りのチップをじゃんけんで1枚ずつ分配します。", bjJankenSelect:"手を選んでください", bjRock:"グー", bjPaper:"パー", bjScissors:"チョキ", bjJankenNoWinner:"決着がつきませんでした。もう一度選んでください。", bjJankenNarrow:"勝ち残ったプレイヤーで、残りのチップを決めます。", bjJankenAward:"じゃんけん配分", bjRemainder:"残りの分配チップ", bjPayout:"受取", bjRefund:"返却", bjRepayment:"返済", bjNext:"次のラウンド", bjSetupTitle:"ゲーム設定", bjReason21:"誰かが21になりました。", bjReasonLast:"残り1人になりました。", bjReasonStand:"全員が2周連続でスタンドしました。", bjRuleBody:"2〜6人で遊ぶ、全員のカードが表向きの対戦です。人間またはCPUを席ごとに選べます。\n\n通常の52枚を使用。A=1、2〜10は数字どおり、J=11・Q=12・K=13。全員100チップで開始。各ラウンド、人間プレイヤーは1〜所持チップ全額の範囲で各自の賭け額を決め、CPUは所持チップの範囲で自動的に選びます。\n\n順番にヒット（1枚引く）かスタンドを選択。21ちょうどで即終了、21超過はバースト。最高21以下のプレイヤーが勝者です。全員がヒットなしで2周連続スタンドすると終了します。山札がなくなれば捨て札を混ぜ直します。\n\n勝者は全員のベットを受け取り、自分のベットの1.5倍（端数切り捨て）をストックから獲得。引き分けはポットを均等分配し、余りはじゃんけんで配ります。チップ0で30を借り、借金がある状態でチップ50以上になるたび30を返済します。", bjSuitHeart:"ハート", bjSuitDiamond:"ダイヤ", bjSuitClub:"クラブ", bjSuitSpade:"スペード"
   },
   en: {
-    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.",mjIntro:"Mahjong solitaire: remove matching pairs. Only tiles with a free side can be taken.",mjNew:"Restart",mjHint:"Hint",mjShuffle:"Shuffle",mjLeft:"Left",mjMoves:"Moves",mjWin:"Cleared!",mjStuck:"No moves left. Shuffle or restart.",rhIntro:"A rhythm game with 9 Yorushika songs, streamed from Google Drive (sound on). Pick a song.",rhStart:"Start",rhScore:"Score",rhCombo:"Combo",rhMaxCombo:"Max combo",rhAgain:"Play again",rhHow:"Tap a lane the moment a note reaches the gold line",rhLoading:"Loading…",rhLoadError:"Could not play the song. Check your connection and try again.",rhBack:"Choose a song",arIntro:"An Archero-style roguelite. Drag to move; release and your archer auto-fires at the nearest enemy. Collect XP, level up and pick 1 of 3 abilities to grow stronger. Clear every stage",arScore:"Score",arShot:"Arrow",arWind:"Wind",arLast:"Last",arBest:"Best",arResult:"Total",arAgain:"Play again",arBestStage:"Best",arReach:"Stage reached",arGameOver:"Game Over",arChoose:"Choose an ability",arStart:"Start Game",arKills:"Kills",arStage:"Stage",arHow:"Controls: drag on the field to move (WASD / arrow keys work too). You only shoot while standing still, so keep moving to dodge and stop to fire. Clear a stage to open the door at the top. A boss waits every 5 stages", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
+    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.",mjIntro:"Mahjong solitaire: remove matching pairs. Only tiles with a free side can be taken.",mjNew:"Restart",mjHint:"Hint",mjShuffle:"Shuffle",mjLeft:"Left",mjMoves:"Moves",mjWin:"Cleared!",mjStuck:"No moves left. Shuffle or restart.",rhIntro:"A rhythm game with 9 Yorushika songs, streamed from Google Drive (sound on). Pick a song.",rhStart:"Start",rhScore:"Score",rhCombo:"Combo",rhMaxCombo:"Max combo",rhAgain:"Play again",rhHow:"Tap a lane the moment a note reaches the gold line",rhLoading:"Loading…",rhLoadError:"Could not play the song. Check your connection and try again.",rhBack:"Choose a song",arIntro:"An Archero-style roguelite. Drag to move; release and your archer auto-fires at the nearest enemy. Collect XP, level up and pick 1 of 3 abilities to grow stronger. Clear every stage",arScore:"Score",arShot:"Arrow",arWind:"Wind",arLast:"Last",arBest:"Best",arResult:"Total",arAgain:"Play again",arBestStage:"Best",arFs:"Fullscreen",arReach:"Stage reached",arGameOver:"Game Over",arChoose:"Choose an ability",arStart:"Start Game",arKills:"Kills",arStage:"Stage",arHow:"Controls: drag on the field to move (WASD / arrow keys work too). You only shoot while standing still, so keep moving to dodge and stop to fire. Clear a stage to open the door at the top. A boss waits every 5 stages", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
     bjTitle:"Kassy-style Blackjack", bjSubtitle:"An open-card, hot-seat game for one device.", bjPlayers:"Players", bjDifficulty:"CPU difficulty", bjWeak:"Weak", bjNormal:"Normal", bjStrong:"Strong", bjSeat:"Seat", bjHuman:"Human", bjCPU:"CPU", bjName:"Name", bjStart:"Start game", bjRules:"Rules", bjRulesTitle:"Rules", bjClose:"Close", bjBetTitle:"Place bets", bjBetIntro:"Each human chooses a wager; CPU seats choose automatically.", bjChips:"Chips", bjDebt:"Debt", bjBet:"Bet", bjYourBet:"Your wager", bjAutoBet:"CPU auto", bjDeal:"Confirm bets and deal", bjBadBet:"Bet an integer from 1 up to the player's chip total.", bjRound:"Round", bjActive:"Active", bjStood:"Stood", bjBusted:"Busted", bjHit:"Hit", bjStand:"Stand", bjTurn:"Turn", bjCpuTurn:"CPU turn", bjQuit:"Quit to menu", bjNoticeDeck:"No cards remain in the deck or discard pile; this turn counts as a stand.", bjResult:"Round result", bjWinner:"Winner", bjWinners:"Winners", bjNoContest:"No contest", bjNoContestText:"Everyone busted, so all bets were refunded.", bjPot:"Pot", bjBonus:"Stock bonus", bjPotShare:"Pot share", bjJanken:"Rock-paper-scissors", bjJankenIntro:"Award the remaining chips one at a time with rock-paper-scissors.", bjJankenSelect:"Choose your hand", bjRock:"Rock", bjPaper:"Paper", bjScissors:"Scissors", bjJankenNoWinner:"No one won that round. Choose again.", bjJankenNarrow:"The remaining chip(s) will be decided among the winning players.", bjJankenAward:"Janken award", bjRemainder:"Chips left to award", bjPayout:"Received", bjRefund:"Refund", bjRepayment:"Debt repaid", bjNext:"Next round", bjSetupTitle:"Game setup", bjReason21:"A player reached 21.", bjReasonLast:"Only one player remains.", bjReasonStand:"Everyone stood for two full laps in a row.", bjRuleBody:"A face-up game for 2–6 players. Choose human or CPU for each seat.\n\nUse a standard 52-card deck. A=1, 2–10 are face value, J=11, Q=12, K=13. Everyone starts with 100 chips. Each round, every human independently chooses a wager from 1 to all of their chips; CPU seats choose automatically within their chips.\n\nTake turns hitting (draw one card) or standing. The round ends immediately at exactly 21; over 21 is a bust. The highest total at or below 21 wins. The round also ends after two full laps of consecutive stands with no hits. If the deck runs out, shuffle the discard pile.\n\nA winner receives every bet plus a stock bonus of floor(1.5× their own bet). Tied winners split the pot; rock-paper-scissors awards any remainder. At 0 chips, borrow 30. With debt, repay 30 whenever chips reach 50 or more.", bjSuitHeart:"Hearts", bjSuitDiamond:"Diamonds", bjSuitClub:"Clubs", bjSuitSpade:"Spades"
   },
   nu: {}
@@ -795,43 +800,81 @@ const AR_ABILITIES=[
  {id:"arrowspd",ja:["矢速アップ","矢の速度+25%・ダメージ+10%"],en:["Arrow Speed","Arrow speed +25%, damage +10%"]},
  {id:"heal",ja:["回復","HPを40%回復"],en:["Heal","Restore 40% HP"]}
 ];
-let arState=null,arRAF=0,arKeys={};
-function arBestStage(){try{return Number(localStorage.getItem("nougaen-is-archer-beststage")||0)}catch(_){return 0}}
-let arAC=null,arLastShootSfx=0,arLastDieSfx=0;
-function arAudio(){if(!arAC){try{arAC=new (window.AudioContext||window.webkitAudioContext)()}catch(_){}}if(arAC&&arAC.state==="suspended")arAC.resume();return arAC}
+// ----- sound engine (layered synth) -----
+let arAC=null,arMaster=null,arNoiseBuf=null,arLastShootSfx=0,arLastDieSfx=0,arLastHitSfx=0;
+function arAudio(){
+  if(!arAC){
+    try{
+      arAC=new (window.AudioContext||window.webkitAudioContext)();
+      const comp=arAC.createDynamicsCompressor();
+      comp.threshold.value=-18;comp.ratio.value=6;
+      arMaster=arAC.createGain();arMaster.gain.value=0.9;
+      arMaster.connect(comp);comp.connect(arAC.destination);
+      const len=arAC.sampleRate*0.5;
+      arNoiseBuf=arAC.createBuffer(1,len,arAC.sampleRate);
+      const d=arNoiseBuf.getChannelData(0);
+      for(let i=0;i<len;i++)d[i]=Math.random()*2-1;
+    }catch(_){ }
+  }
+  if(arAC&&arAC.state==="suspended")arAC.resume();
+  return arAC;
+}
 function arTone(f0,f1,dur,type,vol,delay){
   const ac=arAudio();if(!ac)return;
   const t0=ac.currentTime+(delay||0);
   const o=ac.createOscillator(),g=ac.createGain();
   o.type=type||"square";
-  o.frequency.setValueAtTime(f0,t0);
+  o.frequency.setValueAtTime(Math.max(30,f0),t0);
   o.frequency.exponentialRampToValueAtTime(Math.max(30,f1),t0+dur);
   g.gain.setValueAtTime(vol,t0);
   g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
-  o.connect(g);g.connect(ac.destination);
+  o.connect(g);g.connect(arMaster);
   o.start(t0);o.stop(t0+dur+0.02);
 }
+function arNoise(dur,ftype,f0,f1,vol,delay){
+  const ac=arAudio();if(!ac||!arNoiseBuf)return;
+  const t0=ac.currentTime+(delay||0);
+  const src=ac.createBufferSource();src.buffer=arNoiseBuf;src.loop=true;
+  const fl=ac.createBiquadFilter();fl.type=ftype;
+  fl.frequency.setValueAtTime(f0,t0);
+  fl.frequency.exponentialRampToValueAtTime(Math.max(40,f1),t0+dur);
+  const g=ac.createGain();
+  g.gain.setValueAtTime(vol,t0);
+  g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
+  src.connect(fl);fl.connect(g);g.connect(arMaster);
+  src.start(t0);src.stop(t0+dur+0.02);
+}
 function arSfx(name){
-  if(name==="shoot"){const now=performance.now();if(now-arLastShootSfx<70)return;arLastShootSfx=now;arTone(880,320,0.07,"square",0.05)}
-  else if(name==="hit")arTone(300,180,0.05,"triangle",0.08);
-  else if(name==="die"){const now=performance.now();if(now-arLastDieSfx<60)return;arLastDieSfx=now;arTone(420,60,0.22,"sawtooth",0.10)}
-  else if(name==="hurt")arTone(160,70,0.2,"sawtooth",0.14);
-  else if(name==="clear"){arTone(660,660,0.09,"sine",0.12);arTone(990,990,0.14,"sine",0.12,0.09)}
-  else if(name==="over"){arTone(392,392,0.16,"triangle",0.12);arTone(311,311,0.16,"triangle",0.12,0.16);arTone(262,180,0.32,"triangle",0.12,0.32)}
-  else if(name==="pick")arTone(520,780,0.09,"sine",0.12);
-  else if(name==="levelup"){arTone(523,523,0.09,"square",0.09);arTone(659,659,0.09,"square",0.09,0.08);arTone(784,784,0.09,"square",0.09,0.16);arTone(1047,1047,0.16,"square",0.10,0.24)}
+  const now=typeof performance!=="undefined"?performance.now():0;
+  if(name==="shoot"){if(now-arLastShootSfx<80)return;arLastShootSfx=now;
+    arTone(920,240,0.07,"square",0.10);arNoise(0.05,"highpass",2500,3000,0.05)}
+  else if(name==="hit"){if(now-arLastHitSfx<45)return;arLastHitSfx=now;
+    const v=0.9+Math.random()*0.25;
+    arNoise(0.06,"bandpass",1700*v,900*v,0.30);arTone(260*v,110*v,0.07,"triangle",0.22)}
+  else if(name==="die"){if(now-arLastDieSfx<60)return;arLastDieSfx=now;
+    arTone(340,880,0.09,"sine",0.20);arTone(520,55,0.26,"sawtooth",0.20,0.02);arNoise(0.18,"lowpass",1600,200,0.22,0.01)}
+  else if(name==="explode"){arNoise(0.42,"lowpass",900,60,0.5);arTone(130,28,0.4,"sine",0.42);arNoise(0.1,"highpass",3000,4000,0.12)}
+  else if(name==="hurt"){arTone(210,55,0.2,"sawtooth",0.26);arNoise(0.12,"bandpass",500,240,0.2)}
+  else if(name==="warn"){arTone(190,380,0.16,"square",0.12)}
+  else if(name==="clear"){arTone(660,660,0.1,"sine",0.18);arTone(880,880,0.1,"sine",0.18,0.09);arTone(1320,1320,0.18,"sine",0.16,0.18)}
+  else if(name==="over"){arTone(392,392,0.18,"triangle",0.2);arTone(311,311,0.18,"triangle",0.2,0.18);arTone(262,170,0.36,"triangle",0.2,0.36)}
+  else if(name==="pick"){arTone(540,820,0.09,"sine",0.16);arTone(1080,1080,0.06,"sine",0.07,0.02)}
+  else if(name==="levelup"){arTone(523,523,0.09,"square",0.13);arTone(659,659,0.09,"square",0.13,0.08);arTone(784,784,0.09,"square",0.13,0.16);arTone(1047,1047,0.2,"square",0.15,0.24);arNoise(0.3,"highpass",5000,7000,0.05,0.1)}
 }
 function arGemSfx(){
   const s=arState;if(!s)return;
   s.gemCombo=(s.gemT>0?(s.gemCombo||0)+1:0);s.gemT=0.9;
   const f=620*Math.pow(2,Math.min(s.gemCombo,12)/12);
-  arTone(f,f*1.01,0.07,"sine",0.10);
+  arTone(f,f,0.08,"sine",0.16);arTone(f*2,f*2,0.05,"sine",0.05);
 }
+// ----- game state -----
+let arState=null,arRAF=0,arKeys={};
+function arBestStage(){try{return Number(localStorage.getItem("nougaen-is-archer-beststage")||0)}catch(_){return 0}}
 function arNewGame(){
   arState={phase:"play",stage:0,kills:0,time:0,
-    p:{x:AR_W/2,y:AR_H-70,r:14,hp:100,maxhp:100,lv:1,xp:0,xpNeed:8,invuln:0,fireT:0,
+    p:{x:AR_W/2,y:AR_H-70,r:14,hp:100,maxhp:100,lv:1,xp:0,xpNeed:8,invuln:0,fireT:0,moving:false,aimA:-Math.PI/2,
        dmg:12,interval:0.55,multi:1,front:0,diag:false,bounce:0,pierce:0,moveMul:1,crit:0.05,arrowSpd:380,abilities:[]},
-    enemies:[],arrows:[],bullets:[],gems:[],obs:[],doorOpen:false,
+    enemies:[],arrows:[],bullets:[],gems:[],obs:[],parts:[],texts:[],doorOpen:false,
     joy:{active:false,ox:0,oy:0,cx:0,cy:0},offers:[],best:arBestStage(),msg:"",gemCombo:0,gemT:0};
   arNextStage();
 }
@@ -840,6 +883,7 @@ function arNextStage(){
   s.p.x=AR_W/2;s.p.y=AR_H-70;s.arrows=[];s.bullets=[];s.doorOpen=false;
   s.obs=arMakeObs(s.stage);
   s.enemies=arMakeEnemies(s.stage);
+  for(const e of s.enemies)arMoveCircle(e,0,0);
 }
 function arMakeObs(stage){
   if(stage<2)return [];
@@ -851,26 +895,49 @@ function arMakeObs(stage){
   ];
   return templates[(stage-2)%templates.length].map(o=>({...o}));
 }
+const AR_ETYPES={
+  chaser:{hp:26,r:13,spd:62,dmg:8},
+  shooter:{hp:20,r:13,spd:48,dmg:10},
+  bat:{hp:14,r:11,spd:118,dmg:6},
+  dasher:{hp:36,r:14,spd:58,dmg:12},
+  splitter:{hp:46,r:17,spd:44,dmg:8},
+  mini:{hp:9,r:8,spd:98,dmg:5},
+  turret:{hp:30,r:14,spd:0,dmg:10},
+  ghost:{hp:22,r:13,spd:56,dmg:9},
+  bomber:{hp:18,r:12,spd:90,dmg:0},
+  boss:{hp:340,r:30,spd:34,dmg:15},
+  necro:{hp:520,r:28,spd:40,dmg:12}
+};
+function arSpawn(type,x,y,hpMul){
+  const b=AR_ETYPES[type];
+  return {type,x,y,r:b.r,hp:Math.round(b.hp*(hpMul||1)),maxhp:Math.round(b.hp*(hpMul||1)),spd:b.spd,dmg:b.dmg,
+    t:Math.random()*2,fireT:1.2+Math.random()*1.4,wob:Math.random()*6.28,state:"chase",stateT:0,dirX:0,dirY:0,fuse:-1,flash:0,summonT:3};
+}
 function arMakeEnemies(stage){
-  const list=[];const hpMul=1+(stage-1)*0.35;
-  const push=(type,x,y)=>{
-    const base={chaser:{hp:26,r:13,spd:62,dmg:8},shooter:{hp:20,r:13,spd:48,dmg:10},bat:{hp:14,r:11,spd:118,dmg:6},boss:{hp:340,r:30,spd:34,dmg:15}}[type];
-    list.push({type,x,y,r:base.r,hp:Math.round(base.hp*hpMul),maxhp:Math.round(base.hp*hpMul),spd:base.spd,dmg:base.dmg,t:Math.random()*2,fireT:1+Math.random()*1.5,wob:Math.random()*6.28});
-  };
+  const hpMul=1+(stage-1)*0.35;
+  const list=[];
   if(stage%5===0){
-    push("boss",AR_W/2,110);
+    const kind=(stage/5)%2===1?"boss":"necro";
+    list.push(arSpawn(kind,AR_W/2,115,hpMul));
     const n=Math.min(2+Math.floor(stage/5),4);
-    for(let i=0;i<n;i++)push("chaser",80+i*80,180);
+    for(let i=0;i<n;i++)list.push(arSpawn("chaser",70+i*90,200,hpMul));
     return list;
   }
-  const n=Math.min(3+stage,10);
+  const pool=[["chaser",10]];
+  if(stage>=2)pool.push(["shooter",4]);
+  if(stage>=3)pool.push(["bat",4],["dasher",3]);
+  if(stage>=4)pool.push(["splitter",3],["turret",2]);
+  if(stage>=6)pool.push(["ghost",3],["bomber",3]);
+  const totalW=pool.reduce((a,p)=>a+p[1],0);
+  const n=Math.min(3+stage,11);
+  let turrets=0;
   for(let i=0;i<n;i++){
-    let type="chaser";
-    const roll=Math.random();
-    if(stage>=2&&roll<0.3)type="shooter";
-    else if(stage>=3&&roll<0.55)type="bat";
-    const x=50+Math.random()*(AR_W-100),y=70+Math.random()*260;
-    push(type,x,y);
+    let roll=Math.random()*totalW,type="chaser";
+    for(const [tp,w] of pool){if(roll<w){type=tp;break}roll-=w}
+    if(type==="turret"){if(turrets>=2)type="chaser";else turrets++}
+    const x=type==="turret"?(60+Math.random()*(AR_W-120)):(50+Math.random()*(AR_W-100));
+    const y=type==="turret"?(90+Math.random()*180):(70+Math.random()*260);
+    list.push(arSpawn(type,x,y,hpMul));
   }
   return list;
 }
@@ -894,6 +961,7 @@ function arApplyAbility(id){
 }
 function arLevelUp(){
   const s=arState;s.phase="choose";arSfx("levelup");
+  for(let i=0;i<16;i++){const a=i/16*Math.PI*2;s.parts.push({x:s.p.x,y:s.p.y,vx:Math.cos(a)*130,vy:Math.sin(a)*130,life:0.5,max:0.5,color:"#ffd94d",size:3})}
   const pool=AR_ABILITIES.map(a=>a.id).filter(id=>id!=="diag"||!s.p.diag);
   const offers=[];
   while(offers.length<3&&pool.length){
@@ -907,25 +975,55 @@ function arCircleRect(cx,cy,r,rc){
   const nx=Math.max(rc.x,Math.min(cx,rc.x+rc.w)),ny=Math.max(rc.y,Math.min(cy,rc.y+rc.h));
   return (cx-nx)*(cx-nx)+(cy-ny)*(cy-ny)<r*r;
 }
-function arMoveCircle(e,dx,dy){
+function arMoveCircle(e,dx,dy,passObs){
   e.x+=dx;e.y+=dy;
-  for(const o of arState.obs){
+  if(!passObs)for(const o of arState.obs){
     if(arCircleRect(e.x,e.y,e.r,o)){
       const nx=Math.max(o.x,Math.min(e.x,o.x+o.w)),ny=Math.max(o.y,Math.min(e.y,o.y+o.h));
-      let vx=e.x-nx,vy=e.y-ny;const d=Math.hypot(vx,vy)||1;
-      if(d===0){e.y=o.y-e.r-1;continue}
+      const vx=e.x-nx,vy=e.y-ny;const d=Math.hypot(vx,vy);
+      if(d<0.001){
+        const lf=e.x-o.x,rt=o.x+o.w-e.x,tp=e.y-o.y,bt=o.y+o.h-e.y;
+        const m=Math.min(lf,rt,tp,bt);
+        if(m===lf)e.x=o.x-e.r-0.5;else if(m===rt)e.x=o.x+o.w+e.r+0.5;
+        else if(m===tp)e.y=o.y-e.r-0.5;else e.y=o.y+o.h+e.r+0.5;
+        continue;
+      }
       e.x=nx+vx/d*e.r;e.y=ny+vy/d*e.r;
     }
   }
   e.x=Math.max(e.r+8,Math.min(AR_W-e.r-8,e.x));
   e.y=Math.max(e.r+8,Math.min(AR_H-e.r-8,e.y));
 }
+function arBurst(x,y,n,color,spd,size){
+  const s=arState;
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,v=(0.3+Math.random()*0.7)*(spd||120);
+    s.parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:0.35+Math.random()*0.3,max:0.6,color,size:size||3});
+  }
+}
+function arHurtPlayer(dmg){
+  const s=arState,p=s.p;
+  if(p.invuln>0||s.phase!=="play")return;
+  p.hp-=dmg;p.invuln=0.6;arSfx("hurt");
+  s.texts.push({x:p.x,y:p.y-24,vy:-46,life:0.8,text:"-"+dmg,color:"#ff6b5e",size:15});
+  arBurst(p.x,p.y,8,"#ff6b5e",110,3);
+  if(p.hp<=0)arGameOver();
+}
+function arExplode(e){
+  const s=arState,p=s.p;
+  e.dead=true;e.hp=0;
+  arSfx("explode");
+  arBurst(e.x,e.y,26,"#ff9f2e",220,4);arBurst(e.x,e.y,12,"#ffe08a",140,3);
+  s.texts.push({x:e.x,y:e.y-30,vy:-30,life:0.5,text:"BOOM",color:"#ffb02e",size:16});
+  if(Math.hypot(p.x-e.x,p.y-e.y)<78+p.r)arHurtPlayer(18);
+  for(const o of s.enemies){if(o!==e&&!o.dead&&Math.hypot(o.x-e.x,o.y-e.y)<78+o.r){o.hp-=26;o.flash=0.12}}
+}
 function arTick(dt){
   const s=arState,p=s.p;
   s.time+=dt;
   if(s.gemT>0)s.gemT-=dt;
   if(p.invuln>0)p.invuln-=dt;
-  // --- move input: joystick or keys ---
+  // --- move input ---
   let mx=0,my=0,moving=false;
   if(s.joy.active){
     const dx=s.joy.cx-s.joy.ox,dy=s.joy.cy-s.joy.oy;const mag=Math.hypot(dx,dy);
@@ -937,47 +1035,88 @@ function arTick(dt){
     if(arKeys["arrowdown"]||arKeys["s"])my+=1;
     if(mx||my){const m=Math.hypot(mx,my);mx/=m;my/=m;moving=true}
   }
+  p.moving=moving;
   if(moving){
     arMoveCircle(p,mx*175*p.moveMul*dt,my*175*p.moveMul*dt);
+    p.aimA=Math.atan2(my,mx);
     p.fireT=Math.min(p.fireT,0.12);
   }else if(s.enemies.length){
-    // --- auto fire at nearest enemy ---
+    let tgt=null,bd=1e18;
+    for(const e of s.enemies){const d=(e.x-p.x)**2+(e.y-p.y)**2;if(d<bd){bd=d;tgt=e}}
+    if(tgt)p.aimA=Math.atan2(tgt.y-p.y,tgt.x-p.x);
     p.fireT-=dt;
-    if(p.fireT<=0){
-      p.fireT=p.interval;
-      let tgt=null,bd=1e18;
-      for(const e of s.enemies){const d=(e.x-p.x)**2+(e.y-p.y)**2;if(d<bd){bd=d;tgt=e}}
-      if(tgt)arFireVolley(tgt);
-    }
+    if(p.fireT<=0&&tgt){p.fireT=p.interval;arFireVolley(tgt)}
   }
   // --- enemies ---
   for(const e of s.enemies){
-    e.t+=dt;
+    if(e.dead)continue;
+    e.t+=dt;e.flash=Math.max(0,(e.flash||0)-dt);
     const dx=p.x-e.x,dy=p.y-e.y;const dist=Math.hypot(dx,dy)||1;
-    if(e.type==="shooter"){
-      if(dist>215)arMoveCircle(e,dx/dist*e.spd*dt,dy/dist*e.spd*dt);
-      e.fireT-=dt;
-      if(e.fireT<=0&&dist<330){e.fireT=2.2;s.bullets.push({x:e.x,y:e.y,vx:dx/dist*155,vy:dy/dist*155,r:5,dmg:e.dmg})}
-    }else if(e.type==="bat"){
-      const wob=Math.sin(s.time*5+e.wob)*0.7;
-      const vx=dx/dist*Math.cos(wob)-dy/dist*Math.sin(wob),vy=dy/dist*Math.cos(wob)+dx/dist*Math.sin(wob);
-      arMoveCircle(e,vx*e.spd*dt,vy*e.spd*dt);
-    }else if(e.type==="boss"){
-      arMoveCircle(e,dx/dist*e.spd*dt,dy/dist*e.spd*dt);
-      e.fireT-=dt;
-      if(e.fireT<=0){e.fireT=3;for(let i=0;i<10;i++){const a=i/10*Math.PI*2;s.bullets.push({x:e.x,y:e.y,vx:Math.cos(a)*120,vy:Math.sin(a)*120,r:5,dmg:10})}}
-    }else{
-      arMoveCircle(e,dx/dist*e.spd*dt,dy/dist*e.spd*dt);
+    const ux=dx/dist,uy=dy/dist;
+    switch(e.type){
+      case "shooter":
+        if(dist>215)arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
+        e.fireT-=dt;
+        if(e.fireT<=0&&dist<340){e.fireT=2.2;s.bullets.push({x:e.x,y:e.y,vx:ux*158,vy:uy*158,r:5,dmg:e.dmg})}
+        break;
+      case "turret":
+        e.fireT-=dt;
+        if(e.fireT<=0&&dist<360){e.fireT=2.6;const base=Math.atan2(dy,dx);
+          for(const off of [-0.3,0,0.3])s.bullets.push({x:e.x,y:e.y-6,vx:Math.cos(base+off)*140,vy:Math.sin(base+off)*140,r:5,dmg:e.dmg})}
+        break;
+      case "bat":{
+        const wob=Math.sin(s.time*5+e.wob)*0.7;
+        arMoveCircle(e,(ux*Math.cos(wob)-uy*Math.sin(wob))*e.spd*dt,(uy*Math.cos(wob)+ux*Math.sin(wob))*e.spd*dt);
+        break}
+      case "dasher":
+        e.stateT-=dt;
+        if(e.state==="chase"){
+          arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
+          if(dist<175){e.state="windup";e.stateT=0.55;arSfx("warn")}
+        }else if(e.state==="windup"){
+          if(e.stateT<=0){e.state="charge";e.stateT=0.5;e.dirX=ux;e.dirY=uy}
+        }else if(e.state==="charge"){
+          arMoveCircle(e,e.dirX*335*dt,e.dirY*335*dt);
+          if(e.stateT<=0){e.state="rest";e.stateT=0.8}
+        }else if(e.stateT<=0)e.state="chase";
+        break;
+      case "bomber":
+        if(e.fuse>=0){
+          e.fuse-=dt;
+          if(e.fuse<=0){arExplode(e)}
+        }else{
+          arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
+          if(dist<48)e.fuse=0.5;
+        }
+        break;
+      case "ghost":
+        arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt,true);
+        break;
+      case "boss":
+        arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
+        e.fireT-=dt;
+        if(e.fireT<=0){e.fireT=3;for(let i=0;i<10;i++){const a=i/10*Math.PI*2+e.t;s.bullets.push({x:e.x,y:e.y,vx:Math.cos(a)*122,vy:Math.sin(a)*122,r:5,dmg:10})}}
+        break;
+      case "necro":
+        if(dist>170)arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
+        e.fireT-=dt;
+        if(e.fireT<=0&&dist<360){e.fireT=2;const base=Math.atan2(dy,dx);
+          for(const off of [-0.22,0,0.22])s.bullets.push({x:e.x,y:e.y,vx:Math.cos(base+off)*165,vy:Math.sin(base+off)*165,r:5,dmg:e.dmg})}
+        e.summonT-=dt;
+        if(e.summonT<=0&&s.enemies.length<9){e.summonT=6;
+          s.enemies.push(arSpawn("mini",e.x-34,e.y+10,1),arSpawn("mini",e.x+34,e.y+10,1));
+          arBurst(e.x,e.y,10,"#9a6ae0",90,3)}
+        break;
+      default: // chaser, splitter, mini
+        arMoveCircle(e,ux*e.spd*dt,uy*e.spd*dt);
     }
-    // contact damage
-    if(dist<e.r+p.r&&p.invuln<=0){
-      p.hp-=e.dmg;p.invuln=0.6;arSfx("hurt");
-      if(p.hp<=0){arGameOver();return}
-    }
+    if(!e.dead&&e.type!=="bomber"&&dist<e.r+p.r)arHurtPlayer(e.dmg);
+    if(s.phase!=="play")return;
   }
-  // enemy separation
+  // separation
   for(let i=0;i<s.enemies.length;i++)for(let j=i+1;j<s.enemies.length;j++){
     const a=s.enemies[i],b=s.enemies[j];
+    if(a.type==="turret"||b.type==="turret")continue;
     const dx=b.x-a.x,dy=b.y-a.y;const d=Math.hypot(dx,dy),min=a.r+b.r+2;
     if(d>0&&d<min){const push=(min-d)/2;b.x+=dx/d*push;b.y+=dy/d*push;a.x-=dx/d*push;a.y-=dy/d*push}
   }
@@ -994,15 +1133,16 @@ function arTick(dt){
     }
     if(!a.dead)for(const o of s.obs){if(a.x>o.x&&a.x<o.x+o.w&&a.y>o.y&&a.y<o.y+o.h){a.dead=true;break}}
     if(!a.dead)for(const e of s.enemies){
-      if(a.hitSet.has(e))continue;
-      const d=Math.hypot(e.x-a.x,e.y-a.y);
-      if(d<e.r+4){
+      if(e.dead||a.hitSet.has(e))continue;
+      if(Math.hypot(e.x-a.x,e.y-a.y)<e.r+4){
         a.hitSet.add(e);
         const crit=Math.random()<p.crit;
-        e.hp-=crit?a.dmg*2:a.dmg;
+        const dmg=Math.round(crit?a.dmg*2:a.dmg);
+        e.hp-=dmg;e.flash=0.12;
         arSfx("hit");
-        e.flash=0.1;
-        if(a.pierce>0)a.pierce--;else{a.dead=true}
+        arBurst(a.x,a.y,3,crit?"#ffd94d":"#ffffff",90,2);
+        s.texts.push({x:e.x+(Math.random()*16-8),y:e.y-e.r-8,vy:-52,life:0.55,text:String(dmg),color:crit?"#ffd94d":"#ffffff",size:crit?17:12});
+        if(a.pierce>0)a.pierce--;else a.dead=true;
         break;
       }
     }
@@ -1012,26 +1152,30 @@ function arTick(dt){
   for(const b of s.bullets){
     b.x+=b.vx*dt;b.y+=b.vy*dt;
     if(b.x<6||b.x>AR_W-6||b.y<6||b.y>AR_H-6)b.dead=true;
-    if(!b.dead&&p.invuln<=0&&Math.hypot(p.x-b.x,p.y-b.y)<p.r+b.r){
-      b.dead=true;p.hp-=b.dmg;p.invuln=0.6;arSfx("hurt");
-      if(p.hp<=0){arGameOver();return}
-    }
+    if(!b.dead&&Math.hypot(p.x-b.x,p.y-b.y)<p.r+b.r){b.dead=true;arHurtPlayer(b.dmg);if(s.phase!=="play")return}
   }
   s.bullets=s.bullets.filter(b=>!b.dead);
-  // --- deaths & gems ---
-  const before=s.enemies.length;
+  // --- deaths ---
+  const before=s.enemies.filter(e=>!e.dead).length;
+  const spawns=[];
   s.enemies=s.enemies.filter(e=>{
-    if(e.hp>0)return true;
+    if(e.hp>0&&!e.dead)return true;
     s.kills++;
-    arSfx("die");
-    const gn=e.type==="boss"?12:(e.type==="bat"?3:4);
+    if(e.type==="bomber"&&!e.dead)arExplode(e);
+    else arSfx("die");
+    const colors={chaser:"#57c84c",shooter:"#e8e4da",bat:"#5a6c8f",dasher:"#b5763a",splitter:"#3fae8a",mini:"#57c84c",turret:"#e06a9a",ghost:"#cfd8ea",bomber:"#ff9f2e",boss:"#e0483e",necro:"#9a6ae0"};
+    arBurst(e.x,e.y,e.r>20?18:10,colors[e.type]||"#fff",150,3);
+    if(e.type==="splitter"){spawns.push(arSpawn("mini",e.x-14,e.y,1),arSpawn("mini",e.x+14,e.y,1))}
+    const gn=(e.type==="boss"||e.type==="necro")?12:(e.type==="bat"||e.type==="mini"?3:4);
     for(let i=0;i<gn;i++){
       const ga=Math.random()*Math.PI*2,gsp=60+Math.random()*130;
-      s.gems.push({x:e.x,y:e.y,v:e.type==="boss"?2:1,vx:Math.cos(ga)*gsp,vy:Math.sin(ga)*gsp});
+      s.gems.push({x:e.x,y:e.y,v:(e.type==="boss"||e.type==="necro")?2:1,vx:Math.cos(ga)*gsp,vy:Math.sin(ga)*gsp});
     }
     return false;
   });
+  for(const m of spawns)s.enemies.push(m);
   if(before&&!s.enemies.length){s.doorOpen=true;arSfx("clear")}
+  // --- gems ---
   for(const g of s.gems){
     if(g.vx||g.vy){g.x+=g.vx*dt;g.y+=g.vy*dt;g.vx*=Math.max(0,1-4.5*dt);g.vy*=Math.max(0,1-4.5*dt);if(Math.abs(g.vx)<5)g.vx=0;if(Math.abs(g.vy)<5)g.vy=0}
     const d=Math.hypot(p.x-g.x,p.y-g.y);
@@ -1042,9 +1186,13 @@ function arTick(dt){
     }
   }
   s.gems=s.gems.filter(g=>!g.dead);
+  // --- particles & texts ---
+  for(const pt of s.parts){pt.x+=pt.vx*dt;pt.y+=pt.vy*dt;pt.vx*=Math.max(0,1-3*dt);pt.vy*=Math.max(0,1-3*dt);pt.life-=dt}
+  s.parts=s.parts.filter(pt=>pt.life>0);
+  for(const tx of s.texts){tx.y+=tx.vy*dt;tx.life-=dt}
+  s.texts=s.texts.filter(tx=>tx.life>0);
   // --- door ---
-  if(s.doorOpen&&p.x>AR_W/2-35&&p.x<AR_W/2+35&&p.y<40){arNextStage()}
-  // --- HUD ---
+  if(s.doorOpen&&p.x>AR_W/2-35&&p.x<AR_W/2+35&&p.y<40)arNextStage();
   arHud();
 }
 function arFireVolley(tgt){
@@ -1093,64 +1241,260 @@ function renderArcher(){
     overlay=`<div class="ar-overlay"><div class="ar-over">${esc(t("arGameOver"))}</div><div class="rh-rline">${esc(t("arReach"))}: <b>${s.stage}</b> / ${esc(t("arBestStage"))}: <b>${s.best}</b></div><div class="rh-rline">Lv ${p.lv} ・ ${s.kills} ${esc(t("arKills"))}</div><button type="button" class="primary-link external-game-play" data-ar-start>${esc(t("arAgain"))}</button></div>`;
   }
   setTimeout(()=>{arDraw();arHud()},0);
-  return `${head}<div class="mj-bar"><span>${esc(t("arStage"))} <b>${s.stage}</b></span><span>Lv <b>${p.lv}</b></span><span>${esc(t("arKills"))} <b>${s.kills}</b></span></div><div class="ar-hud"><div class="ar-bar ar-hpbar"><i id="arHpBar"></i></div><span id="arHpText"></span></div><div class="ar-hud"><div class="ar-bar ar-xpbar"><i id="arXpBar"></i></div><span>XP</span></div>${chips?`<div class="ar-chips">${chips}</div>`:""}<div class="ar-wrap"><canvas id="arCanvas" width="${AR_W}" height="${AR_H}" class="ar-canvas2"></canvas>${overlay}</div><p class="footnote">${esc(t("arHow"))}</p>`;
+  return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><div class="mj-bar"><span>${esc(t("arStage"))} <b>${s.stage}</b></span><span>Lv <b>${p.lv}</b></span><span>${esc(t("arKills"))} <b>${s.kills}</b></span></div><div class="ar-hud"><div class="ar-bar ar-hpbar"><i id="arHpBar"></i></div><span id="arHpText"></span></div><div class="ar-hud"><div class="ar-bar ar-xpbar"><i id="arXpBar"></i></div><span>XP</span></div>${chips?`<div class="ar-chips">${chips}</div>`:""}<div class="ar-wrap"><canvas id="arCanvas" width="${AR_W}" height="${AR_H}" class="ar-canvas2"></canvas><button type="button" class="ar-fs" data-ar-fs title="${esc(t("arFs"))}">⛶</button>${overlay}</div>`;
+}
+// ----- drawing -----
+function arShadow(g,x,y,r){
+  g.fillStyle="rgba(0,0,0,.28)";
+  g.beginPath();g.ellipse(x,y+r*0.82,r*0.85,r*0.3,0,0,Math.PI*2);g.fill();
+}
+function arDrawPlayer(g,s){
+  const p=s.p;
+  const bob=p.moving?Math.sin(s.time*13)*1.6:Math.sin(s.time*2.4)*0.8;
+  const x=p.x,y=p.y+bob;
+  arShadow(g,p.x,p.y,p.r);
+  const blink=p.invuln>0&&Math.floor(s.time*14)%2===0;
+  g.globalAlpha=blink?0.35:1;
+  // cloak
+  g.fillStyle="#2e7d4f";
+  g.beginPath();
+  g.moveTo(x,y-13);
+  g.quadraticCurveTo(x+13,y-2,x+10,y+14);
+  g.quadraticCurveTo(x,y+18,x-10,y+14);
+  g.quadraticCurveTo(x-13,y-2,x,y-13);
+  g.fill();
+  g.fillStyle="#256b42";g.fillRect(x-10,y+9,20,4);
+  // head + hood
+  g.fillStyle="#3f9e63";
+  g.beginPath();g.arc(x,y-10,9.5,0,Math.PI*2);g.fill();
+  g.fillStyle="#f2c894";
+  g.beginPath();g.arc(x,y-8.5,6.4,0,Math.PI*2);g.fill();
+  g.fillStyle="#20242c";
+  const fx=Math.cos(p.aimA),fy=Math.sin(p.aimA);
+  g.beginPath();g.arc(x+fx*2.4-2.6,y-8.5+fy*1.6,1.25,0,Math.PI*2);g.arc(x+fx*2.4+2.6,y-8.5+fy*1.6,1.25,0,Math.PI*2);g.fill();
+  // bow aimed
+  g.save();
+  g.translate(x+fx*11,y-4+fy*11);
+  g.rotate(p.aimA);
+  g.strokeStyle="#a9742f";g.lineWidth=3;
+  g.beginPath();g.arc(0,0,12,-1.15,1.15);g.stroke();
+  g.strokeStyle="rgba(240,240,240,.85)";g.lineWidth=1;
+  const bx=Math.cos(1.15)*12,by=Math.sin(1.15)*12;
+  g.beginPath();g.moveTo(bx,-by);g.lineTo(2,0);g.lineTo(bx,by);g.stroke();
+  g.restore();
+  g.globalAlpha=1;
+}
+function arDrawEnemy(g,s,e){
+  const flash=e.flash>0;
+  const x=e.x,y=e.y;
+  if(e.type!=="bat"&&e.type!=="ghost")arShadow(g,x,y,e.r);
+  g.save();
+  if(e.type==="ghost")g.globalAlpha=0.55+0.15*Math.sin(s.time*3+e.wob);
+  if(e.type==="dasher"&&e.state==="windup"){g.translate((Math.random()*3-1.5),0)}
+  switch(e.type){
+    case "chaser": case "splitter": case "mini": {
+      const sq=1+Math.sin(s.time*6+e.wob)*0.07;
+      g.fillStyle=flash?"#ffffff":(e.type==="splitter"?"#3fae8a":"#57c84c");
+      g.beginPath();g.ellipse(x,y,e.r*sq,e.r*(2-sq)*0.96+ e.r*0.1,0,0,Math.PI*2);g.fill();
+      g.fillStyle="rgba(255,255,255,.35)";
+      g.beginPath();g.ellipse(x-e.r*0.35,y-e.r*0.4,e.r*0.28,e.r*0.16,-0.6,0,Math.PI*2);g.fill();
+      g.fillStyle="#12300f";
+      g.beginPath();g.arc(x-4,y-2,2.3,0,Math.PI*2);g.arc(x+4,y-2,2.3,0,Math.PI*2);g.fill();
+      g.strokeStyle="#12300f";g.lineWidth=1.6;
+      g.beginPath();g.arc(x,y+3,4,0.15*Math.PI,0.85*Math.PI);g.stroke();
+      break}
+    case "shooter": case "necro": {
+      const necro=e.type==="necro";
+      g.fillStyle=flash?"#ffffff":(necro?"#4a3566":"#5d6a52");
+      g.beginPath();
+      g.moveTo(x,y-4);g.lineTo(x+e.r*0.95,y+14);g.lineTo(x-e.r*0.95,y+14);g.closePath();g.fill();
+      g.fillStyle=flash?"#ffffff":"#ece7db";
+      g.beginPath();g.arc(x,y-8,necro?11:9.5,0,Math.PI*2);g.fill();
+      g.fillStyle="#14161c";
+      g.beginPath();g.arc(x-3.6,y-8,2.5,0,Math.PI*2);g.arc(x+3.6,y-8,2.5,0,Math.PI*2);g.fill();
+      g.beginPath();g.moveTo(x,y-3.4);g.lineTo(x-1.8,y-0.6);g.lineTo(x+1.8,y-0.6);g.closePath();g.fill();
+      g.fillRect(x-3.4,y-0.4,1.8,2.8);g.fillRect(x+1.6,y-0.4,1.8,2.8);
+      if(necro){
+        g.strokeStyle="#c9a227";g.lineWidth=2.6;
+        g.beginPath();g.moveTo(x+13,y+12);g.lineTo(x+16,y-16);g.stroke();
+        g.fillStyle="#b678f0";g.beginPath();g.arc(x+16,y-19,4.4,0,Math.PI*2);g.fill();
+      }else{
+        g.strokeStyle="#a9742f";g.lineWidth=2.4;
+        g.beginPath();g.arc(x+11,y+1,9,-1.15,1.15);g.stroke();
+      }
+      break}
+    case "bat": {
+      const flap=Math.sin(s.time*16+e.wob)*0.55;
+      g.fillStyle=flash?"#ffffff":"#46587a";
+      for(const sgn of [-1,1]){
+        g.save();g.translate(x+sgn*6,y-2);g.rotate(sgn*flap*0.7);
+        g.beginPath();g.moveTo(0,0);g.quadraticCurveTo(sgn*15,-9,sgn*20,1);g.quadraticCurveTo(sgn*11,4,sgn*7,8);g.quadraticCurveTo(sgn*3,3,0,4);g.closePath();g.fill();
+        g.restore();
+      }
+      g.fillStyle=flash?"#ffffff":"#5d74a0";
+      g.beginPath();g.ellipse(x,y,9,8,0,0,Math.PI*2);g.fill();
+      g.fillStyle="#ffd94d";
+      g.beginPath();g.arc(x-3,y-1.5,1.7,0,Math.PI*2);g.arc(x+3,y-1.5,1.7,0,Math.PI*2);g.fill();
+      g.fillStyle="#ece7db";
+      g.beginPath();g.moveTo(x-2.6,y+3);g.lineTo(x-1.2,y+5.4);g.lineTo(x+0.2,y+3);g.closePath();g.fill();
+      break}
+    case "dasher": {
+      g.fillStyle=flash?"#ffffff":"#a06a35";
+      g.beginPath();g.ellipse(x,y,16,12.5,0,0,Math.PI*2);g.fill();
+      g.fillStyle=flash?"#ffffff":"#b5763a";
+      g.beginPath();g.arc(x,y-3,10,0,Math.PI*2);g.fill();
+      g.fillStyle="#e8a0b4";
+      g.beginPath();g.ellipse(x,y+1.5,5.4,4.2,0,0,Math.PI*2);g.fill();
+      g.fillStyle="#8a4f56";
+      g.beginPath();g.arc(x-2,y+1.5,1.1,0,Math.PI*2);g.arc(x+2,y+1.5,1.1,0,Math.PI*2);g.fill();
+      g.fillStyle="#f4ecd8";
+      for(const sgn of [-1,1]){g.beginPath();g.moveTo(x+sgn*8.4,y+2);g.lineTo(x+sgn*12.4,y-2.6);g.lineTo(x+sgn*6.4,y-1.4);g.closePath();g.fill()}
+      g.fillStyle="#241a10";
+      g.beginPath();g.arc(x-4.6,y-6.4,1.8,0,Math.PI*2);g.arc(x+4.6,y-6.4,1.8,0,Math.PI*2);g.fill();
+      if(e.state==="windup"){
+        g.fillStyle="#ff5347";g.font="bold 17px sans-serif";g.textAlign="center";
+        g.fillText("!",x,y-24);
+      }
+      break}
+    case "turret": {
+      g.fillStyle="#6d4c2f";
+      g.beginPath();g.moveTo(x-11,y+13);g.lineTo(x+11,y+13);g.lineTo(x+7,y+3);g.lineTo(x-7,y+3);g.closePath();g.fill();
+      g.strokeStyle="#3f9e63";g.lineWidth=4;
+      g.beginPath();g.moveTo(x,y+4);g.quadraticCurveTo(x+3,y-4,x,y-8);g.stroke();
+      g.fillStyle=flash?"#ffffff":"#e06a9a";
+      for(let i=0;i<6;i++){
+        const a=i/6*Math.PI*2+s.time*0.7;
+        g.beginPath();g.ellipse(x+Math.cos(a)*8.6,y-11+Math.sin(a)*8.6,5,3.2,a,0,Math.PI*2);g.fill();
+      }
+      g.fillStyle="#ffd94d";
+      g.beginPath();g.arc(x,y-11,5.6,0,Math.PI*2);g.fill();
+      g.fillStyle="#7a4d12";
+      g.beginPath();g.arc(x-1.8,y-12,1.3,0,Math.PI*2);g.arc(x+1.8,y-12,1.3,0,Math.PI*2);g.fill();
+      break}
+    case "ghost": {
+      g.fillStyle=flash?"#ffffff":"#dfe7f5";
+      g.beginPath();
+      g.moveTo(x-11,y+11);
+      g.lineTo(x-11,y-3);
+      g.quadraticCurveTo(x-11,y-13,x,y-13);
+      g.quadraticCurveTo(x+11,y-13,x+11,y-3);
+      g.lineTo(x+11,y+11);
+      for(let i=0;i<3;i++){
+        const gx=x+7.4-i*7.4;
+        g.quadraticCurveTo(gx-1.8,y+5+Math.sin(s.time*7+i*2)*1.6,gx-3.7,y+11);
+      }
+      g.closePath();g.fill();
+      g.fillStyle="#2c3550";
+      g.beginPath();g.ellipse(x-4,y-3,2.2,3.1,0,0,Math.PI*2);g.ellipse(x+4,y-3,2.2,3.1,0,0,Math.PI*2);g.fill();
+      g.beginPath();g.ellipse(x,y+3.6,2.4,3,0,0,Math.PI*2);g.fill();
+      break}
+    case "bomber": {
+      const urg=e.fuse>=0;
+      const blinkOn=urg&&Math.floor(s.time*16)%2===0;
+      g.fillStyle=flash||blinkOn?"#ffffff":"#3a3f4a";
+      g.beginPath();g.arc(x,y,12.5,0,Math.PI*2);g.fill();
+      g.fillStyle="rgba(255,255,255,.3)";
+      g.beginPath();g.ellipse(x-4,y-5,4,2.6,-0.6,0,Math.PI*2);g.fill();
+      g.fillStyle="#8a8f9c";g.fillRect(x-3,y-16,6,4.4);
+      g.strokeStyle="#c9a227";g.lineWidth=2;
+      g.beginPath();g.moveTo(x,y-16);g.quadraticCurveTo(x+4,y-21,x+7,y-19);g.stroke();
+      g.fillStyle="#ffb02e";
+      g.beginPath();g.arc(x+7.6,y-19,2.2+Math.sin(s.time*22)*0.7,0,Math.PI*2);g.fill();
+      g.fillStyle="#ffd94d";
+      g.beginPath();g.arc(x-3.6,y-1,1.8,0,Math.PI*2);g.arc(x+3.6,y-1,1.8,0,Math.PI*2);g.fill();
+      break}
+    case "boss": {
+      const sq=1+Math.sin(s.time*4.4+e.wob)*0.05;
+      g.fillStyle=flash?"#ffffff":"#d8402f";
+      g.beginPath();g.ellipse(x,y,31*sq,29*(2-sq)*0.94+2,0,0,Math.PI*2);g.fill();
+      g.fillStyle="rgba(255,255,255,.3)";
+      g.beginPath();g.ellipse(x-10,y-13,9,5,-0.6,0,Math.PI*2);g.fill();
+      g.fillStyle="#f5c542";
+      g.beginPath();
+      g.moveTo(x-14,y-27);g.lineTo(x-8,y-38);g.lineTo(x-2,y-28);g.lineTo(x+3,y-39);g.lineTo(x+9,y-28);g.lineTo(x+15,y-37);g.lineTo(x+16,y-24);g.lineTo(x-15,y-24);
+      g.closePath();g.fill();
+      g.fillStyle="#2b0d08";
+      g.beginPath();g.arc(x-8,y-5,3.4,0,Math.PI*2);g.arc(x+8,y-5,3.4,0,Math.PI*2);g.fill();
+      g.strokeStyle="#2b0d08";g.lineWidth=2.6;
+      g.beginPath();g.arc(x,y+7,8,1.15*Math.PI,1.85*Math.PI);g.stroke();
+      break}
+  }
+  g.restore();
+  // hp bar
+  if(e.hp<e.maxhp){
+    const w=Math.max(26,e.r*2);
+    g.fillStyle="rgba(0,0,0,.5)";g.fillRect(x-w/2,y-e.r-13,w,4.6);
+    g.fillStyle=e.type==="boss"||e.type==="necro"?"#ff5347":"#e0483e";
+    g.fillRect(x-w/2,y-e.r-13,w*Math.max(0,e.hp/e.maxhp),4.6);
+  }
 }
 function arDraw(){
   const cv=document.getElementById("arCanvas");if(!cv||!arState)return;
   const g=cv.getContext("2d");if(!g)return;
   const s=arState,p=s.p;
-  g.fillStyle="#12233a";g.fillRect(0,0,AR_W,AR_H);
-  g.strokeStyle="rgba(255,255,255,.04)";g.lineWidth=1;
-  for(let x=0;x<AR_W;x+=42){g.beginPath();g.moveTo(x,0);g.lineTo(x,AR_H);g.stroke()}
-  for(let y=0;y<AR_H;y+=42){g.beginPath();g.moveTo(0,y);g.lineTo(AR_W,y);g.stroke()}
-  g.strokeStyle="#3a4a6b";g.lineWidth=6;g.strokeRect(3,3,AR_W-6,AR_H-6);
+  const grad=g.createLinearGradient(0,0,0,AR_H);
+  grad.addColorStop(0,"#16283f");grad.addColorStop(1,"#0e1a2b");
+  g.fillStyle=grad;g.fillRect(0,0,AR_W,AR_H);
+  g.fillStyle="rgba(255,255,255,.028)";
+  for(let ty=0;ty<10;ty++)for(let tx=0;tx<7;tx++){if((tx+ty)%2===0)g.fillRect(tx*60,ty*60,60,60)}
+  g.strokeStyle="#41597c";g.lineWidth=6;g.strokeRect(3,3,AR_W-6,AR_H-6);
   // door
-  g.fillStyle=s.doorOpen?"#f5c542":"#2c3e57";
-  g.fillRect(AR_W/2-35,0,70,16);
-  if(!s.doorOpen){g.fillStyle="#54677f";for(let i=0;i<4;i++)g.fillRect(AR_W/2-30+i*16,0,7,16)}
+  g.fillStyle=s.doorOpen?"#f5c542":"#31435f";
+  g.fillRect(AR_W/2-36,0,72,17);
+  g.fillStyle=s.doorOpen?"#ffedb0":"#54677f";
+  g.fillRect(AR_W/2-36,13,72,4);
+  if(!s.doorOpen){g.fillStyle="#1d2c44";for(let i=0;i<4;i++)g.fillRect(AR_W/2-31+i*17,1,8,15)}
+  else{g.fillStyle="#7a5a12";g.font="bold 11px sans-serif";g.textAlign="center";g.fillText("OPEN",AR_W/2,12)}
   // obstacles
-  for(const o of s.obs){g.fillStyle="#54677f";g.fillRect(o.x,o.y,o.w,o.h);g.strokeStyle="#7d92b2";g.lineWidth=2;g.strokeRect(o.x,o.y,o.w,o.h)}
+  for(const o of s.obs){
+    g.fillStyle="#4b6076";g.fillRect(o.x,o.y,o.w,o.h);
+    g.fillStyle="#5f7791";g.fillRect(o.x,o.y,o.w,7);
+    g.strokeStyle="#7d92b2";g.lineWidth=2;g.strokeRect(o.x,o.y,o.w,o.h);
+    g.strokeStyle="rgba(20,30,46,.5)";g.lineWidth=1;
+    g.beginPath();g.moveTo(o.x+5,o.y+o.h-5);g.lineTo(o.x+o.w-12,o.y+10);g.stroke();
+  }
   // gems
   for(const gm of s.gems){
-    const gs=(gm.v>=2?6.5:5)*(1+0.18*Math.sin(s.time*7+gm.x*0.7+gm.y));
+    const gs=(gm.v>=2?7:5.2)*(1+0.18*Math.sin(s.time*7+gm.x*0.7+gm.y));
     g.fillStyle=gm.v>=2?"#ffd94d":"#39d5e8";
     g.save();g.translate(gm.x,gm.y);g.rotate(Math.PI/4);g.fillRect(-gs/2,-gs/2,gs,gs);g.restore();
-    g.fillStyle="rgba(255,255,255,.75)";g.fillRect(gm.x-1,gm.y-1,2,2);
+    g.fillStyle="rgba(255,255,255,.8)";g.fillRect(gm.x-1,gm.y-1,2,2);
   }
   // enemy bullets
-  g.fillStyle="#ff5d47";
-  for(const b of s.bullets){g.beginPath();g.arc(b.x,b.y,b.r,0,Math.PI*2);g.fill()}
+  for(const b of s.bullets){
+    g.fillStyle="#ff8a5e";g.beginPath();g.arc(b.x,b.y,b.r+2.4,0,Math.PI*2);g.globalAlpha=0.35;g.fill();g.globalAlpha=1;
+    g.fillStyle="#ff5d47";g.beginPath();g.arc(b.x,b.y,b.r,0,Math.PI*2);g.fill();
+  }
   // arrows
-  g.strokeStyle="#f2e7c9";g.lineWidth=3;
   for(const a of s.arrows){
     const ang=Math.atan2(a.vy,a.vx);
-    g.beginPath();g.moveTo(a.x-Math.cos(ang)*11,a.y-Math.sin(ang)*11);g.lineTo(a.x+Math.cos(ang)*7,a.y+Math.sin(ang)*7);g.stroke();
-    g.fillStyle="#f5c542";g.beginPath();g.arc(a.x+Math.cos(ang)*8,a.y+Math.sin(ang)*8,3,0,Math.PI*2);g.fill();
+    g.save();g.translate(a.x,a.y);g.rotate(ang);
+    g.strokeStyle="#8a5a1e";g.lineWidth=2.4;
+    g.beginPath();g.moveTo(-10,0);g.lineTo(5,0);g.stroke();
+    g.fillStyle="#e8e4da";
+    g.beginPath();g.moveTo(11,0);g.lineTo(4,-3);g.lineTo(4,3);g.closePath();g.fill();
+    g.fillStyle="#e0483e";
+    g.beginPath();g.moveTo(-10,0);g.lineTo(-14,-3.4);g.lineTo(-12.6,0);g.lineTo(-14,3.4);g.closePath();g.fill();
+    g.restore();
   }
-  // enemies
-  for(const e of s.enemies){
-    const flash=e.flash&&e.flash>0;e.flash=Math.max(0,(e.flash||0)-0.016);
-    if(e.type==="chaser"){g.fillStyle=flash?"#fff":"#57c84c"}
-    else if(e.type==="shooter"){g.fillStyle=flash?"#fff":"#9a6ae0"}
-    else if(e.type==="bat"){g.fillStyle=flash?"#fff":"#3d4b66"}
-    else{g.fillStyle=flash?"#fff":"#e0483e"}
-    g.beginPath();g.arc(e.x,e.y,e.r,0,Math.PI*2);g.fill();
-    if(e.type==="bat"){g.beginPath();g.moveTo(e.x-e.r,e.y);g.lineTo(e.x-e.r-11,e.y-8);g.lineTo(e.x-e.r-2,e.y+3);g.closePath();g.fill();g.beginPath();g.moveTo(e.x+e.r,e.y);g.lineTo(e.x+e.r+11,e.y-8);g.lineTo(e.x+e.r-2,e.y+3);g.closePath();g.fill()}
-    if(e.type==="boss"){g.fillStyle="#f5c542";g.beginPath();g.moveTo(e.x-12,e.y-e.r-2);g.lineTo(e.x-6,e.y-e.r-11);g.lineTo(e.x,e.y-e.r-2);g.lineTo(e.x+6,e.y-e.r-11);g.lineTo(e.x+12,e.y-e.r-2);g.closePath();g.fill()}
-    g.fillStyle="#0c1424";g.beginPath();g.arc(e.x-4,e.y-2,2.4,0,Math.PI*2);g.arc(e.x+4,e.y-2,2.4,0,Math.PI*2);g.fill();
-    // hp bar
-    const w=e.r*2;
-    g.fillStyle="rgba(0,0,0,.45)";g.fillRect(e.x-w/2,e.y-e.r-11,w,4);
-    g.fillStyle="#e0483e";g.fillRect(e.x-w/2,e.y-e.r-11,w*Math.max(0,e.hp/e.maxhp),4);
+  // enemies then player
+  for(const e of s.enemies)arDrawEnemy(g,s,e);
+  arDrawPlayer(g,s);
+  // particles
+  for(const pt of s.parts){
+    g.globalAlpha=Math.max(0,pt.life/pt.max);
+    g.fillStyle=pt.color;
+    g.fillRect(pt.x-pt.size/2,pt.y-pt.size/2,pt.size,pt.size);
   }
-  // player
-  const blink=p.invuln>0&&Math.floor(s.time*14)%2===0;
-  g.globalAlpha=blink?0.35:1;
-  g.fillStyle="#f5c542";g.beginPath();g.arc(p.x,p.y,p.r,0,Math.PI*2);g.fill();
-  g.fillStyle="#8a5a1e";g.beginPath();g.arc(p.x,p.y-4,7,0,Math.PI*2);g.fill();
-  g.strokeStyle="#d8d8d8";g.lineWidth=2.4;
-  const aimA=s.enemies.length?-Math.PI/2:-Math.PI/2;
-  g.beginPath();g.arc(p.x+9,p.y,10,aimA-0.9,aimA+0.9);g.stroke();
+  g.globalAlpha=1;
+  // damage texts
+  g.textAlign="center";
+  for(const tx of s.texts){
+    g.globalAlpha=Math.min(1,tx.life/0.3);
+    g.font="bold "+tx.size+"px sans-serif";
+    g.fillStyle=tx.color;
+    g.fillText(tx.text,tx.x,tx.y);
+  }
   g.globalAlpha=1;
   // joystick
   if(s.joy.active){
@@ -1172,6 +1516,14 @@ function arLoop(ts){
 function arCanvasPos(event){
   const cv=document.getElementById("arCanvas");const r=cv.getBoundingClientRect();
   return {x:(event.clientX-r.left)*AR_W/r.width,y:(event.clientY-r.top)*AR_H/r.height};
+}
+function arToggleFs(btn){
+  const wrap=btn.closest(".ar-wrap");
+  if(!wrap)return;
+  if(wrap.classList.contains("ar-max")){wrap.classList.remove("ar-max");return}
+  if(document.fullscreenElement){document.exitFullscreen().catch(()=>{})}
+  else if(wrap.requestFullscreen){wrap.requestFullscreen().catch(()=>wrap.classList.add("ar-max"))}
+  else wrap.classList.add("ar-max");
 }
 app.addEventListener("pointerdown",event=>{
   const cv=event.target.closest("#arCanvas");
@@ -1195,6 +1547,8 @@ document.addEventListener("keydown",event=>{
 });
 document.addEventListener("keyup",event=>{arKeys[event.key.toLowerCase()]=false});
 app.addEventListener("click",event=>{
+  const fsBtn=event.target.closest("[data-ar-fs]");
+  if(fsBtn){arAudio();arToggleFs(fsBtn);return}
   if(event.target.closest("[data-ar-start]")){
     arAudio();arSfx("pick");
     arNewGame();render();
