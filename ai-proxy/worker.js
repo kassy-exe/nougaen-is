@@ -6,12 +6,17 @@
 //
 //   browser --(no key)--> this worker --(key from secret)--> Gemini API
 //
-// Setup:
+// Production status (2026-11-15): this worker is deployed as the shared
+// "kvw-ai-proxy" (https://kvw-ai-proxy.aokassy.workers.dev) and serves
+// both KVW and NougÆn IS. NougÆn IS uses it as its built-in default
+// proxy, so no per-user setup is needed. Its ALLOWED_ORIGINS var is:
+//   https://a1234567890987654321a-kvw-for-school.static.hf.space,https://nougaen-is.vercel.app
+//
+// Setup (for a fresh deployment):
 //   1. wrangler secret put GEMINI_API_KEY      (never commit the key)
-//   2. Set ALLOWED_ORIGINS below / as a var, e.g.
-//      "https://kassy-exe.github.io,https://huggingface.co"
+//   2. Set the ALLOWED_ORIGINS var to the sites' origins, comma-separated
 //   3. wrangler deploy
-//   4. Paste the worker URL into NougÆn IS -> AI -> Connection -> Proxy URL
+//   4. Or paste the worker URL into NougÆn IS -> AI -> Connection -> Proxy URL
 //
 // Notes:
 //   - Origin checking is not real authentication, it just stops casual
@@ -34,10 +39,14 @@ function corsHeaders(origin) {
 
 export default {
   async fetch(request, env) {
-    const origin = request.headers.get("Origin") || "";
+    // Normalize trailing slashes: Origin headers never carry one, but a
+    // hand-typed ALLOWED_ORIGINS entry easily ends up with one, and the
+    // exact match then silently fails (this bit us on 2026-11-15).
+    const norm = (s) => s.trim().replace(/\/+$/, "");
+    const origin = norm(request.headers.get("Origin") || "");
     const allowed = String(env.ALLOWED_ORIGINS || "")
       .split(",")
-      .map((s) => s.trim())
+      .map(norm)
       .filter(Boolean);
 
     if (request.method === "OPTIONS") {
