@@ -263,7 +263,7 @@ const DICT_CATS=["動詞","形容詞","数字","時間・日付","返事・挨�
 let dictQuery="",dictMsg="";
 function dictListHtml(){const q=dictQuery.trim().toLowerCase();const hits=DICT.map((e,idx)=>({e,idx})).filter(({e})=>!q||e[0].toLowerCase().includes(q)||e[1].toLowerCase().includes(q)||e[2].includes(q)||e[3].includes(q));if(!hits.length)return `<p class="page-subtitle">${esc(t("dictEmpty"))}</p>`;let h="";for(const c of DICT_CATS){const rows=hits.filter(({e})=>e[3]===c);if(!rows.length)continue;h+=`<div class="dict-cat">${esc(c)}</div>`+rows.map(({e,idx})=>`<button type="button" class="dict-row" data-dict-copy="${idx}"><span class="dict-nu nu-font">${esc(e[4])}</span><span class="dict-meta"><b>${esc(e[0])}</b> /${esc(e[1])}/ ・ ${esc(e[2])}</span></button>`).join("")}return h}
 function renderDictionary(){return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("dictionary"))}</p><h1 class="page-title">${esc(t("dictionary"))}</h1><p class="page-subtitle">${esc(t("dictIntro").replace("{n}",DICT.length))}</p><input class="dict-search" type="search" data-dict-q placeholder="${esc(t("dictSearch"))}" value="${esc(dictQuery)}"><p class="dict-msg" id="dictMsg">${esc(dictMsg)}</p><div id="dictList">${dictListHtml()}</div>`}
-const KB_STEMS=[["kerka",0xE000],["auv",0xE001],["hai",0xE002],["læ",0xE003],["stæsth",0xE004],["nop",0xE005],["fi",0xE006],["tekæ",0xE007],["no",0xE008],["na",0xE009],["they",0xE00A]];
+const KB_STEMS=[["kerka",0xE000],["auv",0xE001],["hai",0xE002],["læ",0xE003],["stæsth",0xE004],["nop",0xE005],["fi",0xE006],["tekæ",0xE007],["no",0xE008],["na",0xE009],["they",0xE00A],["ohm",0x3A9],["Θ",0x398]];
 const KB_PHON_ROWS=[
  [["θ","th"],["w","w"],["ɛ","e"],["ɹ","r"],["t","t"],["ʌ","u"],["u","u"],["i","i"],["ɔ","o"],["p","p"]],
  [["ɑ","a"],["s","s"],["d","d"],["f","f"],["g","g"],["h","h"],["j","j"],["k","k"],["l","l"]],
@@ -272,8 +272,7 @@ const KB_PHON_ROWS=[
 ];
 const KB_DIGIT_ROWS=[
  [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""]],
- [["7",""],["8",""],["9",""],["0",""],["Ƨ","10"],["Ɛ","11"]],
- [["Ω","ohm"],["Θ","Θ"]]
+ [["7",""],["8",""],["9",""],["0",""],["Ƨ","10"],["Ɛ","11"]]
 ];
 let kbText="";try{kbText=localStorage.getItem("nougaen-is-kb-text")||""}catch(_){}
 let kbMsg="";
