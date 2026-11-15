@@ -151,7 +151,38 @@
     .kb-lab{font-size:8px;color:var(--muted)}
     .kb-ctrl{display:flex;gap:6px}
     .kb-ctrl .bj-btn{min-height:40px}
-  </style>
+  
+/* 内蔵ゲーム */
+.mj-bar{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0 8px}
+.mj-bar b{color:var(--ink)}
+.mj-board{position:relative;width:100%;aspect-ratio:120/94;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mj-tile{position:absolute;width:8.33%;height:14.28%;padding:0;border:1px solid #9a8f7a;border-radius:3px;background:linear-gradient(180deg,#fdfbf4,#ece3cd);color:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:1px 2px 2px rgba(0,0,0,.35);line-height:1.05;overflow:hidden;font-family:inherit}
+.mj-tile .mj-top{font-size:13px;font-weight:700}
+.mj-tile .mj-bot{font-size:9px}
+.mj-tile .mj-face1{font-size:16px;font-weight:700}
+.mj-tile .mj-dots{font-size:6px;line-height:1;letter-spacing:-1px;max-width:96%;overflow:hidden;white-space:nowrap}
+.mj-p{color:#2456c8}.mj-s{color:#1d7a3a}.mj-m{color:#222}
+.mj-chu{color:#c62f24}.mj-fa{color:#1d7a3a}
+.mj-locked{filter:brightness(.8)}
+.mj-sel{outline:2px solid var(--gold);outline-offset:-1px}
+.mj-hint{outline:2px solid #e0483e;outline-offset:-1px}
+.rh-stage{position:relative;width:100%;height:380px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rh-cols{position:absolute;inset:0;display:flex}
+.rh-cols span{flex:1;border-right:1px solid var(--line)}
+.rh-cols span:last-child{border-right:none}
+.rh-note{position:absolute;width:20%;height:26px;margin-top:-13px;border-radius:8px;background:var(--gold);box-shadow:0 0 10px rgba(245,197,66,.55);display:none;z-index:2}
+.rh-hitline{position:absolute;left:0;right:0;top:80%;height:3px;background:var(--gold);opacity:.85;z-index:1}
+.rh-judge{position:absolute;top:32%;width:100%;text-align:center;font-size:26px;font-weight:800;color:var(--gold);letter-spacing:2px;transition:opacity .12s;z-index:3;text-shadow:0 2px 8px rgba(0,0,0,.45);pointer-events:none}
+.rh-lanes{position:absolute;left:0;right:0;bottom:0;height:19%;display:flex;z-index:4}
+.rh-lane{flex:1;background:rgba(127,140,170,.10);border:none;border-top:1px solid var(--line);cursor:pointer;padding:0}
+.rh-lane+.rh-lane{border-left:1px solid var(--line)}
+.rh-hit{animation:rhHitA .18s}
+@keyframes rhHitA{0%{background:rgba(245,197,66,.55)}100%{background:rgba(127,140,170,.10)}}
+.rh-result{text-align:center;padding:18px 0}
+.rh-rank{font-size:54px;font-weight:900;color:var(--gold)}
+.rh-rline{margin-top:6px;font-size:15px}
+.ar-canvas{width:100%;height:auto;display:block;background:linear-gradient(180deg,#101a30,#0b1322);border:1px solid var(--line);border-radius:14px;touch-action:none}
+</style>
 </head>
 <body>
   <main class="phone">
@@ -171,25 +202,23 @@ const BRAND_ICON_PATH="./N.png";
 const AI_URL = "https://chatgpt.com/";
 const STRINGS = {
   ja: {
-    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
+    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。",mjIntro:"同じ牌を2つ消していく麻雀ソリティア。端が開いている牌だけ取れる。",mjNew:"最初から",mjHint:"ヒント",mjShuffle:"シャッフル",mjLeft:"残り",mjMoves:"手数",mjWin:"全消し成功！",mjStuck:"詰み。シャッフルか最初からで再挑戦",rhIntro:"流れてくるノーツをタイミングよくタップする4レーンのリズムゲーム（音が出ます）。キーボードのD F J Kでも遊べます。",rhStart:"スタート",rhScore:"スコア",rhCombo:"コンボ",rhMaxCombo:"最大コンボ",rhAgain:"もう一度",rhHow:"ノーツが金の線に重なった瞬間にレーンをタップ",arIntro:"弓を引いて的を射るゲーム。風も読んで高得点を狙え。",arScore:"スコア",arShot:"矢",arWind:"風",arLast:"前回",arBest:"ベスト",arResult:"合計",arAgain:"もう一度",arHow:"キャンバス上でドラッグして狙い、離すと発射。引く距離で強さが変わる", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
     bjTitle:"かっしー流ブラックジャック", bjSubtitle:"全員のカードが見える、1台で遊ぶホットシートゲーム。", bjPlayers:"プレイヤー数", bjDifficulty:"CPUの強さ", bjWeak:"弱い", bjNormal:"ふつう", bjStrong:"強い", bjSeat:"席", bjHuman:"人間", bjCPU:"CPU", bjName:"名前", bjStart:"ゲーム開始", bjRules:"ルール", bjRulesTitle:"ルール", bjClose:"閉じる", bjBetTitle:"ベット", bjBetIntro:"人間プレイヤーは各自の賭け額を決定。CPUは自動で選びます。", bjChips:"チップ", bjDebt:"借金", bjBet:"ベット", bjYourBet:"自分で賭ける", bjAutoBet:"CPU自動", bjDeal:"ベットを確定して配る", bjBadBet:"ベットは所持チップの範囲で1以上の整数にしてください。", bjRound:"ラウンド", bjActive:"プレイ中", bjStood:"スタンド", bjBusted:"バースト", bjHit:"ヒット", bjStand:"スタンド", bjTurn:"手番", bjCpuTurn:"CPUの手番", bjQuit:"メニューに戻る", bjNoticeDeck:"山札も捨て札もなくなったため、スタンドとして進めます。", bjResult:"ラウンド結果", bjWinner:"勝者", bjWinners:"勝者", bjNoContest:"勝負なし", bjNoContestText:"全員バーストしたため、ベットを返却しました。", bjPot:"ポット", bjBonus:"ストックボーナス", bjPotShare:"ポット分配", bjJanken:"じゃんけん", bjJankenIntro:"残りのチップをじゃんけんで1枚ずつ分配します。", bjJankenSelect:"手を選んでください", bjRock:"グー", bjPaper:"パー", bjScissors:"チョキ", bjJankenNoWinner:"決着がつきませんでした。もう一度選んでください。", bjJankenNarrow:"勝ち残ったプレイヤーで、残りのチップを決めます。", bjJankenAward:"じゃんけん配分", bjRemainder:"残りの分配チップ", bjPayout:"受取", bjRefund:"返却", bjRepayment:"返済", bjNext:"次のラウンド", bjSetupTitle:"ゲーム設定", bjReason21:"誰かが21になりました。", bjReasonLast:"残り1人になりました。", bjReasonStand:"全員が2周連続でスタンドしました。", bjRuleBody:"2〜6人で遊ぶ、全員のカードが表向きの対戦です。人間またはCPUを席ごとに選べます。\n\n通常の52枚を使用。A=1、2〜10は数字どおり、J=11・Q=12・K=13。全員100チップで開始。各ラウンド、人間プレイヤーは1〜所持チップ全額の範囲で各自の賭け額を決め、CPUは所持チップの範囲で自動的に選びます。\n\n順番にヒット（1枚引く）かスタンドを選択。21ちょうどで即終了、21超過はバースト。最高21以下のプレイヤーが勝者です。全員がヒットなしで2周連続スタンドすると終了します。山札がなくなれば捨て札を混ぜ直します。\n\n勝者は全員のベットを受け取り、自分のベットの1.5倍（端数切り捨て）をストックから獲得。引き分けはポットを均等分配し、余りはじゃんけんで配ります。チップ0で30を借り、借金がある状態でチップ50以上になるたび30を返済します。", bjSuitHeart:"ハート", bjSuitDiamond:"ダイヤ", bjSuitClub:"クラブ", bjSuitSpade:"スペード"
   },
   en: {
-    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
+    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.",mjIntro:"Mahjong solitaire: remove matching pairs. Only tiles with a free side can be taken.",mjNew:"Restart",mjHint:"Hint",mjShuffle:"Shuffle",mjLeft:"Left",mjMoves:"Moves",mjWin:"Cleared!",mjStuck:"No moves left. Shuffle or restart.",rhIntro:"A 4-lane rhythm game: tap the lanes as notes cross the gold line (sound on). Keys D F J K work too.",rhStart:"Start",rhScore:"Score",rhCombo:"Combo",rhMaxCombo:"Max combo",rhAgain:"Play again",rhHow:"Tap a lane the moment a note reaches the gold line",arIntro:"Draw the bow and hit the target. Mind the wind.",arScore:"Score",arShot:"Arrow",arWind:"Wind",arLast:"Last",arBest:"Best",arResult:"Total",arAgain:"Play again",arHow:"Drag on the canvas to aim, release to shoot. Pull distance sets the power", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
     bjTitle:"Kassy-style Blackjack", bjSubtitle:"An open-card, hot-seat game for one device.", bjPlayers:"Players", bjDifficulty:"CPU difficulty", bjWeak:"Weak", bjNormal:"Normal", bjStrong:"Strong", bjSeat:"Seat", bjHuman:"Human", bjCPU:"CPU", bjName:"Name", bjStart:"Start game", bjRules:"Rules", bjRulesTitle:"Rules", bjClose:"Close", bjBetTitle:"Place bets", bjBetIntro:"Each human chooses a wager; CPU seats choose automatically.", bjChips:"Chips", bjDebt:"Debt", bjBet:"Bet", bjYourBet:"Your wager", bjAutoBet:"CPU auto", bjDeal:"Confirm bets and deal", bjBadBet:"Bet an integer from 1 up to the player's chip total.", bjRound:"Round", bjActive:"Active", bjStood:"Stood", bjBusted:"Busted", bjHit:"Hit", bjStand:"Stand", bjTurn:"Turn", bjCpuTurn:"CPU turn", bjQuit:"Quit to menu", bjNoticeDeck:"No cards remain in the deck or discard pile; this turn counts as a stand.", bjResult:"Round result", bjWinner:"Winner", bjWinners:"Winners", bjNoContest:"No contest", bjNoContestText:"Everyone busted, so all bets were refunded.", bjPot:"Pot", bjBonus:"Stock bonus", bjPotShare:"Pot share", bjJanken:"Rock-paper-scissors", bjJankenIntro:"Award the remaining chips one at a time with rock-paper-scissors.", bjJankenSelect:"Choose your hand", bjRock:"Rock", bjPaper:"Paper", bjScissors:"Scissors", bjJankenNoWinner:"No one won that round. Choose again.", bjJankenNarrow:"The remaining chip(s) will be decided among the winning players.", bjJankenAward:"Janken award", bjRemainder:"Chips left to award", bjPayout:"Received", bjRefund:"Refund", bjRepayment:"Debt repaid", bjNext:"Next round", bjSetupTitle:"Game setup", bjReason21:"A player reached 21.", bjReasonLast:"Only one player remains.", bjReasonStand:"Everyone stood for two full laps in a row.", bjRuleBody:"A face-up game for 2–6 players. Choose human or CPU for each seat.\n\nUse a standard 52-card deck. A=1, 2–10 are face value, J=11, Q=12, K=13. Everyone starts with 100 chips. Each round, every human independently chooses a wager from 1 to all of their chips; CPU seats choose automatically within their chips.\n\nTake turns hitting (draw one card) or standing. The round ends immediately at exactly 21; over 21 is a bust. The highest total at or below 21 wins. The round also ends after two full laps of consecutive stands with no hits. If the deck runs out, shuffle the discard pile.\n\nA winner receives every bet plus a stock bonus of floor(1.5× their own bet). Tied winners split the pot; rock-paper-scissors awards any remainder. At 0 chips, borrow 30. With debt, repay 30 whenever chips reach 50 or more.", bjSuitHeart:"Hearts", bjSuitDiamond:"Diamonds", bjSuitClub:"Clubs", bjSuitSpade:"Spades"
   },
   nu: {}
 };
 const LANG_KEY="nougaen-is-language", THEME_KEY="nougaen-is-theme";
 let externalGameState=null,externalGameTimer=null,externalGameRunId=0;
-const EXTERNAL_GAMES=[
-  {id:"mahjong",nameKey:"mahjong",url:"https://example.com/mahjong",embeddable:false},
-  {id:"rhythm",nameKey:"rhythm",url:"https://randomana.itch.io/fnf-mobile",embeddable:false},
-  {id:"archer",nameKey:"archer",url:"https://example.com/archer",embeddable:false}
-];
+const EXTERNAL_GAMES=[];
 const GAME_ITEMS=[
   {id:"blackjack",icon:"♠",nameKey:"blackjack"},
-  ...EXTERNAL_GAMES.map((game,index)=>({id:game.id,icon:["▧","♫","➶"][index]||"↗",nameKey:game.nameKey}))
+  {id:"mahjong",icon:"▧",nameKey:"mahjong"},
+  {id:"rhythm",icon:"♫",nameKey:"rhythm"},
+  {id:"archer",icon:"➶",nameKey:"archer"}
 ];
 let lang="ja",theme="dark";
 try{const saved=localStorage.getItem(LANG_KEY);if(saved&&["ja","en","nu"].includes(saved))lang=saved;const savedTheme=localStorage.getItem(THEME_KEY);if(savedTheme&&["dark","light"].includes(savedTheme))theme=savedTheme}catch(_){ }
@@ -497,7 +526,380 @@ function externalGameFrameLoaded(frame){if(!frame||!externalGameState||externalG
 function externalGameFrameFailed(frame){if(!frame||!externalGameState||frame.dataset.externalGameFrame!==externalGameState.id||Number(frame.dataset.externalGameToken)!==externalGameState.token)return;externalGameLoadTimeout(externalGameState.id,externalGameState.token)}
 function renderGameStub(id){const item=GAME_ITEMS.find(x=>x.id===id);if(!item)return renderNotFound();return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("games"))}</p><h1 class="page-title">${esc(t(item.nameKey))}</h1><section class="empty-state"><div class="empty-icon" aria-hidden="true">${item.icon}</div><h2>${esc(t("comingSoon"))}</h2><p>${esc(t("gameStub"))}</p></section>`}
 function renderNotFound(){return `<a class="backlink" href="#/home">‹ ${esc(t("home"))}</a><section class="empty-state"><h2>${esc(t("stubTitle"))}</h2><p>${esc(t("stubText"))}</p></section>`}
-function route(){const raw=location.hash.replace(/^#\/?/,"");const parts=raw.split("/").filter(Boolean);if(!parts.length||parts[0]==="home")return {kind:"screen",render:renderHome,nav:"home"};if(parts[0]==="apps")return {kind:"screen",render:renderApps,nav:"apps"};if(parts[0]==="settings")return {kind:"screen",render:renderSettings,nav:"settings"};if(parts[0]==="game"){if(parts[1]==="blackjack")return {kind:"screen",render:renderBlackjack,nav:"apps"};const externalGame=EXTERNAL_GAMES.find(item=>item.id===parts[1]);if(externalGame)return {kind:"screen",render:()=>renderExternalGame(externalGame),nav:"apps",externalGame};return {kind:"screen",render:()=>renderGameStub(parts[1]),nav:"apps"}}if(parts[0]==="app"){const item=APPS.find(x=>x.id===parts[1]);return item?{kind:"app",item,nav:"apps"}:{kind:"screen",render:renderNotFound,nav:"apps"}}return {kind:"screen",render:renderNotFound,nav:"home"}}
+// ================= 内蔵ゲーム: 麻雀ソリティア / リズム / アーチャー =================
+// ---------- 麻雀ソリティア ----------
+const MJ_NUMS=["一","二","三","四","五","六","七","八","九"];
+const MJ_KINDS=[];
+["m","p","s"].forEach(s=>{for(let n=1;n<=9;n++)MJ_KINDS.push({id:s+n,top:MJ_NUMS[n-1],bot:s==="m"?"萬":s==="p"?"筒":"索",cls:"mj-"+s})});
+[["E","東"],["S","南"],["W","西"],["N","北"],["H","白"],["F","發"],["C","中"]].forEach(([id,ch])=>MJ_KINDS.push({id,top:ch,bot:"",cls:"mj-h"+(id==="F"?" mj-fa":id==="C"?" mj-chu":"")}));
+function mjLayout(){
+  const pos=[];
+  const rect=(z,x0,x1,y0,y1)=>{for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)pos.push({x,y,z})};
+  rect(0,0,11,0,6);rect(1,2,9,1,5);rect(2,4,7,2,4);rect(3,5,6,3,3);
+  return pos.filter(p=>!(p.z===0&&(p.x===0&&p.y===0||p.x===11&&p.y===6)));
+}
+function mjFreeIn(pos,alive,i){
+  const t=pos[i];
+  for(const j of alive){if(j===i)continue;const o=pos[j];if(o.x===t.x&&o.y===t.y&&o.z>t.z)return false}
+  let left=false,right=false;
+  for(const j of alive){if(j===i)continue;const o=pos[j];if(o.z!==t.z||o.y!==t.y)continue;if(o.x===t.x-1)left=true;if(o.x===t.x+1)right=true}
+  return !(left&&right);
+}
+function mjDeal(pos,kindIds,orderOut){
+  for(let attempt=0;attempt<80;attempt++){
+    const alive=new Set(pos.map((_,i)=>i));
+    const assign=new Array(pos.length).fill(null);
+    if(orderOut)orderOut.length=0;
+    const pairs=[...kindIds];
+    for(let i=pairs.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[pairs[i],pairs[j]]=[pairs[j],pairs[i]]}
+    let ok=true;
+    while(alive.size){
+      const free=[...alive].filter(i=>mjFreeIn(pos,alive,i));
+      if(free.length<2||!pairs.length){ok=false;break}
+      const a=free[(Math.random()*free.length)|0];
+      let b=free[(Math.random()*free.length)|0];
+      if(a===b)b=free[(free.indexOf(a)+1)%free.length];
+      const kind=pairs.pop();
+      assign[a]=kind;assign[b]=kind;alive.delete(a);alive.delete(b);if(orderOut)orderOut.push([a,b]);
+    }
+    if(ok)return assign;
+  }
+  return null;
+}
+let mjState=null;
+function mjNewGame(){
+  const pos=mjLayout();
+  const pairKinds=[];MJ_KINDS.forEach(k=>{pairKinds.push(k.id,k.id)});
+  const assign=mjDeal(pos,pairKinds)||pos.map((_,i)=>MJ_KINDS[i>>1].id);
+  mjState={tiles:pos.map((p,i)=>({...p,kind:assign[i],alive:true})),sel:null,hint:null,moves:0,over:""};
+}
+function mjAliveSet(){const s=new Set();mjState.tiles.forEach((t,i)=>{if(t.alive)s.add(i)});return s}
+function mjMovesExist(){
+  const alive=mjAliveSet();const pos=mjState.tiles;
+  const free=[...alive].filter(i=>mjFreeIn(pos,alive,i));
+  const seen=new Set();
+  for(const i of free){if(seen.has(pos[i].kind))return true;seen.add(pos[i].kind)}
+  return false;
+}
+function mjTileFace(kind){
+  const k=MJ_KINDS.find(x=>x.id===kind);
+  if(!k.bot)return `<span class="mj-face1">${esc(k.top)}</span>`;
+  let dots="";
+  if(kind[0]==="p"){const n=Number(kind[1]);dots=`<span class="mj-dots">${"●".repeat(n)}</span>`}
+  if(kind[0]==="s"){const n=Number(kind[1]);dots=`<span class="mj-dots">${"❙".repeat(n)}</span>`}
+  return `<span class="mj-top">${esc(k.top)}</span>${dots}<span class="mj-bot">${esc(k.bot)}</span>`;
+}
+function renderMahjong(){
+  if(!mjState)mjNewGame();
+  const alive=mjAliveSet();const pos=mjState.tiles;
+  const left=alive.size;
+  const tiles=[...pos.keys()].sort((a,b)=>pos[a].z-pos[b].z||pos[a].y-pos[b].y||pos[a].x-pos[b].x).map(i=>{
+    const tl=pos[i];if(!tl.alive)return "";
+    const free=mjFreeIn(pos,alive,i);
+    const k=MJ_KINDS.find(x=>x.id===tl.kind);
+    const cls=["mj-tile",k.cls,free?"":" mj-locked",mjState.sel===i?" mj-sel":"",mjState.hint&&mjState.hint.includes(i)?" mj-hint":""].join("");
+    return `<button type="button" class="${cls}" style="left:${(tl.x*8.333).toFixed(2)}%;top:${(tl.y*14.28).toFixed(2)}%;z-index:${tl.z*10+tl.y};transform:translate(${-3*tl.z}px,${-4*tl.z}px)" data-mj="${i}" aria-label="${esc(k.top+k.bot)}">${mjTileFace(tl.kind)}</button>`;
+  }).join("");
+  const status=mjState.over==="win"?`<div class="ai-notice">${esc(t("mjWin"))}</div>`:mjState.over==="stuck"?`<div class="ai-notice">${esc(t("mjStuck"))}</div>`:"";
+  return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("games"))}</p><h1 class="page-title">${esc(t("mahjong"))}</h1><p class="page-subtitle">${esc(t("mjIntro"))}</p>${status}<div class="mj-bar"><span>${esc(t("mjLeft"))}: <b>${left}</b></span><span>${esc(t("mjMoves"))}: <b>${mjState.moves}</b></span></div><div class="mj-board">${tiles}</div><div class="ai-row" style="margin-top:12px"><button class="bj-btn" type="button" data-mj-btn="new">${esc(t("mjNew"))}</button><button class="bj-btn" type="button" data-mj-btn="hint">${esc(t("mjHint"))}</button><button class="bj-btn" type="button" data-mj-btn="shuffle">${esc(t("mjShuffle"))}</button></div>`;
+}
+function mjAfterMove(){
+  const left=mjAliveSet().size;
+  if(!left)mjState.over="win";
+  else if(!mjMovesExist())mjState.over="stuck";
+}
+app.addEventListener("click",event=>{
+  const btn=event.target.closest("[data-mj-btn]");
+  if(btn){
+    const act=btn.dataset.mjBtn;
+    if(act==="new"){mjNewGame();render();return}
+    if(!mjState)return;
+    if(act==="hint"){
+      const alive=mjAliveSet();const pos=mjState.tiles;
+      const free=[...alive].filter(i=>mjFreeIn(pos,alive,i));
+      const byKind={};let pair=null;
+      for(const i of free){if(byKind[pos[i].kind]!=null){pair=[byKind[pos[i].kind],i];break}byKind[pos[i].kind]=i}
+      mjState.hint=pair;render();return;
+    }
+    if(act==="shuffle"){
+      const aliveIdx=[...mjAliveSet()];const pos=mjState.tiles;
+      const sub=aliveIdx.map(i=>pos[i]);const kinds=aliveIdx.map(i=>pos[i].kind);
+      const pairKinds=[];const cnt={};kinds.forEach(k=>{cnt[k]=(cnt[k]||0)+1});
+      Object.keys(cnt).forEach(k=>{for(let n=0;n<cnt[k]/2;n++)pairKinds.push(k)});
+      const assign=mjDeal(sub,pairKinds);
+      if(assign)aliveIdx.forEach((gi,n)=>{pos[gi].kind=assign[n]});
+      mjState.sel=null;mjState.hint=null;mjState.over="";mjAfterMove();render();return;
+    }
+    return;
+  }
+  const tile=event.target.closest("[data-mj]");
+  if(!tile||!mjState||mjState.over)return;
+  const i=Number(tile.dataset.mj);const pos=mjState.tiles;const alive=mjAliveSet();
+  if(!pos[i].alive||!mjFreeIn(pos,alive,i))return;
+  mjState.hint=null;
+  if(mjState.sel===i){mjState.sel=null;render();return}
+  if(mjState.sel!=null&&pos[mjState.sel].kind===pos[i].kind){
+    pos[mjState.sel].alive=false;pos[i].alive=false;mjState.sel=null;mjState.moves++;mjAfterMove();render();return;
+  }
+  mjState.sel=i;render();
+});
+// ---------- リズムゲーム ----------
+const RH_BPM=116,RH_BEATS=64,RH_TRAVEL=1.5;
+let rhState=null,rhRAF=0,rhAudio=null,rhNoiseBuf=null;
+function rhMakeChart(){
+  let seed=987654321;const rnd=()=>{seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff};
+  const spb=60/RH_BPM;const notes=[];
+  for(let b=0;b<RH_BEATS;b++){
+    if(b<4)continue;
+    const sec=b<20?0:b<44?1:2;
+    if(rnd()<(sec===0?0.72:0.88))notes.push({beat:b,lane:(rnd()*4)|0});
+    if(sec>=1&&b%2===0&&rnd()<0.42)notes.push({beat:b+0.5,lane:(rnd()*4)|0});
+    if(sec===2&&b%4===2&&rnd()<0.5){const l=(rnd()*4)|0;notes.push({beat:b,lane:l});notes.push({beat:b,lane:(l+1+((rnd()*3)|0))%4})}
+  }
+  notes.sort((a,b)=>a.beat-b.beat);
+  return notes.map(n=>({t:n.beat*spb,lane:n.lane,judge:null}));
+}
+function rhNow(){return rhAudio?rhAudio.ctx.currentTime:performance.now()/1000}
+function rhStopAudio(){
+  if(rhAudio){try{clearInterval(rhAudio.timer)}catch(_){ } try{rhAudio.ctx.close()}catch(_){ } rhAudio=null}
+  if(rhRAF){cancelAnimationFrame(rhRAF);rhRAF=0}
+}
+function rhTone(freq,t0,dur,type,vol,slideTo){
+  const ctx=rhAudio.ctx,g=ctx.createGain(),o=ctx.createOscillator();
+  o.type=type;o.frequency.setValueAtTime(freq,t0);
+  if(slideTo)o.frequency.exponentialRampToValueAtTime(slideTo,t0+dur);
+  g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
+  o.connect(g);g.connect(rhAudio.master);o.start(t0);o.stop(t0+dur+0.02);
+}
+function rhNoise(t0,dur,vol,freq,q){
+  const ctx=rhAudio.ctx,src=ctx.createBufferSource();src.buffer=rhNoiseBuf;
+  const f=ctx.createBiquadFilter();f.type="bandpass";f.frequency.value=freq;f.Q.value=q||1;
+  const g=ctx.createGain();g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
+  src.connect(f);f.connect(g);g.connect(rhAudio.master);src.start(t0);src.stop(t0+dur+0.02);
+}
+function rhSched(){
+  if(!rhAudio||!rhState)return;
+  const spb=60/RH_BPM;const ahead=rhAudio.ctx.currentTime+0.15;
+  while(rhState.startAt+rhAudio.nextBeat*spb<ahead){
+    const b=rhAudio.nextBeat,t0=rhState.startAt+b*spb;
+    if(b<=RH_BEATS+2&&t0>=rhAudio.ctx.currentTime-0.05){
+      rhTone(130,t0,0.22,"sine",0.5,42);
+      if(b%2===1)rhNoise(t0,0.11,0.20,1800,1);
+      rhNoise(t0+spb/2,0.05,0.07,6500,2);
+      const bass=[55,0,55,0,65.41,0,55,0,49,0,49,0,73.42,0,82.41,0][b%16];
+      if(bass)rhTone(bass,t0,spb*0.9,"square",0.10);
+    }
+    rhAudio.nextBeat++;
+  }
+}
+function rhStart(){
+  rhStopAudio();
+  rhState={notes:rhMakeChart(),score:0,combo:0,maxCombo:0,counts:{p:0,g:0,m:0},judge:"",playing:true,done:false,startAt:0};
+  const Ctx=window.AudioContext||window.webkitAudioContext;
+  if(Ctx){
+    const ctx=new Ctx();
+    const master=ctx.createGain();master.gain.value=0.55;master.connect(ctx.destination);
+    rhNoiseBuf=ctx.createBuffer(1,ctx.sampleRate*0.3,ctx.sampleRate);
+    const d=rhNoiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    rhAudio={ctx,master,nextBeat:0,timer:null};
+    rhState.startAt=ctx.currentTime+0.9;
+    rhAudio.timer=setInterval(rhSched,25);
+  }else{
+    rhState.startAt=performance.now()/1000+0.9;
+  }
+  render();
+  rhRAF=requestAnimationFrame(rhFrame);
+}
+function rhFinish(){
+  rhState.playing=false;rhState.done=true;rhStopAudio();render();
+}
+function rhFrame(){
+  const stage=document.getElementById("rhStage");
+  if(!stage||!rhState||!rhState.playing){rhStopAudio();return}
+  const now=rhNow()-rhState.startAt;
+  for(const n of rhState.notes){
+    if(!n.judge&&now-n.t>0.18){n.judge="m";rhState.counts.m++;rhState.combo=0}
+  }
+  const els=stage.querySelectorAll(".rh-note");
+  rhState.notes.forEach((n,i)=>{
+    const el=els[i];if(!el)return;
+    const dt=n.t-now;
+    if(n.judge||dt>RH_TRAVEL||dt<-0.2){el.style.display="none";return}
+    el.style.display="block";
+    el.style.top=(((RH_TRAVEL-dt)/RH_TRAVEL)*80)+"%";
+  });
+  const sc=document.getElementById("rhScore");if(sc)sc.textContent=rhState.score;
+  const cb=document.getElementById("rhCombo");if(cb)cb.textContent=rhState.combo;
+  const jd=document.getElementById("rhJudge");
+  if(jd&&rhState.judge&&performance.now()-rhState.judgeAt<450){jd.textContent=rhState.judge;jd.style.opacity="1"}else if(jd){jd.style.opacity="0"}
+  if(now>(RH_BEATS*60/RH_BPM)+1.0){rhFinish();return}
+  rhRAF=requestAnimationFrame(rhFrame);
+}
+function rhHit(lane){
+  if(!rhState||!rhState.playing)return;
+  const now=rhNow()-rhState.startAt;
+  let best=null,bestDt=1e9;
+  for(const n of rhState.notes){
+    if(n.judge||n.lane!==lane)continue;
+    const dt=Math.abs(now-n.t);
+    if(dt<bestDt){bestDt=dt;best=n}
+  }
+  const laneEl=document.querySelector(`[data-rh-lane="${lane}"]`);
+  if(laneEl){laneEl.classList.remove("rh-hit");void laneEl.offsetWidth;laneEl.classList.add("rh-hit")}
+  if(!best||bestDt>0.18)return;
+  if(bestDt<=0.09){best.judge="p";rhState.counts.p++;rhState.score+=300;rhState.judge="PERFECT"}
+  else{best.judge="g";rhState.counts.g++;rhState.score+=100;rhState.judge="GOOD"}
+  rhState.combo++;rhState.maxCombo=Math.max(rhState.maxCombo,rhState.combo);
+  rhState.judgeAt=performance.now();
+}
+function renderRhythm(){
+  const head=`<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("games"))}</p><h1 class="page-title">${esc(t("rhythm"))}</h1>`;
+  if(!rhState||(!rhState.playing&&!rhState.done)){
+    return `${head}<p class="page-subtitle">${esc(t("rhIntro"))}</p><button type="button" class="primary-link external-game-play" data-rh-start>${esc(t("rhStart"))}</button>`;
+  }
+  if(rhState.done){
+    const max=rhState.notes.length*300;
+    const ratio=max?rhState.score/max:0;
+    const rank=ratio>=0.9?"S":ratio>=0.75?"A":ratio>=0.55?"B":"C";
+    return `${head}<div class="rh-result"><div class="rh-rank">${rank}</div><div class="rh-rline">${esc(t("rhScore"))}: <b>${rhState.score}</b></div><div class="rh-rline">${esc(t("rhMaxCombo"))}: <b>${rhState.maxCombo}</b></div><div class="rh-rline">PERFECT ${rhState.counts.p} / GOOD ${rhState.counts.g} / MISS ${rhState.counts.m}</div></div><button type="button" class="primary-link external-game-play" data-rh-start>${esc(t("rhAgain"))}</button>`;
+  }
+  const notes=rhState.notes.map(n=>`<div class="rh-note" style="left:${n.lane*25+2.5}%"></div>`).join("");
+  const lanes=[0,1,2,3].map(l=>`<button type="button" class="rh-lane" data-rh-lane="${l}" aria-label="lane ${l+1}"></button>`).join("");
+  return `${head}<div class="mj-bar"><span>${esc(t("rhScore"))}: <b id="rhScore">0</b></span><span>${esc(t("rhCombo"))}: <b id="rhCombo">0</b></span></div><div class="rh-stage" id="rhStage"><div class="rh-cols"><span></span><span></span><span></span><span></span></div>${notes}<div class="rh-hitline"></div><div class="rh-judge" id="rhJudge"></div><div class="rh-lanes">${lanes}</div></div><p class="footnote">${esc(t("rhHow"))}</p>`;
+}
+app.addEventListener("click",event=>{
+  if(event.target.closest("[data-rh-start]")){rhStart();return}
+});
+app.addEventListener("pointerdown",event=>{
+  const l=event.target.closest("[data-rh-lane]");
+  if(l){event.preventDefault();rhHit(Number(l.dataset.rhLane))}
+});
+document.addEventListener("keydown",event=>{
+  if(!document.getElementById("rhStage"))return;
+  const map={d:0,f:1,j:2,k:3};
+  const lane=map[event.key.toLowerCase()];
+  if(lane!=null)rhHit(lane);
+});
+// ---------- アーチャー ----------
+const AR_W=720,AR_H=400,AR_TX=612,AR_TY=196,AR_GROUND=352,AR_BOW={x:82,y:296};
+let arState=null,arRAF=0;
+function arBest(){try{return Number(localStorage.getItem("nougaen-is-archer-best")||0)}catch(_){return 0}}
+function arNewGame(){
+  arState={shot:0,score:0,points:[],wind:0,phase:"aim",angle:24,power:55,aiming:false,arrow:null,last:0,best:arBest()};
+  arNewWind();
+}
+function arNewWind(){arState.wind=Math.round((Math.random()*2-1)*42)}
+function arPointsFor(d){return d<=10?10:d<=22?8:d<=36?6:d<=50?4:d<=64?2:0}
+function renderArcher(){
+  if(!arState)arNewGame();
+  const windTxt=arState.wind===0?"0":(arState.wind>0?"→":"←")+" ".repeat(0)+Math.abs(arState.wind);
+  const done=arState.phase==="done";
+  const res=done?`<div class="rh-result"><div class="rh-rline">${esc(t("arResult"))}: <b>${arState.score}</b></div><div class="rh-rline">${esc(t("arBest"))}: <b>${arState.best}</b></div></div><button type="button" class="primary-link external-game-play" data-ar-again>${esc(t("arAgain"))}</button>`:"";
+  setTimeout(()=>arDraw(),0);
+  return `<a class="backlink" href="#/app/games">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("games"))}</p><h1 class="page-title">${esc(t("archer"))}</h1><p class="page-subtitle">${esc(t("arIntro"))}</p><div class="mj-bar"><span>${esc(t("arShot"))}: <b>${Math.min(arState.shot+1,10)}/10</b></span><span>${esc(t("arScore"))}: <b>${arState.score}</b></span><span>${esc(t("arWind"))}: <b>${esc(windTxt)}</b></span>${arState.last?`<span>${esc(t("arLast"))}: <b>${arState.last}</b></span>`:""}</div><canvas id="arCanvas" width="${AR_W}" height="${AR_H}" class="ar-canvas"></canvas>${res}<p class="footnote">${esc(t("arHow"))}</p>`;
+}
+function arDraw(){
+  const cv=document.getElementById("arCanvas");if(!cv)return;
+  const g=cv.getContext("2d");if(!g)return;
+  const s=arState;
+  g.clearRect(0,0,AR_W,AR_H);
+  g.strokeStyle="#3a4a6b";g.lineWidth=2;g.beginPath();g.moveTo(0,AR_GROUND);g.lineTo(AR_W,AR_GROUND);g.stroke();
+  // target stand
+  g.strokeStyle="#8a6d3b";g.lineWidth=6;g.beginPath();g.moveTo(AR_TX,AR_TY+64);g.lineTo(AR_TX-16,AR_GROUND);g.moveTo(AR_TX,AR_TY+64);g.lineTo(AR_TX+16,AR_GROUND);g.stroke();
+  const rings=[[64,"#e8e8e8"],[50,"#2b2b30"],[36,"#3a7bd5"],[22,"#e0483e"],[10,"#f5c542"]];
+  for(const [r,c] of rings){g.fillStyle=c;g.beginPath();g.arc(AR_TX,AR_TY,r,0,Math.PI*2);g.fill()}
+  // stuck arrows
+  g.strokeStyle="#d8d8d8";g.lineWidth=3;
+  for(const p of s.points){if(p.y==null)continue;g.beginPath();g.moveTo(AR_TX+4,p.y);g.lineTo(AR_TX+44,p.y-4);g.stroke()}
+  // bow + archer side
+  const bx=AR_BOW.x,by=AR_BOW.y;
+  g.strokeStyle="#b08954";g.lineWidth=5;g.beginPath();g.arc(bx,by,44,-1.15,1.15);g.stroke();
+  g.strokeStyle="#cfd6e4";g.lineWidth=1.5;g.beginPath();
+  const txp=bx+44*Math.cos(-1.15),typ=by+44*Math.sin(-1.15),bxp=bx+44*Math.cos(1.15),byp=by+44*Math.sin(1.15);
+  g.moveTo(txp,typ);g.lineTo(bxp,byp);g.stroke();
+  // aiming arrow + guide
+  if(s.phase==="aim"){
+    const a=s.angle*Math.PI/180;
+    const x2=bx+54*Math.cos(a),y2=by-54*Math.sin(a);
+    g.strokeStyle="#f0f0f0";g.lineWidth=3;g.beginPath();g.moveTo(bx,by);g.lineTo(x2,y2);g.stroke();
+    g.fillStyle="#f5c542";g.beginPath();g.arc(x2,y2,4,0,Math.PI*2);g.fill();
+    g.fillStyle="#8fa3c8";g.fillRect(16,AR_H-26,204,10);
+    g.fillStyle="#f5c542";g.fillRect(16,AR_H-26,204*s.power/100,10);
+  }
+  // flying arrow
+  if(s.arrow){
+    const arw=s.arrow;
+    const ang=Math.atan2(arw.vy,arw.vx);
+    g.save();g.translate(arw.x,arw.y);g.rotate(ang);
+    g.strokeStyle="#f0f0f0";g.lineWidth=3;g.beginPath();g.moveTo(-26,0);g.lineTo(10,0);g.stroke();
+    g.fillStyle="#e0483e";g.beginPath();g.moveTo(-26,0);g.lineTo(-34,-6);g.lineTo(-34,6);g.closePath();g.fill();
+    g.restore();
+  }
+  // wind flag
+  g.fillStyle="#8fa3c8";g.font="20px sans-serif";
+  g.fillText(s.wind===0?"・":(s.wind>0?"→→":"←←"),AR_W-70,30);
+}
+function arStep(ts){
+  const s=arState;if(!s||s.phase!=="fly"||!s.arrow){arRAF=0;return}
+  const cv=document.getElementById("arCanvas");
+  if(!cv){arRAF=0;return}
+  const now=performance.now();const dt=Math.min(0.032,(now-(s.t||now))/1000);s.t=now;
+  const a=s.arrow;const px=a.x,py=a.y;
+  a.vy+=980*dt;a.vx+=s.wind*dt;a.x+=a.vx*dt;a.y+=a.vy*dt;
+  let ended=false,pts=0,stickY=null;
+  if(px<AR_TX&&a.x>=AR_TX){
+    const f=(AR_TX-px)/(a.x-px);const cy=py+(a.y-py)*f;
+    pts=arPointsFor(Math.abs(cy-AR_TY));stickY=cy;ended=true;
+  }else if(a.y>=AR_GROUND){pts=0;ended=true}
+  else if(a.x>AR_W+30||a.y<-300){pts=0;ended=true}
+  if(ended){
+    s.points.push({pts,y:pts>0?stickY:null});
+    s.score+=pts;s.last=pts;s.shot++;s.arrow=null;
+    if(s.shot>=10){s.phase="done";if(s.score>s.best){s.best=s.score;try{localStorage.setItem("nougaen-is-archer-best",String(s.best))}catch(_){ }}}
+    else{s.phase="aim";arNewWind()}
+    arRAF=0;render();return;
+  }
+  arDraw();
+  arRAF=requestAnimationFrame(arStep);
+}
+function arPos(event){
+  const cv=document.getElementById("arCanvas");const r=cv.getBoundingClientRect();
+  return {x:(event.clientX-r.left)*AR_W/r.width,y:(event.clientY-r.top)*AR_H/r.height};
+}
+app.addEventListener("pointerdown",event=>{
+  const cv=event.target.closest("#arCanvas");
+  if(!cv||!arState||arState.phase!=="aim")return;
+  event.preventDefault();
+  arState.aiming=true;
+  const p=arPos(event);arAimTo(p);
+});
+app.addEventListener("pointermove",event=>{
+  if(!arState||!arState.aiming||arState.phase!=="aim")return;
+  arAimTo(arPos(event));
+});
+app.addEventListener("pointerup",()=>{
+  if(!arState||!arState.aiming)return;
+  arState.aiming=false;
+  if(arState.phase!=="aim")return;
+  const a=arState.angle*Math.PI/180;const v=360+arState.power*5.4;
+  arState.arrow={x:AR_BOW.x,y:AR_BOW.y,vx:v*Math.cos(a),vy:-v*Math.sin(a)};
+  arState.phase="fly";arState.t=performance.now();
+  arRAF=requestAnimationFrame(arStep);
+});
+function arAimTo(p){
+  const dx=p.x-AR_BOW.x,dy=AR_BOW.y-p.y;
+  let deg=Math.atan2(dy,dx)*180/Math.PI;
+  deg=Math.max(-30,Math.min(80,deg));
+  arState.angle=deg;
+  const dist=Math.hypot(dx,dy);
+  arState.power=Math.max(5,Math.min(100,Math.round(dist/2.6)));
+  arDraw();
+}
+app.addEventListener("click",event=>{
+  if(event.target.closest("[data-ar-again]")){arNewGame();render();return}
+});
+
+function route(){const raw=location.hash.replace(/^#\/?/,"");const parts=raw.split("/").filter(Boolean);if(!parts.length||parts[0]==="home")return {kind:"screen",render:renderHome,nav:"home"};if(parts[0]==="apps")return {kind:"screen",render:renderApps,nav:"apps"};if(parts[0]==="settings")return {kind:"screen",render:renderSettings,nav:"settings"};if(parts[0]==="game"){if(parts[1]==="blackjack")return {kind:"screen",render:renderBlackjack,nav:"apps"};if(parts[1]==="mahjong")return {kind:"screen",render:renderMahjong,nav:"apps"};if(parts[1]==="rhythm")return {kind:"screen",render:renderRhythm,nav:"apps"};if(parts[1]==="archer")return {kind:"screen",render:renderArcher,nav:"apps"};const externalGame=EXTERNAL_GAMES.find(item=>item.id===parts[1]);if(externalGame)return {kind:"screen",render:()=>renderExternalGame(externalGame),nav:"apps",externalGame};return {kind:"screen",render:()=>renderGameStub(parts[1]),nav:"apps"}}if(parts[0]==="app"){const item=APPS.find(x=>x.id===parts[1]);return item?{kind:"app",item,nav:"apps"}:{kind:"screen",render:renderNotFound,nav:"apps"}}return {kind:"screen",render:renderNotFound,nav:"home"}}
 function updateClock(){const now=new Date();document.querySelectorAll("[data-clock]").forEach(el=>el.textContent=now.toLocaleTimeString(locale(),{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}));document.querySelectorAll("[data-date]").forEach(el=>el.textContent=now.toLocaleDateString(locale(),{weekday:"long",year:"numeric",month:"long",day:"numeric"}))}
 function drawNav(active){nav.setAttribute("aria-label",t("mainNavigation"));const entries=[["home","home","⌂"],["apps","apps","▦"],["settings","settings","⚙"]];nav.innerHTML=entries.map(([id,key,icon])=>`<a class="navlink" href="#/${id}" ${active===id?'aria-current="page"':""}><span class="navicon" aria-hidden="true">${icon}</span><span>${esc(t(key))}</span></a>`).join("")}
 function applyLanguage(){document.documentElement.lang=lang;document.title=t("appTitle");document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute("content",t("appTitle"));document.querySelector(".phone").setAttribute("aria-label",t("appTitle"));document.querySelector(".brand").setAttribute("aria-label",t("appTitle"));document.getElementById("brandName").textContent=t("appTitle");document.querySelectorAll(".lang").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));document.querySelector(".languages").setAttribute("aria-label",t("languageNav"))}
