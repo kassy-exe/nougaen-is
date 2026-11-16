@@ -227,6 +227,8 @@
 .mj2-handtile{flex:1 1 0;min-width:0;height:52px;background:#f5f1e6;color:#33302a;border:1px solid #c9c2ae;border-bottom:4px solid #b8b09a;border-radius:5px;font-size:12px;font-weight:700;padding:0;cursor:pointer}
 .mj2-handtile:disabled{opacity:.9;cursor:default}
 .mj2-drawn{outline:2px solid var(--gold);margin-left:5px}
+.mj2-aka{background:#f7d9d4;color:#b03a2e;border-color:#d89a90}
+.mj2-aka-t{color:#c0392b}
 .mj2-actions{margin-top:10px;flex-wrap:wrap}
 .mj2-result{margin-top:12px;border:1px solid var(--gold);border-radius:10px;padding:12px;background:var(--panel)}
 .mj2-wintitle{font-size:18px;font-weight:700}
@@ -251,11 +253,11 @@ const BRAND_ICON_PATH="./N.png";
 const AI_URL = "https://chatgpt.com/";
 const STRINGS = {
   ja: {
-    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。",mjIntro:"同じ牌を2つ消していく麻雀ソリティア。端が開いている牌だけ取れる。",mjNew:"最初から",mjHint:"ヒント",mjShuffle:"シャッフル",mjLeft:"残り",mjMoves:"手数",mjWin:"全消し成功！",mjStuck:"詰み。シャッフルか最初からで再挑戦",mj2Intro:"CPU3人と対戦する4人打ちリーチ麻雀（東風戦）。25,000点持ち、東4局まで",mj2Start:"対局開始",mj2How:"自分の番では手牌をタップして捨てる。ポン・チー・ロン・リーチはボタンが出た時に選べる。簡略ルール: 一発・裏ドラ・カンドラあり、赤なし、ダブロンなし（頭ハネ）",mj2Dora:"ドラ表示",mj2Wall:"残り",mj2Honba:"本場",mj2Kyotaku:"供託",mj2You:"あなた",mj2DealerMark:"親",mjTsumo:"ツモ",mjRon:"ロン",mjRiichi:"リーチ",mjPon:"ポン",mjChi:"チー",mjKan:"カン",mjPass:"パス",mj2WinSuffix:" あがり",mj2Han:"翻",mj2Fu:"符",mj2Points:"点",mj2Next:"次の局へ",mj2Ryuukyoku:"流局（テンパイ）",mj2GameOver:"対局終了",rhIntro:"ヨルシカの9曲で遊ぶリズムゲーム。曲を選ぶとGoogle Driveから再生します（音が出ます）。",rhStart:"スタート",rhScore:"スコア",rhCombo:"コンボ",rhMaxCombo:"最大コンボ",rhAgain:"もう一度",rhHow:"ノーツが金の線に重なった瞬間にレーンをタップ",rhLoading:"読み込み中…",rhLoadError:"再生できませんでした。通信状態を確認して、もう一度試してください",rhBack:"曲を選ぶ",arIntro:"アーチャー伝説風のローグライト。ドラッグで移動、指を離すと一番近い敵を自動で撃つ。敵を倒して経験値を集め、レベルアップでアビリティを3択から選んで強くなれ。全ステージ踏破を目指せ",arScore:"スコア",arShot:"矢",arWind:"風",arLast:"前回",arBest:"ベスト",arResult:"合計",arAgain:"もう一度",arBestStage:"ベスト",arFs:"全画面",arReach:"到達ステージ",arGameOver:"ゲームオーバー",arChoose:"アビリティを選んで",arStart:"ゲームスタート",arKills:"撃破",arStage:"ステージ",arHow:"操作: キャンバスをドラッグで移動（WASD/矢印キーでも可）。止まっている間だけ自動射撃するから、敵の弾は動き回って避け、撃つときは止まるのがコツ。全滅させると上の扉が開く。5ステージごとにボス", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
+    appTitle:"砮幻 IS", productBase:"砮幻 IS", home:"ホーム", apps:"アプリ", settings:"設定", greeting:"ようこそ", homeIntro:"静かな石のかたちに、ひとさじの幻を。", localTime:"ローカルタイム", dateFormat:"ja-JP", appGrid:"アプリ", seeAll:"すべて見る", quickAccess:"クイックアクセス", openSettings:"設定を開く", exploreApps:"アプリを探す", games:"ゲーム", gamesDesc:"小さな遊びの世界", translate:"翻訳", translateDesc:"ことばをつなぐ", dictionary:"辞書", dictionaryDesc:"ことばをひらく", ai:"AI", aiDesc:"Geminiとチャット", clock:"時計", clockDesc:"時刻と日付", keyboard:"キーボード", keyboardDesc:"砮文字を打つ", kbIntro:"砮文字を入力できます。", kbStems:"語幹字", kbPhon:"音字", kbDigits:"数字", kbSpace:"空白", kbBack:"消す", kbClear:"全消去", kbCopy:"コピー", kbCopied:"コピーしました", kbEmpty:"まだ入力がありません",dictIntro:"Notionの辞書から取り込んだ{n}語です。項目をタップすると砮文字をコピーできます。",dictSearch:"単語・意味・発音で検索",dictEmpty:"見つかりませんでした",dictCopied:"砮文字をコピーしました", chooseLanguage:"表示言語", theme:"テーマ", themeHint:"落ち着いた色合いを選べます", dark:"ダーク", light:"ライト", data:"データ", dataHint:"このアプリの設定を初期状態に戻します", resetData:"設定をリセット", resetConfirm:"言語とテーマの設定を初期状態に戻しますか？", resetDone:"設定を初期状態に戻しました。", gamesIntro:"遊びたいものを選んでください。",mjIntro:"同じ牌を2つ消していく麻雀ソリティア。端が開いている牌だけ取れる。",mjNew:"最初から",mjHint:"ヒント",mjShuffle:"シャッフル",mjLeft:"残り",mjMoves:"手数",mjWin:"全消し成功！",mjStuck:"詰み。シャッフルか最初からで再挑戦",mj2Intro:"CPU3人と対戦する4人打ちリーチ麻雀（東風戦）。25,000点持ち、東4局まで",mj2Start:"対局開始",mj2How:"自分の番では手牌をタップして捨てる。ポン・チー・ロン・リーチはボタンが出た時に選べる。簡略ルール: 一発・裏ドラ・カンドラ・赤5（各色1枚）あり、ダブロンなし（頭ハネ）",mj2Dora:"ドラ表示",mj2Wall:"残り",mj2Honba:"本場",mj2Kyotaku:"供託",mj2You:"あなた",mj2DealerMark:"親",mjTsumo:"ツモ",mjRon:"ロン",mjRiichi:"リーチ",mjPon:"ポン",mjChi:"チー",mjKan:"カン",mjPass:"パス",mj2WinSuffix:" あがり",mj2Han:"翻",mj2Fu:"符",mj2Points:"点",mj2Next:"次の局へ",mj2Ryuukyoku:"流局（テンパイ）",mj2GameOver:"対局終了",rhIntro:"ヨルシカの9曲で遊ぶリズムゲーム。曲を選ぶとGoogle Driveから再生します（音が出ます）。",rhStart:"スタート",rhScore:"スコア",rhCombo:"コンボ",rhMaxCombo:"最大コンボ",rhAgain:"もう一度",rhHow:"ノーツが金の線に重なった瞬間にレーンをタップ",rhLoading:"読み込み中…",rhLoadError:"再生できませんでした。通信状態を確認して、もう一度試してください",rhBack:"曲を選ぶ",arIntro:"アーチャー伝説風のローグライト。ドラッグで移動、指を離すと一番近い敵を自動で撃つ。敵を倒して経験値を集め、レベルアップでアビリティを3択から選んで強くなれ。全ステージ踏破を目指せ",arScore:"スコア",arShot:"矢",arWind:"風",arLast:"前回",arBest:"ベスト",arResult:"合計",arAgain:"もう一度",arBestStage:"ベスト",arFs:"全画面",arReach:"到達ステージ",arGameOver:"ゲームオーバー",arChoose:"アビリティを選んで",arStart:"ゲームスタート",arKills:"撃破",arStage:"ステージ",arHow:"操作: キャンバスをドラッグで移動（WASD/矢印キーでも可）。止まっている間だけ自動射撃するから、敵の弾は動き回って避け、撃つときは止まるのがコツ。全滅させると上の扉が開く。5ステージごとにボス", blackjack:"かっしー流ブラックジャック", mahjong:"麻雀", rhythm:"リズムゲーム", archer:"Archer-Legends風ゲーム", stubTitle:"ここはまだ準備中です", stubText:"この場所には、これから新しい体験が加わります。", comingSoon:"近日公開", translateComing:"翻訳機能は近日公開です。", dictionaryComing:"辞書機能は近日公開です。", aiIntro:"モードを切り替えてGeminiと話せます。",aiDictNote:"辞書229語と砮文字の読み方を覚えているので、砮文字で話しかけても読み取れます。",aiKbToggle:"砮キーボード",kbClose:"閉じる",trIntro:"AIが辞書を使って翻訳します。",trDirJaNu:"日本語 → 砮文字",trDirNuJa:"砮文字 → 日本語",trPhJa:"日本語の文を入力",trPhNu:"砮文字の文を貼り付け（キーボードで打った文など）",trRun:"翻訳する",trUseKb:"キーボードの文を使う",trBreakdown:"単語の内訳", aiMode:"モード", aiModeGentle:"激優", aiModeNormal:"通常", aiModeRebel:"反抗期", aiPlaceholder:"メッセージ", aiSend:"送信", aiClear:"今のモードの履歴消去", aiSearch:"Web検索を使う", aiEmpty:"まだ会話がありません", aiNeedSetup:"接続設定が必要です。下の「接続設定」から、自分のGemini APIキーかプロキシURLを設定してください。", aiSetup:"接続設定", aiSecurityNote:"APIキーはコードに直書きしていません。キーはこのブラウザの中にだけ保存され、Geminiへの送信時にだけ使われます。プロキシURLがある場合はそちらが優先され、キーは送信されません。", aiKeyLabel:"自分のGemini APIキー", aiKeyStatus:"キーの状態", aiKeySetSession:"設定済み（このタブのみ）", aiKeySetLocal:"設定済み（この端末に保存）", aiKeyUnset:"未設定", aiRemember:"この端末に保存する（オフだとタブを閉じると消えます）", aiKeySave:"キーを保存", aiKeyClear:"キーを消去", aiKeySaved:"キーを保存しました", aiKeyCleared:"キーを消去しました", aiKeyInvalid:"キーは半角文字で入力してください", aiProxyLabel:"プロキシURL（推奨・キーをサーバー側に置く方式）", aiProxySaved:"プロキシを保存しました", aiProxyCleared:"プロキシを消去しました", aiProxyInvalid:"プロキシURLは https:// で始まるURLにしてください", aiProxySave:"プロキシを保存", aiProxyClear:"プロキシを消去", aiError:"エラー", aiSources:"出典", aiUsageToday:"今日（この端末のみ）", aiTimes:"回", aiTokens:"トークン", aiHistoryNote:"会話履歴はこの端末の中にだけ保存されます。", aiOpenChatGPT:"今まで通りChatGPTを外部で開く", openAI:"AIサービスを開く", clockIntro:"いまの時刻と日付", back:"戻る", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"OSではありません。", screenReaderHome:"ホーム画面", selectApp:"アプリを選択", externalNote:"外部サイトへ移動します。", gameStub:"ゲームは準備中です。", externalGameIntro:"プレイを押すとゲーム画面を開きます。", externalGamePlay:"プレイ", externalGameOpenTab:"新しいタブで開く", externalGameBlockedNote:"このサイトは埋め込みをブロックしています。新しいタブで開いてください。", externalGameLoading:"ゲームを読み込んでいます…", externalGameReady:"iframeから応答がありました。ゲームが見えない場合は新しいタブで開いてください。", externalGameFallbackHint:"ゲームが表示されない場合は、新しいタブで開いてください。", mainNavigation:"メインナビゲーション", languageNav:"表示言語", gamesOpen:"ゲーム一覧を開く", themeDarkHint:"深い藍と石の色", themeLightHint:"やわらかな明るい色", resetTitle:"リセット", now:"現在時刻", dateToday:"今日の日付",
     bjTitle:"かっしー流ブラックジャック", bjSubtitle:"全員のカードが見える、1台で遊ぶホットシートゲーム。", bjPlayers:"プレイヤー数", bjDifficulty:"CPUの強さ", bjWeak:"弱い", bjNormal:"ふつう", bjStrong:"強い", bjSeat:"席", bjHuman:"人間", bjCPU:"CPU", bjName:"名前", bjStart:"ゲーム開始", bjRules:"ルール", bjRulesTitle:"ルール", bjClose:"閉じる", bjBetTitle:"ベット", bjBetIntro:"人間プレイヤーは各自の賭け額を決定。CPUは自動で選びます。", bjChips:"チップ", bjDebt:"借金", bjBet:"ベット", bjYourBet:"自分で賭ける", bjAutoBet:"CPU自動", bjDeal:"ベットを確定して配る", bjBadBet:"ベットは所持チップの範囲で1以上の整数にしてください。", bjRound:"ラウンド", bjActive:"プレイ中", bjStood:"スタンド", bjBusted:"バースト", bjHit:"ヒット", bjStand:"スタンド", bjTurn:"手番", bjCpuTurn:"CPUの手番", bjQuit:"メニューに戻る", bjNoticeDeck:"山札も捨て札もなくなったため、スタンドとして進めます。", bjResult:"ラウンド結果", bjWinner:"勝者", bjWinners:"勝者", bjNoContest:"勝負なし", bjNoContestText:"全員バーストしたため、ベットを返却しました。", bjPot:"ポット", bjBonus:"ストックボーナス", bjPotShare:"ポット分配", bjJanken:"じゃんけん", bjJankenIntro:"残りのチップをじゃんけんで1枚ずつ分配します。", bjJankenSelect:"手を選んでください", bjRock:"グー", bjPaper:"パー", bjScissors:"チョキ", bjJankenNoWinner:"決着がつきませんでした。もう一度選んでください。", bjJankenNarrow:"勝ち残ったプレイヤーで、残りのチップを決めます。", bjJankenAward:"じゃんけん配分", bjRemainder:"残りの分配チップ", bjPayout:"受取", bjRefund:"返却", bjRepayment:"返済", bjNext:"次のラウンド", bjSetupTitle:"ゲーム設定", bjReason21:"誰かが21になりました。", bjReasonLast:"残り1人になりました。", bjReasonStand:"全員が2周連続でスタンドしました。", bjRuleBody:"2〜6人で遊ぶ、全員のカードが表向きの対戦です。人間またはCPUを席ごとに選べます。\n\n通常の52枚を使用。A=1、2〜10は数字どおり、J=11・Q=12・K=13。全員100チップで開始。各ラウンド、人間プレイヤーは1〜所持チップ全額の範囲で各自の賭け額を決め、CPUは所持チップの範囲で自動的に選びます。\n\n順番にヒット（1枚引く）かスタンドを選択。21ちょうどで即終了、21超過はバースト。最高21以下のプレイヤーが勝者です。全員がヒットなしで2周連続スタンドすると終了します。山札がなくなれば捨て札を混ぜ直します。\n\n勝者は全員のベットを受け取り、自分のベットの1.5倍（端数切り捨て）をストックから獲得。引き分けはポットを均等分配し、余りはじゃんけんで配ります。チップ0で30を借り、借金がある状態でチップ50以上になるたび30を返済します。", bjSuitHeart:"ハート", bjSuitDiamond:"ダイヤ", bjSuitClub:"クラブ", bjSuitSpade:"スペード"
   },
   en: {
-    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.",mjIntro:"Mahjong solitaire: remove matching pairs. Only tiles with a free side can be taken.",mjNew:"Restart",mjHint:"Hint",mjShuffle:"Shuffle",mjLeft:"Left",mjMoves:"Moves",mjWin:"Cleared!",mjStuck:"No moves left. Shuffle or restart.",mj2Intro:"Four-player riichi mahjong vs 3 CPUs (East-wind game, 4 hands), 25,000 points each.",mj2Start:"Start game",mj2How:"On your turn, tap a tile in your hand to discard. Pon, chi, ron and riichi buttons appear when available. Simplified rules: ippatsu, ura-dora and kan-dora on; no red fives; no double ron.",mj2Dora:"Dora",mj2Wall:"Wall",mj2Honba:" honba",mj2Kyotaku:"Sticks",mj2You:"You",mj2DealerMark:"Dealer",mjTsumo:"Tsumo",mjRon:"Ron",mjRiichi:"Riichi",mjPon:"Pon",mjChi:"Chi",mjKan:"Kan",mjPass:"Pass",mj2WinSuffix:" wins",mj2Han:" han",mj2Fu:" fu",mj2Points:" pts",mj2Next:"Next hand",mj2Ryuukyoku:"Draw (tenpai)",mj2GameOver:"Game over",rhIntro:"A rhythm game with 9 Yorushika songs, streamed from Google Drive (sound on). Pick a song.",rhStart:"Start",rhScore:"Score",rhCombo:"Combo",rhMaxCombo:"Max combo",rhAgain:"Play again",rhHow:"Tap a lane the moment a note reaches the gold line",rhLoading:"Loading…",rhLoadError:"Could not play the song. Check your connection and try again.",rhBack:"Choose a song",arIntro:"An Archero-style roguelite. Drag to move; release and your archer auto-fires at the nearest enemy. Collect XP, level up and pick 1 of 3 abilities to grow stronger. Clear every stage",arScore:"Score",arShot:"Arrow",arWind:"Wind",arLast:"Last",arBest:"Best",arResult:"Total",arAgain:"Play again",arBestStage:"Best",arFs:"Fullscreen",arReach:"Stage reached",arGameOver:"Game Over",arChoose:"Choose an ability",arStart:"Start Game",arKills:"Kills",arStage:"Stage",arHow:"Controls: drag on the field to move (WASD / arrow keys work too). You only shoot while standing still, so keep moving to dodge and stop to fire. Clear a stage to open the door at the top. A boss waits every 5 stages", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
+    appTitle:"NougÆn IS", productBase:"NougÆn IS", home:"Home", apps:"Apps", settings:"Settings", greeting:"Welcome", homeIntro:"A quiet stone shape, with a hint of mirage.", localTime:"LOCAL TIME", dateFormat:"en-US", appGrid:"Apps", seeAll:"See all", quickAccess:"Quick access", openSettings:"Open settings", exploreApps:"Explore apps", games:"Games", gamesDesc:"A small world of play", translate:"Translate", translateDesc:"Connect across words", dictionary:"Dictionary", dictionaryDesc:"Explore words", ai:"AI", aiDesc:"Chat with Gemini", clock:"Clock", clockDesc:"Time and date", keyboard:"Keyboard", keyboardDesc:"Type NougÆn script", kbIntro:"Type the NougÆn script.", kbStems:"Stem glyphs", kbPhon:"Phonetic letters", kbDigits:"Digits", kbSpace:"Space", kbBack:"Delete", kbClear:"Clear all", kbCopy:"Copy", kbCopied:"Copied", kbEmpty:"Nothing typed yet",dictIntro:"{n} words imported from the Notion dictionary. Tap an entry to copy its script.",dictSearch:"Search by word, meaning or sound",dictEmpty:"No matches",dictCopied:"Script copied", chooseLanguage:"Display language", theme:"Theme", themeHint:"Choose a calm color palette", dark:"Dark", light:"Light", data:"Data", dataHint:"Restore this app's settings to their defaults", resetData:"Reset settings", resetConfirm:"Reset the language and theme settings to their defaults?", resetDone:"Settings have been reset.", gamesIntro:"Choose something to play.",mjIntro:"Mahjong solitaire: remove matching pairs. Only tiles with a free side can be taken.",mjNew:"Restart",mjHint:"Hint",mjShuffle:"Shuffle",mjLeft:"Left",mjMoves:"Moves",mjWin:"Cleared!",mjStuck:"No moves left. Shuffle or restart.",mj2Intro:"Four-player riichi mahjong vs 3 CPUs (East-wind game, 4 hands), 25,000 points each.",mj2Start:"Start game",mj2How:"On your turn, tap a tile in your hand to discard. Pon, chi, ron and riichi buttons appear when available. Simplified rules: ippatsu, ura-dora, kan-dora and red fives (one per suit) on; no double ron.",mj2Dora:"Dora",mj2Wall:"Wall",mj2Honba:" honba",mj2Kyotaku:"Sticks",mj2You:"You",mj2DealerMark:"Dealer",mjTsumo:"Tsumo",mjRon:"Ron",mjRiichi:"Riichi",mjPon:"Pon",mjChi:"Chi",mjKan:"Kan",mjPass:"Pass",mj2WinSuffix:" wins",mj2Han:" han",mj2Fu:" fu",mj2Points:" pts",mj2Next:"Next hand",mj2Ryuukyoku:"Draw (tenpai)",mj2GameOver:"Game over",rhIntro:"A rhythm game with 9 Yorushika songs, streamed from Google Drive (sound on). Pick a song.",rhStart:"Start",rhScore:"Score",rhCombo:"Combo",rhMaxCombo:"Max combo",rhAgain:"Play again",rhHow:"Tap a lane the moment a note reaches the gold line",rhLoading:"Loading…",rhLoadError:"Could not play the song. Check your connection and try again.",rhBack:"Choose a song",arIntro:"An Archero-style roguelite. Drag to move; release and your archer auto-fires at the nearest enemy. Collect XP, level up and pick 1 of 3 abilities to grow stronger. Clear every stage",arScore:"Score",arShot:"Arrow",arWind:"Wind",arLast:"Last",arBest:"Best",arResult:"Total",arAgain:"Play again",arBestStage:"Best",arFs:"Fullscreen",arReach:"Stage reached",arGameOver:"Game Over",arChoose:"Choose an ability",arStart:"Start Game",arKills:"Kills",arStage:"Stage",arHow:"Controls: drag on the field to move (WASD / arrow keys work too). You only shoot while standing still, so keep moving to dodge and stop to fire. Clear a stage to open the door at the top. A boss waits every 5 stages", blackjack:"Kassy-style Blackjack", mahjong:"Mahjong", rhythm:"Rhythm game", archer:"Archer-Legends-style game", stubTitle:"This space is still taking shape", stubText:"A new experience will find its way here in a future update.", comingSoon:"Coming soon", translateComing:"Translation is coming soon.", dictionaryComing:"The dictionary is coming soon.", aiIntro:"Chat with Gemini in different moods.",aiDictNote:"It has learned the 229-word dictionary and how to read the NougÆn script, so you can write to it in the script.",aiKbToggle:"Script keyboard",kbClose:"Close",trIntro:"The AI translates using the dictionary.",trDirJaNu:"Japanese → Script",trDirNuJa:"Script → Japanese",trPhJa:"Type Japanese text",trPhNu:"Paste script text (e.g. typed with the keyboard)",trRun:"Translate",trUseKb:"Use keyboard text",trBreakdown:"Word breakdown", aiMode:"Mode", aiModeGentle:"Super kind", aiModeNormal:"Normal", aiModeRebel:"Rebel", aiPlaceholder:"Message", aiSend:"Send", aiClear:"Clear this mode's history", aiSearch:"Use web search", aiEmpty:"No messages yet", aiNeedSetup:"Setup needed. Under Connection below, add your own Gemini API key or a proxy URL.", aiSetup:"Connection", aiSecurityNote:"No API key is written into the code. A key is stored only inside this browser and used only when calling Gemini. If a proxy URL is set it takes priority and no key is sent.", aiKeyLabel:"Your Gemini API key", aiKeyStatus:"Key status", aiKeySetSession:"Set (this tab only)", aiKeySetLocal:"Set (saved on this device)", aiKeyUnset:"Not set", aiRemember:"Remember on this device (off = erased when the tab closes)", aiKeySave:"Save key", aiKeyClear:"Erase key", aiKeySaved:"Key saved", aiKeyCleared:"Key erased", aiKeyInvalid:"Enter the key using half-width characters only", aiProxyLabel:"Proxy URL (recommended: key stays on a server)", aiProxySaved:"Proxy saved", aiProxyCleared:"Proxy cleared", aiProxyInvalid:"The proxy URL must start with https://", aiProxySave:"Save proxy", aiProxyClear:"Clear proxy", aiError:"Error", aiSources:"Sources", aiUsageToday:"Today (this device only)", aiTimes:"calls", aiTokens:"tokens", aiHistoryNote:"Chat history is stored only on this device.", aiOpenChatGPT:"Open ChatGPT externally, as before", openAI:"Open AI service", clockIntro:"The current time and date", back:"Back", statusLine:"INTERACTIVE / INTERNET SYSTEM", notOS:"Not an operating system.", screenReaderHome:"Home screen", selectApp:"Choose an app", externalNote:"This opens an external website.", gameStub:"This game is coming soon.", externalGameIntro:"Press Play to open the game.", externalGamePlay:"Play", externalGameOpenTab:"Open in new tab", externalGameBlockedNote:"This site blocks embedding. Open it in a new tab.", externalGameLoading:"Loading the game…", externalGameReady:"The iframe responded. If the game is not visible, open it in a new tab.", externalGameFallbackHint:"If the game does not appear, open it in a new tab.", mainNavigation:"Main navigation", languageNav:"Display language", gamesOpen:"Open games list", themeDarkHint:"Deep indigo and stone", themeLightHint:"A softer, brighter palette", resetTitle:"Reset", now:"Current time", dateToday:"Today's date",
     bjTitle:"Kassy-style Blackjack", bjSubtitle:"An open-card, hot-seat game for one device.", bjPlayers:"Players", bjDifficulty:"CPU difficulty", bjWeak:"Weak", bjNormal:"Normal", bjStrong:"Strong", bjSeat:"Seat", bjHuman:"Human", bjCPU:"CPU", bjName:"Name", bjStart:"Start game", bjRules:"Rules", bjRulesTitle:"Rules", bjClose:"Close", bjBetTitle:"Place bets", bjBetIntro:"Each human chooses a wager; CPU seats choose automatically.", bjChips:"Chips", bjDebt:"Debt", bjBet:"Bet", bjYourBet:"Your wager", bjAutoBet:"CPU auto", bjDeal:"Confirm bets and deal", bjBadBet:"Bet an integer from 1 up to the player's chip total.", bjRound:"Round", bjActive:"Active", bjStood:"Stood", bjBusted:"Busted", bjHit:"Hit", bjStand:"Stand", bjTurn:"Turn", bjCpuTurn:"CPU turn", bjQuit:"Quit to menu", bjNoticeDeck:"No cards remain in the deck or discard pile; this turn counts as a stand.", bjResult:"Round result", bjWinner:"Winner", bjWinners:"Winners", bjNoContest:"No contest", bjNoContestText:"Everyone busted, so all bets were refunded.", bjPot:"Pot", bjBonus:"Stock bonus", bjPotShare:"Pot share", bjJanken:"Rock-paper-scissors", bjJankenIntro:"Award the remaining chips one at a time with rock-paper-scissors.", bjJankenSelect:"Choose your hand", bjRock:"Rock", bjPaper:"Paper", bjScissors:"Scissors", bjJankenNoWinner:"No one won that round. Choose again.", bjJankenNarrow:"The remaining chip(s) will be decided among the winning players.", bjJankenAward:"Janken award", bjRemainder:"Chips left to award", bjPayout:"Received", bjRefund:"Refund", bjRepayment:"Debt repaid", bjNext:"Next round", bjSetupTitle:"Game setup", bjReason21:"A player reached 21.", bjReasonLast:"Only one player remains.", bjReasonStand:"Everyone stood for two full laps in a row.", bjRuleBody:"A face-up game for 2–6 players. Choose human or CPU for each seat.\n\nUse a standard 52-card deck. A=1, 2–10 are face value, J=11, Q=12, K=13. Everyone starts with 100 chips. Each round, every human independently chooses a wager from 1 to all of their chips; CPU seats choose automatically within their chips.\n\nTake turns hitting (draw one card) or standing. The round ends immediately at exactly 21; over 21 is a bust. The highest total at or below 21 wins. The round also ends after two full laps of consecutive stands with no hits. If the deck runs out, shuffle the discard pile.\n\nA winner receives every bet plus a stock bonus of floor(1.5× their own bet). Tied winners split the pot; rock-paper-scissors awards any remainder. At 0 chips, borrow 30. With debt, repay 30 whenever chips reach 50 or more.", bjSuitHeart:"Hearts", bjSuitDiamond:"Diamonds", bjSuitClub:"Clubs", bjSuitSpade:"Spades"
   },
   nu: {}
@@ -580,7 +582,10 @@ function renderNotFound(){return `<a class="backlink" href="#/home">‹ ${esc(t(
 const MJ2_NAMES=["1萬","2萬","3萬","4萬","5萬","6萬","7萬","8萬","9萬","1筒","2筒","3筒","4筒","5筒","6筒","7筒","8筒","9筒","1索","2索","3索","4索","5索","6索","7索","8索","9索","東","南","西","北","白","發","中"];
 const MJ2_WINDS=["東","南","西","北"];
 let mj2=null,mj2Timer=0;
-function mj2Counts(hand){const c=new Array(34).fill(0);for(const t of hand)c[t]++;return c}
+function mj2Kind(t){return t>=34?[4,13,22][t-34]:t}
+function mj2IsRed(t){return t>=34}
+function mj2Counts(hand){const c=new Array(34).fill(0);for(const t of hand)c[mj2Kind(t)]++;return c}
+function mj2SortHand(hand){hand.sort((a,b)=>mj2Kind(a)-mj2Kind(b)||a-b)}
 function mj2IsTerm(k){return k>=27||k%9===0||k%9===8}
 function mj2Shuffle(a){for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[a[i],a[j]]=[a[j],a[i]]}return a}
 function mj2ShantenReg(c0){
@@ -628,6 +633,7 @@ function mj2StartHand(){
   const s=mj2;
   const wall=[];
   for(let k=0;k<34;k++)for(let i=0;i<4;i++)wall.push(k);
+  for(const [kind,red] of [[4,34],[13,35],[22,36]]){const i=wall.indexOf(kind);wall[i]=red}
   mj2Shuffle(wall);
   s.wall=wall.slice(0,122);
   s.dead=wall.slice(122);
@@ -639,7 +645,7 @@ function mj2StartHand(){
     s.players.push({hand:[],melds:[],discards:[],riichi:false,riichiTurn:-1,ippatsu:false,furiten:false,drawn:null});
   }
   for(let p=0;p<4;p++)for(let i=0;i<13;i++)s.players[p].hand.push(s.wall.pop());
-  for(const pl of s.players)pl.hand.sort((a,b)=>a-b);
+  for(const pl of s.players)mj2SortHand(pl.hand);
   s.turn=mj2Dealer();
   s.riichiChoosing=false;
   s.phase="draw";
@@ -650,17 +656,21 @@ function mj2StartHand(){
   render();
   mj2Draw();
 }
+function mj2NextDora(ind){
+  const k=mj2Kind(ind);
+  return k>=27?(k>=31?(k===33?31:k+1):(k===30?27:k+1)):(k%9===8?k-8:k+1);
+}
 function mj2DoraTiles(){
-  return mj2.doraInd.map(ind=>ind>=27?(ind>=31?(ind===33?31:ind+1):(ind===30?27:ind+1)):(ind%9===8?ind-8:ind+1));
+  return mj2.doraInd.map(mj2NextDora);
 }
 function mj2CountDora(p,ura){
   const s=mj2;
   const inds=ura?s.uraInd.concat(s.doraInd):s.doraInd;
-  const doraTiles=inds.map(ind=>ind>=27?(ind>=31?(ind===33?31:ind+1):(ind===30?27:ind+1)):(ind%9===8?ind-8:ind+1));
+  const doraTiles=inds.map(mj2NextDora);
   const pl=s.players[p];
   let n=0;
   const all=pl.hand.concat(pl.melds.flatMap(m=>m.tiles));
-  for(const t of all)for(const d of doraTiles)if(t===d)n++;
+  for(const t of all){for(const d of doraTiles)if(mj2Kind(t)===d)n++;if(mj2IsRed(t))n++}
   return n;
 }
 function mj2Draw(){
@@ -689,8 +699,8 @@ function mj2CanTsumo(p){
 }
 function mj2CanRon(p,tile){
   const pl=mj2.players[p];
-  if(pl.furiten||pl.discards.includes(tile))return false;
-  const c=mj2Counts(pl.hand);c[tile]++;
+  if(pl.furiten||pl.discards.some(d=>mj2Kind(d)===mj2Kind(tile)))return false;
+  const c=mj2Counts(pl.hand);c[mj2Kind(tile)]++;
   if(mj2Shanten(c)!==-1)return false;
   return mj2Score(p,tile,false,null)!==null;
 }
@@ -707,7 +717,7 @@ function mj2DoDiscard(p,idx){
   pl.discards.push(t);
   if(pl.riichi&&pl.riichiTurn<0){pl.riichiTurn=s.turnCount;pl.ippatsu=true}
   else if(pl.riichi&&pl.ippatsu&&pl.riichiTurn<s.turnCount)pl.ippatsu=false;
-  pl.hand.sort((a,b)=>a-b);
+  mj2SortHand(pl.hand);
   s.lastDiscard={tile:t,from:p};
   s.phase="callcheck";
   render();
@@ -721,7 +731,7 @@ function mj2CallCheck(from,tile,step){
     const pl=s.players[p];
     if(mj2CanRon(p,tile)){
       if(p===0){
-        s.prompt={type:"ron",tile,from,step,canPon:mj2Counts(pl.hand)[tile]>=2,canKan:mj2Counts(pl.hand)[tile]>=3};
+        s.prompt={type:"ron",tile,from,step,canPon:mj2Counts(pl.hand)[mj2Kind(tile)]>=2,canKan:mj2Counts(pl.hand)[mj2Kind(tile)]>=3};
         render();return;
       }
       mj2Win(p,{tile,from},false);return;
@@ -732,7 +742,7 @@ function mj2CallCheck(from,tile,step){
   for(let k=1;k<=3;k++){
     const p=(from+k)%4;
     const pl=s.players[p];
-    const cnt=mj2Counts(pl.hand)[tile];
+    const cnt=mj2Counts(pl.hand)[mj2Kind(tile)];
     if(cnt>=2){
       if(p===0){
         s.prompt={type:"pon",tile,from,canPon:true,canKan:cnt>=3};
@@ -762,6 +772,7 @@ function mj2NextTurn(from){
 function mj2ChiOptions(hand,tile){
   const c=mj2Counts(hand);
   const opts=[];
+  tile=mj2Kind(tile);
   if(tile<27){
     const base=tile-(tile%9);
     for(const [a,b] of [[tile-2,tile-1],[tile-1,tile+1],[tile+1,tile+2]]){
@@ -780,9 +791,10 @@ function mj2DoPon(p,from,tile){
   const s=mj2;
   mj2TakeFromDiscard(from);
   const pl=s.players[p];
-  let removed=0;
-  pl.hand=pl.hand.filter(x=>{if(x===tile&&removed<2){removed++;return false}return true});
-  pl.melds.push({type:"pon",tiles:[tile,tile,tile],open:true,from});
+  const kind=mj2Kind(tile);
+  const taken=[];
+  pl.hand=pl.hand.filter(x=>{if(mj2Kind(x)===kind&&taken.length<2){taken.push(x);return false}return true});
+  pl.melds.push({type:"pon",tiles:taken.concat([tile]),open:true,from});
   s.turn=p;s.phase="discard";pl.drawn=null;
   render();
   if(p!==0)mj2Timer=setTimeout(()=>mj2CpuAct(p),430);
@@ -791,11 +803,13 @@ function mj2DoChi(p,from,tile,pair){
   const s=mj2;
   mj2TakeFromDiscard(from);
   const pl=s.players[p];
+  const taken=[];
   for(const pt of pair){
-    const i=pl.hand.indexOf(pt);
+    const i=pl.hand.findIndex(x=>mj2Kind(x)===pt);
+    taken.push(pl.hand[i]);
     pl.hand.splice(i,1);
   }
-  pl.melds.push({type:"chi",tiles:[pair[0],pair[1],tile].sort((a,b)=>a-b),open:true,from});
+  pl.melds.push({type:"chi",tiles:taken.concat([tile]).sort((a,b)=>mj2Kind(a)-mj2Kind(b)),open:true,from});
   s.turn=p;s.phase="discard";pl.drawn=null;
   render();
   if(p!==0)mj2Timer=setTimeout(()=>mj2CpuAct(p),430);
@@ -805,13 +819,14 @@ function mj2DoKan(p,from,tile){
   const pl=s.players[p];
   if(from!==null&&from!==undefined){
     mj2TakeFromDiscard(from);
-    let removed=0;
-    pl.hand=pl.hand.filter(x=>{if(x===tile&&removed<3){removed++;return false}return true});
-    pl.melds.push({type:"kan",tiles:[tile,tile,tile,tile],open:true,from});
+    const kind=mj2Kind(tile);
+    const taken=[];
+    pl.hand=pl.hand.filter(x=>{if(mj2Kind(x)===kind&&taken.length<3){taken.push(x);return false}return true});
+    pl.melds.push({type:"kan",tiles:taken.concat([tile]),open:true,from});
   }else{
-    let removed=0;
-    pl.hand=pl.hand.filter(x=>{if(x===tile&&removed<4){removed++;return false}return true});
-    pl.melds.push({type:"kan",tiles:[tile,tile,tile,tile],open:false,from:p});
+    const taken=[];
+    pl.hand=pl.hand.filter(x=>{if(mj2Kind(x)===tile&&taken.length<4){taken.push(x);return false}return true});
+    pl.melds.push({type:"kan",tiles:taken,open:false,from:p});
   }
   s.kanCount++;
   s.doraInd.push(s.dead[4+s.kanCount*2]);
@@ -829,7 +844,8 @@ function mj2CpuWantsPon(p,tile){
   if(pl.riichi)return false;
   const c=mj2Counts(pl.hand);
   const before=mj2Shanten(c);
-  c[tile]-=2;
+  c[mj2Kind(tile)]-=2;
+  tile=mj2Kind(tile);
   const after=mj2Shanten(c);
   const isYakuhai=tile>=31||tile===27+mj2SeatWind(p)||tile===27;
   return after<before||isYakuhai;
@@ -857,7 +873,7 @@ function mj2CpuDiscardIndex(p){
     const rest=hand.filter((_,j)=>j!==i);
     const sh=mj2Shanten(mj2Counts(rest));
     let score=-sh*100;
-    if(mj2IsTerm(t))score+=6;
+    if(mj2IsTerm(mj2Kind(t)))score+=6;
     if(t>=27)score+=4;
     const c=mj2Counts(rest);
     let conn=0;
@@ -869,7 +885,7 @@ function mj2CpuDiscardIndex(p){
   return bestIdx;
 }
 function mj2CountDoraKind(t){
-  return mj2DoraTiles().filter(d=>d===t).length;
+  return mj2DoraTiles().filter(d=>d===mj2Kind(t)).length+(mj2IsRed(t)?1:0);
 }
 function mj2CpuAct(p){
   const s=mj2;
@@ -911,6 +927,8 @@ function mj2Decompose(counts,meldSets){
   return results.map(sets=>sets.concat(meldSets));
 }
 function mj2Score(p,winTile,tsumo,fromPlayer){
+  const winTileRaw=winTile;
+  winTile=mj2Kind(winTile);
   const s=mj2;
   const pl=s.players[p];
   const dealer=mj2Dealer()===p;
@@ -919,7 +937,9 @@ function mj2Score(p,winTile,tsumo,fromPlayer){
   const hand14=pl.hand.slice();
   if(!tsumo)hand14.push(winTile);
   const counts=mj2Counts(hand14);
-  const dora=mj2CountDora(p,pl.riichi);
+  let dora;
+  if(tsumo)dora=mj2CountDora(p,pl.riichi);
+  else{pl.hand.push(winTileRaw);dora=mj2CountDora(p,pl.riichi);pl.hand.pop()}
   // kokushi
   let best=null;
   const terms=[0,8,9,17,18,26,27,28,29,30,31,32,33];
@@ -1153,8 +1173,9 @@ function mj2NextHand(){
 }
 // ----- rendering -----
 function mj2TileHtml(t,cls){
-  const extra=t===33?" mj2-red":t===32?" mj2-green":t>=27?" mj2-honor":"";
-  return `<span class="mj2-tile ${cls||""}${extra} mj2-s${t<27?(t/9|0):3}">${MJ2_NAMES[t]}</span>`;
+  const k=mj2Kind(t);
+  const extra=mj2IsRed(t)?" mj2-aka":k===33?" mj2-red":k===32?" mj2-green":k>=27?" mj2-honor":"";
+  return `<span class="mj2-tile ${cls||""}${extra} mj2-s${k<27?(k/9|0):3}">${MJ2_NAMES[k]}</span>`;
 }
 function mj2BackHtml(cls){return `<span class="mj2-tile mj2-back ${cls||""}">🀄</span>`}
 function renderMahjong(){
@@ -1210,7 +1231,7 @@ function renderMahjong(){
   const handTiles=pl0.hand.map((t2,i)=>{
     const isDrawn=pl0.drawn!==null&&i===pl0.hand.length-1;
     const dis=isMyDiscard&&!s.riichiChoosing?"":"disabled";
-    return `<button type="button" class="mj2-handtile ${isDrawn?"mj2-drawn":""}" data-mj2-discard="${i}" ${isMyDiscard?"":"disabled"}>${MJ2_NAMES[t2]}</button>`;
+    return `<button type="button" class="mj2-handtile ${isDrawn?"mj2-drawn":""} ${mj2IsRed(t2)?"mj2-aka-t":""}" data-mj2-discard="${i}" ${isMyDiscard?"":"disabled"}>${MJ2_NAMES[mj2Kind(t2)]}</button>`;
   }).join("");
   const melds0=pl0.melds.map(m=>m.tiles.map(t2=>mj2TileHtml(t2,"mj2-mini")).join("")).join(" ");
   let overlay="";
