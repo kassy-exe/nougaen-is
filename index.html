@@ -329,6 +329,12 @@
 .rec-prev span{font-size:42px;color:color-mix(in srgb,var(--ink),transparent 45%)}
 .rec-empty{color:var(--muted);font-size:13.5px;text-align:center;margin-top:34px}
 .rec-clear{align-self:center;margin-top:14px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);border-radius:999px;padding:10px 24px;font:inherit;font-size:13px;cursor:pointer;flex:none}
+
+/* scroll lock: launcher home does not scroll; no rubber-band bounce anywhere */
+html,body{overscroll-behavior:none}
+.phone.home-mode #app{overflow:hidden;touch-action:none}
+@media(max-height:760px){.phone.home-mode .glance{padding-top:16px}.phone.home-mode .glance-time{font-size:42px}.phone.home-mode .app-grid{margin-top:18px;gap:12px 4px}.phone.home-mode .dock{margin-top:16px}.phone.home-mode .gsearch{margin-top:10px;padding:11px 17px}}
+@media(max-height:640px){.phone.home-mode .glance{padding-top:10px}.phone.home-mode .glance-time{font-size:34px}.phone.home-mode .app-icon{width:48px;height:48px;font-size:20px}}
 </style>
 </head>
 <body>
