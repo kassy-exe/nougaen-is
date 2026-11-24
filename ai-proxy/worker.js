@@ -30,6 +30,10 @@
 //     request size, and never logs bodies or the key.
 
 const MODEL = "gemini-flash-lite-latest"; // keep in sync with index.html
+// Congestion fallback (user-approved 2026-11-24): clients may ask for one
+// of these allow-listed models via the "model" field; anything else is
+// ignored and the default model is used.
+const ALLOWED_MODELS = new Set([MODEL, "gemini-3.1-flash-lite"]);
 const MAX_BODY_BYTES = 256 * 1024;
 
 function corsHeaders(origin) {
@@ -80,6 +84,8 @@ export default {
       return new Response("Bad Request", { status: 400 });
     }
 
+    const model = ALLOWED_MODELS.has(incoming.model) ? incoming.model : MODEL;
+
     // Forward only the fields the chat feature is allowed to use.
     const body = {};
     if (Array.isArray(incoming.contents)) body.contents = incoming.contents;
@@ -90,7 +96,7 @@ export default {
     }
 
     const upstream = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
         method: "POST",
         headers: {
