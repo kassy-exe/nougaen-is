@@ -12,8 +12,8 @@
   <meta name="color-scheme" content="dark light">
   <title></title>
   <style>
-    :root{color-scheme:dark;--bg:#0d111b;--panel:#151b2a;--panel-2:#1b2335;--ink:#f1f0eb;--muted:#a4a9b6;--line:#30384b;--gold:#dfc98e;--gold-dim:#a89158;--indigo:#262e4c;--shadow:0 24px 80px #0008;--radius:24px;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    :root[data-theme="light"]{color-scheme:light;--bg:#e7e8ed;--panel:#f7f7f5;--panel-2:#ebedf2;--ink:#171b26;--muted:#646b79;--line:#cdd1da;--gold:#9b7930;--gold-dim:#b39b62;--indigo:#dce1ef;--shadow:0 24px 80px #25294228}
+    :root{color-scheme:dark;--bg:#101318;--panel:#1c1f26;--panel-2:#262a33;--ink:#e4e6eb;--muted:#9aa3b2;--line:#2c313c;--gold:#a8c7fa;--gold-dim:#5b83c4;--indigo:#2f3a52;--shadow:0 24px 80px #0008;--radius:28px;font-family:Roboto,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    :root[data-theme="light"]{color-scheme:light;--bg:#f4f6fb;--panel:#ffffff;--panel-2:#e8edf7;--ink:#191c20;--muted:#5c6470;--line:#d6dbe6;--gold:#0b57d0;--gold-dim:#7aa5e8;--indigo:#d3e3fd;--shadow:0 24px 80px #25294228}
     *{box-sizing:border-box}html,body{min-height:100%;margin:0}body{min-height:100vh;background:radial-gradient(ellipse at 50% 4%,#34395888 0,transparent 44%),var(--bg);color:var(--ink);display:grid;place-items:center;padding:24px 12px}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit}
     .phone{width:min(100%,430px);height:min(900px,calc(100dvh - 48px));min-height:640px;display:flex;flex-direction:column;overflow:hidden;position:relative;border:1px solid #777b8b44;border-radius:38px;background:linear-gradient(160deg,#1b2033 0%,var(--bg) 30%,var(--bg) 100%);box-shadow:var(--shadow);isolation:isolate}
     :root[data-theme="light"] .phone{background:linear-gradient(160deg,#e0e4ef 0%,var(--bg) 35%)}
@@ -256,10 +256,56 @@
 
 .lang-nu .phone,.lang-nu .phone button,.lang-nu .phone input,.lang-nu .phone textarea,.lang-nu .phone select{font-family:"Nougaen",sans-serif}
 .lang-nu .eyebrow{text-transform:none;letter-spacing:.05em}
+
+/* ===== Android / Material You skin ===== */
+.statusbar{flex:none;display:flex;justify-content:space-between;align-items:center;padding:calc(9px + env(safe-area-inset-top)) 22px 0;color:var(--ink);font-size:12.5px;font-weight:500;letter-spacing:.02em}
+.sb-icons{display:flex;gap:6px;align-items:center;opacity:.95}
+.sb-icons svg{display:block}
+.topbar{padding-top:9px;border-bottom-color:transparent}
+.phone.home-mode{background:radial-gradient(120% 60% at 85% -5%,#3d5a99 0,transparent 55%),radial-gradient(100% 55% at 8% 12%,#1f4d4a 0,transparent 52%),radial-gradient(120% 70% at 50% 115%,#3a2d5c 0,transparent 55%),#0d1017}
+:root[data-theme="light"] .phone.home-mode{background:radial-gradient(120% 60% at 85% -5%,#c2d8fd 0,transparent 55%),radial-gradient(100% 55% at 8% 12%,#bfe3dd 0,transparent 52%),radial-gradient(120% 70% at 50% 115%,#ddd0f5 0,transparent 55%),#eef1f7}
+.phone.home-mode .topbar{background:transparent}
+.phone.home-mode .bottomnav{background:transparent;border-top-color:transparent}
+.page-title{font-weight:400;letter-spacing:0}
+.panel{border-color:transparent;border-radius:28px}
+.list-item{border-color:transparent;background:transparent;border-radius:18px}
+.list-item:hover,.list-item:focus-visible{background:var(--panel)}
+.list-icon{border-radius:50%;background:var(--panel-2);color:var(--gold)}
+.chevron{display:none}
+.glance{padding:30px 6px 6px}
+.glance-date{font-size:14.5px;color:var(--ink);opacity:.92}
+.glance-time{font-variant-numeric:tabular-nums;font-size:54px;font-weight:300;line-height:1.12;letter-spacing:-.01em;margin-top:2px}
+.glance-sub{font-size:10.5px;letter-spacing:.16em;color:var(--muted);margin-top:7px}
+.app-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 4px;margin-top:30px}
+.app-card{min-height:0;padding:2px 0;background:none;border:0;border-radius:18px;align-items:center;justify-content:flex-start;gap:7px;text-align:center}
+.app-card:hover,.app-card:focus-visible{transform:none;border-color:transparent}
+.app-card:active .app-icon{transform:scale(.9)}
+.app-icon{width:56px;height:56px;border-radius:50%;background:var(--ic,#5f7adb);color:#fff;font-size:24px;box-shadow:0 3px 10px #00000038;transition:transform .15s}
+.app-icon img{border-radius:50%}
+.app-name{font-size:11px;font-weight:500;line-height:1.3;color:var(--ink)}
+.phone.home-mode .app-name{text-shadow:0 1px 6px #0009}
+.dock{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:13px 6px 9px;border-radius:32px;background:#ffffff17;backdrop-filter:blur(8px)}
+:root[data-theme="light"] .dock{background:#ffffffa8}
+.gsearch{margin-top:14px;display:flex;align-items:center;gap:11px;padding:13px 19px;border-radius:999px;background:#f8f9fa;color:#3c4043;text-decoration:none;box-shadow:0 4px 14px #00000030}
+.g-logo{font-weight:700;font-size:18px;color:#4285f4;line-height:1}
+.g-hint{flex:1;font-size:13.5px;color:#5f6368;white-space:nowrap;overflow:hidden}
+.g-lens{color:#ea4335;font-size:15px}
+.bottomnav{grid-template-columns:repeat(3,1fr);gap:0;padding:6px 30px calc(8px + env(safe-area-inset-bottom))}
+.navbtn{display:grid;place-items:center;min-height:46px;color:var(--ink);background:none;border:0;text-decoration:none;cursor:pointer;border-radius:999px}
+.navbtn.on{color:var(--gold)}
+.navlink{display:none}
+.phone a,.phone button{position:relative;overflow:hidden}
+.ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.22;transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(2.3);opacity:0}}
+.lang[aria-pressed="true"]{background:var(--gold);color:#0b1c30}
+:root[data-theme="light"] .lang[aria-pressed="true"]{color:#fff}
+.segmented button[aria-pressed="true"]{background:var(--gold);color:#0b1c30}
+:root[data-theme="light"] .segmented button[aria-pressed="true"]{color:#fff}
 </style>
 </head>
 <body>
   <main class="phone">
+    <div class="statusbar" aria-hidden="true"><span class="sb-time" id="sbTime">--:--</span><span class="sb-icons"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="16" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM8 5.4c1.9 0 3.6.74 4.9 1.95l-1.55 1.6A5.4 5.4 0 0 0 8 8.06c-1.3 0-2.5.32-3.35.89L3.1 7.35A7.35 7.35 0 0 1 8 5.4zM8 1c2.9 0 5.6 1.13 7.6 2.98L14.05 5.6A9.6 9.6 0 0 0 8 3.9c-2.25 0-4.35.62-6.05 1.7L.4 3.98A11.4 11.4 0 0 1 8 1z" transform="scale(0.92)"/></svg><svg width="25" height="12" viewBox="0 0 27 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2.2" y="2.2" width="14.5" height="7.6" rx="2" fill="currentColor"/><path d="M24 4v4a2.2 2.2 0 0 0 0-4z" fill="currentColor" opacity="0.5"/></svg></span></div>
     <header class="topbar">
       <a class="brand" href="#/home"><span class="mark" aria-hidden="true"><img class="brand-icon" alt="" src="./N.png"></span><span class="brandname" id="brandName"></span></a>
       <nav class="languages">
@@ -310,11 +356,12 @@ const APPS=[
 ];
 const app=document.getElementById("app"),nav=document.getElementById("bottomNav");
 function esc(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function appCard(item){return `<a class="app-card" href="#/app/${item.id}" aria-label="${esc(t(item.nameKey))}"><span class="app-icon" aria-hidden="true">${esc(item.icon)}</span><span class="app-label"><span class="app-name">${esc(t(item.nameKey))}</span></span></a>`}
+const APP_COLORS={games:"#7c4dff",translate:"#00bfa5",dictionary:"#ff8f00",ai:"#448aff",clock:"#ff5252",keyboard:"#26a69a",study:"#ab47bc"};
+function appCard(item){return `<a class="app-card" href="#/app/${item.id}" aria-label="${esc(t(item.nameKey))}"><span class="app-icon" style="--ic:${APP_COLORS[item.id]||"#5f7adb"}" aria-hidden="true">${esc(item.icon)}</span><span class="app-label"><span class="app-name">${esc(t(item.nameKey))}</span></span></a>`}
 function listItem(item,href){return `<a class="list-item" href="${href}"><span class="list-icon" aria-hidden="true">${esc(item.icon)}</span><span class="list-copy"><span class="list-title">${esc(t(item.nameKey))}</span></span><span class="chevron" aria-hidden="true">›</span></a>`}
 function applyBrandIcons(){document.querySelectorAll("img.brand-icon").forEach(img=>{if(img.getAttribute("src")!==BRAND_ICON_PATH)img.src=BRAND_ICON_PATH});document.querySelectorAll("link[data-brand-icon]").forEach(link=>link.href=BRAND_ICON_PATH)}
-function renderHome(){return `<p class="eyebrow">${esc(t("greeting"))}</p><h1 class="page-title">${esc(t("productBase"))}</h1><p class="page-subtitle">${esc(t("homeIntro"))}</p><section class="hero" aria-label="${esc(t("localTime"))}"><p class="eyebrow">${esc(t("localTime"))}</p><div class="clock-time" data-clock>--:--</div><div class="clock-date" data-date>—</div><div class="hero-foot"><span>${esc(t("statusLine"))}</span><strong>砮幻</strong></div></section><div class="section-head"><h2>${esc(t("appGrid"))}</h2><a class="small-link" href="#/apps">${esc(t("seeAll"))}　›</a></div><div class="app-grid">${APPS.map(appCard).join("")}</div><div class="section-head"><h2>${esc(t("quickAccess"))}</h2></div><div class="quick-row"><a class="quick" href="#/apps"><span>${esc(t("exploreApps"))}</span><span aria-hidden="true">↗</span></a><a class="quick" href="#/settings"><span>${esc(t("openSettings"))}</span><span aria-hidden="true">⚙</span></a></div>`}
-function renderApps(){return `<p class="eyebrow">${esc(t("statusLine"))}</p><h1 class="page-title">${esc(t("apps"))}</h1><p class="page-subtitle">${esc(t("homeIntro"))}</p><div class="list">${APPS.map(x=>listItem(x,`#/app/${x.id}`)).join("")}</div>`}
+function renderHome(){return `<section class="glance"><div class="glance-date" data-date>—</div><div class="glance-time" data-clock>--:--</div><div class="glance-sub">${esc(t("statusLine"))}</div></section><div class="app-grid">${APPS.map(appCard).join("")}</div><div class="dock">${APPS.slice(0,4).map(appCard).join("")}</div><a class="gsearch" href="#/app/ai" aria-label="${esc(t("ai"))}"><span class="g-logo">G</span><span class="g-hint">${esc(t("ai"))} · Gemini</span><span class="g-lens">◎</span></a>`}
+function renderApps(){return `<p class="eyebrow">${esc(t("statusLine"))}</p><h1 class="page-title">${esc(t("apps"))}</h1><p class="page-subtitle">${esc(t("homeIntro"))}</p><div class="list">${APPS.map(x=>listItem(x,`#/app/${x.id}`)).join("")}${listItem({icon:"⚙",nameKey:"settings"},"#/settings")}</div>`}
 function renderSettings(){return `<p class="eyebrow">${esc(t("statusLine"))}</p><h1 class="page-title">${esc(t("settings"))}</h1><p class="page-subtitle">${esc(t("homeIntro"))}</p><section class="panel"><div class="setting-row"><div><div class="setting-label">${esc(t("chooseLanguage"))}</div></div><div class="segmented" role="group" aria-label="${esc(t("chooseLanguage"))}">${[["ja","日"],["en","英"],["nu","砮"]].map(([code,label])=>`<button type="button" data-lang="${code}" aria-pressed="${lang===code}">${label}</button>`).join("")}</div></div><div class="setting-row"><div><div class="setting-label">${esc(t("theme"))}</div><div class="setting-hint">${esc(t("themeHint"))}</div></div><div class="segmented" role="group" aria-label="${esc(t("theme"))}"><button type="button" data-theme-choice="dark" aria-pressed="${theme==="dark"}">${esc(t("dark"))}</button><button type="button" data-theme-choice="light" aria-pressed="${theme==="light"}">${esc(t("light"))}</button></div></div></section><div class="section-head"><h2>${esc(t("data"))}</h2></div><section class="panel"><div class="setting-row"><div><div class="setting-label">${esc(t("resetTitle"))}</div><div class="setting-hint">${esc(t("dataHint"))}</div></div><button type="button" class="danger" id="resetButton">${esc(t("resetData"))}</button></div></section>`}
 function renderGames(){return `<a class="backlink" href="#/apps">‹ ${esc(t("back"))}</a><p class="eyebrow">${esc(t("games"))}</p><h1 class="page-title">${esc(t("games"))}</h1><p class="page-subtitle">${esc(t("gamesIntro"))}</p><div class="list">${GAME_ITEMS.map(x=>listItem(x,`#/game/${x.id}`)).join("")}</div>`}
 let trState={dir:"ja2nu",busy:false,err:"",input:"",result:null,brk:null,_idx:null};
@@ -2407,12 +2454,15 @@ app.addEventListener("click",event=>{
 });
 function route(){const raw=location.hash.replace(/^#\/?/,"");const parts=raw.split("/").filter(Boolean);if(!parts.length||parts[0]==="home")return {kind:"screen",render:renderHome,nav:"home"};if(parts[0]==="apps")return {kind:"screen",render:renderApps,nav:"apps"};if(parts[0]==="settings")return {kind:"screen",render:renderSettings,nav:"settings"};if(parts[0]==="game"){if(parts[1]==="blackjack")return {kind:"screen",render:renderBlackjack,nav:"apps"};if(parts[1]==="mahjong")return {kind:"screen",render:renderMahjong,nav:"apps"};if(parts[1]==="rhythm")return {kind:"screen",render:renderRhythm,nav:"apps"};if(parts[1]==="archer")return {kind:"screen",render:renderArcher,nav:"apps"};const externalGame=EXTERNAL_GAMES.find(item=>item.id===parts[1]);if(externalGame)return {kind:"screen",render:()=>renderExternalGame(externalGame),nav:"apps",externalGame};return {kind:"screen",render:()=>renderGameStub(parts[1]),nav:"apps"}}if(parts[0]==="app"){const item=APPS.find(x=>x.id===parts[1]);return item?{kind:"app",item,nav:"apps"}:{kind:"screen",render:renderNotFound,nav:"apps"}}return {kind:"screen",render:renderNotFound,nav:"home"}}
 function updateClock(){const now=new Date();document.querySelectorAll("[data-clock]").forEach(el=>el.textContent=now.toLocaleTimeString(locale(),{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}));document.querySelectorAll("[data-date]").forEach(el=>el.textContent=now.toLocaleDateString(locale(),{weekday:"long",year:"numeric",month:"long",day:"numeric"}))}
-function drawNav(active){nav.setAttribute("aria-label",t("mainNavigation"));const entries=[["home","home","⌂"],["apps","apps","▦"],["settings","settings","⚙"]];nav.innerHTML=entries.map(([id,key,icon])=>`<a class="navlink" href="#/${id}" ${active===id?'aria-current="page"':""}><span class="navicon" aria-hidden="true">${icon}</span><span>${esc(t(key))}</span></a>`).join("")}
+function drawNav(active){nav.setAttribute("aria-label",t("mainNavigation"));nav.innerHTML=`<button type="button" class="navbtn" data-navback aria-label="Back"><svg viewBox="0 0 24 24" width="21" height="21"><path d="M15.5 4.5 L7 12 L15.5 19.5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button><a class="navbtn${active==="home"?" on":""}" href="#/home" aria-label="${esc(t("home"))}"><svg viewBox="0 0 24 24" width="21" height="21"><circle cx="12" cy="12" r="7.4" fill="none" stroke="currentColor" stroke-width="2"/></svg></a><a class="navbtn${active==="apps"?" on":""}" href="#/apps" aria-label="${esc(t("apps"))}"><svg viewBox="0 0 24 24" width="21" height="21"><rect x="5.2" y="5.2" width="13.6" height="13.6" rx="2.2" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>`}
+nav.addEventListener("click",e=>{if(e.target.closest("[data-navback]")){if(history.length>1)history.back();else location.hash="#/home"}});
 function applyLanguage(){document.documentElement.classList.toggle("lang-nu",lang==="nu");document.documentElement.lang=lang;document.title=t("appTitle");document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute("content",t("appTitle"));document.querySelector(".phone").setAttribute("aria-label",t("appTitle"));document.querySelector(".brand").setAttribute("aria-label",t("appTitle"));document.getElementById("brandName").textContent=t("appTitle");document.querySelectorAll(".lang").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));document.querySelector(".languages").setAttribute("aria-label",t("languageNav"))}
-function render(){document.body.classList.toggle("bj-mode",bjIsRoute());document.querySelector(".phone").classList.toggle("bj-mode",bjIsRoute());applyLanguage();const r=route();if(!r.externalGame||(externalGameState&&externalGameState.id!==r.externalGame.id)){if(externalGameTimer){clearTimeout(externalGameTimer);externalGameTimer=null}externalGameState=null}app.innerHTML=r.kind==="app"?r.item.render():r.render();applyBrandIcons();drawNav(r.nav);updateClock();bjMaybeScheduleCpu();const reset=document.getElementById("resetButton");if(reset)reset.addEventListener("click",()=>{if(window.confirm(t("resetConfirm"))){lang="ja";theme="dark";try{localStorage.removeItem(LANG_KEY);localStorage.removeItem(THEME_KEY)}catch(_){ }document.documentElement.dataset.theme=theme;render();window.alert(t("resetDone"))}})}
+function render(){document.body.classList.toggle("bj-mode",bjIsRoute());document.querySelector(".phone").classList.toggle("bj-mode",bjIsRoute());const r0=route();document.querySelector(".phone").classList.toggle("home-mode",r0.nav==="home");applyLanguage();const r=route();if(!r.externalGame||(externalGameState&&externalGameState.id!==r.externalGame.id)){if(externalGameTimer){clearTimeout(externalGameTimer);externalGameTimer=null}externalGameState=null}app.innerHTML=r.kind==="app"?r.item.render():r.render();applyBrandIcons();drawNav(r.nav);updateClock();bjMaybeScheduleCpu();const reset=document.getElementById("resetButton");if(reset)reset.addEventListener("click",()=>{if(window.confirm(t("resetConfirm"))){lang="ja";theme="dark";try{localStorage.removeItem(LANG_KEY);localStorage.removeItem(THEME_KEY)}catch(_){ }document.documentElement.dataset.theme=theme;render();window.alert(t("resetDone"))}})}
 function setLanguage(next){if(!["ja","en","nu"].includes(next))return;lang=next;try{localStorage.setItem(LANG_KEY,lang)}catch(_){ }render()}
 function setTheme(next){if(!["dark","light"].includes(next))return;theme=next;document.documentElement.dataset.theme=theme;try{localStorage.setItem(THEME_KEY,theme)}catch(_){ }render()}
 document.documentElement.dataset.theme=theme;
+function sbTick(){const el=document.getElementById("sbTime");if(!el)return;const d=new Date();el.textContent=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}sbTick();setInterval(sbTick,5000);
+document.addEventListener("pointerdown",e=>{const t=e.target.closest(".phone a,.phone button");if(!t)return;const r=t.getBoundingClientRect();if(r.width>360||r.height>120)return;const s=document.createElement("span");s.className="ripple";const d=Math.max(r.width,r.height)*1.15;s.style.width=s.style.height=d+"px";s.style.left=(e.clientX-r.left-d/2)+"px";s.style.top=(e.clientY-r.top-d/2)+"px";t.appendChild(s);setTimeout(()=>s.remove(),650)},{passive:true});
 document.addEventListener("click",event=>{const l=event.target.closest("[data-lang]");if(l){setLanguage(l.dataset.lang);return}const th=event.target.closest("[data-theme-choice]");if(th)setTheme(th.dataset.themeChoice)});
 window.addEventListener("hashchange",render);
 if(!location.hash)location.hash="#/home";else render();
