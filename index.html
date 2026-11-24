@@ -295,8 +295,8 @@
 .navbtn.on{color:var(--gold)}
 .navlink{display:none}
 .phone a,.phone button{position:relative;overflow:hidden}
-.ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.22;transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
-@keyframes rip{to{transform:scale(2.3);opacity:0}}
+.ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.38;transform:scale(0);animation:rip .5s cubic-bezier(.2,.7,.3,1) forwards;pointer-events:none;z-index:3}
+@keyframes rip{35%{transform:scale(1.5);opacity:.32}100%{transform:scale(2.4);opacity:0}}
 .lang[aria-pressed="true"]{background:var(--gold);color:#0b1c30}
 :root[data-theme="light"] .lang[aria-pressed="true"]{color:#fff}
 .segmented button[aria-pressed="true"]{background:var(--gold);color:#0b1c30}
