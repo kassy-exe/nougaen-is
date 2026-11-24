@@ -338,6 +338,8 @@ html,body{overscroll-behavior:none}
 
 .sb-batt{align-items:center;gap:5px}
 .sb-pct{font-size:11.5px;font-weight:500}
+
+.phone.home-mode #app,.drawer{-webkit-user-select:none;user-select:none}
 </style>
 </head>
 <body>
@@ -2521,6 +2523,9 @@ window.addEventListener("hashchange",()=>{closeDrawer();closeSearch();closeRecen
 let tsy=null;
 document.addEventListener("touchstart",e=>{tsy=e.touches[0].clientY},{passive:true});
 document.addEventListener("touchend",e=>{if(tsy===null)return;const dy=e.changedTouches[0].clientY-tsy;tsy=null;const dr=document.getElementById("drawer"),so=document.getElementById("searchOv");const ro=document.getElementById("recentsOv");if(ro&&ro.classList.contains("open")){if(dy>60)closeRecents();return}if(so&&so.classList.contains("open")){if(dy>60)closeSearch();return}if(dr&&dr.classList.contains("open")){if(dy>60)closeDrawer();return}const ph=document.querySelector(".phone");if(ph&&ph.classList.contains("home-mode")&&dy<-60)openDrawer()},{passive:true});
+let psy=null;
+document.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse")psy=e.clientY},{passive:true});
+document.addEventListener("pointerup",e=>{if(e.pointerType!=="mouse"||psy===null)return;const dy=e.clientY-psy;psy=null;const dr=document.getElementById("drawer"),so=document.getElementById("searchOv"),ro=document.getElementById("recentsOv");if(ro&&ro.classList.contains("open")){if(dy>60)closeRecents();return}if(so&&so.classList.contains("open")){if(dy>60)closeSearch();return}if(dr&&dr.classList.contains("open")){if(dy>60)closeDrawer();return}const ph=document.querySelector(".phone");if(ph&&ph.classList.contains("home-mode")&&dy<-60)openDrawer()},{passive:true});
 let wheelCool=0;
 document.addEventListener("wheel",e=>{const now=Date.now();if(now<wheelCool)return;const ph=document.querySelector(".phone");const dr=document.getElementById("drawer");if(ph&&ph.classList.contains("home-mode")&&dr&&!dr.classList.contains("open")&&e.deltaY>30){wheelCool=now+700;openDrawer()}},{passive:true});
 const REC_KEY="nougaen-is-recents";
