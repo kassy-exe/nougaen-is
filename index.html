@@ -752,7 +752,7 @@ function renderClock(){return `<p class="eyebrow">${esc(t("clock"))}</p><h1 clas
 function bjNewSetup(){return {count:2,difficulty:"normal",seats:[{name:"Player 1",human:true},{name:"Player 2",human:true}]}}
 let bjSetup=bjNewSetup(),bjGame=null,bjCpuTimer=null,bjJankenNotice="";
 const bjHands=["rock","paper","scissors"];
-function bjIsRoute(){return /^#\/game\/blackjack(?:\/|$)/.test(location.hash)}
+function bjIsRoute(){return /^#\/(?:game|app)\/blackjack(?:\/|$)/.test(location.hash)}
 function bjTotal(player){return player.hand.reduce((sum,card)=>sum+card.rank,0)}
 function bjMakeDeck(){const suits=["♠","♥","♦","♣"],deck=[];for(const suit of suits)for(let rank=1;rank<=13;rank++)deck.push({suit,rank});return deck}
 function bjShuffle(cards){for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]]}return cards}
