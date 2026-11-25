@@ -361,7 +361,9 @@ html,body{overscroll-behavior:none}
 .cust-btn{min-width:37px;min-height:37px;padding:0 9px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2);color:var(--ink);font:inherit;font-size:12.5px;cursor:pointer}
 .cust-btn:disabled{opacity:.35}
 .cust-btn.danger2{color:#e7aaaa;border-color:#aa6c6c77}
-.ua-frame{width:100%;height:min(68dvh,660px);border:1px solid var(--line);border-radius:18px;background:#fff}
+.ua-full{margin:-22px -18px -24px;height:calc(100% + 46px);position:relative}
+.ua-frame2{width:100%;height:100%;border:0;display:block;background:#fff}
+.ua-back{position:absolute;top:10px;left:10px;width:36px;height:36px;border-radius:50%;background:rgba(20,22,28,.55);color:#fff;display:grid;place-items:center;font-size:21px;line-height:1;text-decoration:none;backdrop-filter:blur(4px);z-index:2}
 </style>
 </head>
 <body>
@@ -2588,7 +2590,7 @@ function saveLayout(l){try{localStorage.setItem(HL_KEY,JSON.stringify(l))}catch(
 function orderedApps(){const items=allApps(),lay=loadLayout(),byId={};items.forEach(x=>byId[x.id]=x);const out=[];lay.order.forEach(id=>{if(byId[id]){out.push(byId[id]);delete byId[id]}});items.forEach(x=>{if(byId[x.id])out.push(x)});return out}
 function homeApps(){const lay=loadLayout();return orderedApps().filter(x=>!lay.hidden.includes(x.id))}
 function escAttr(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;")}
-function renderUserApp(u){return `<a class="backlink" href="#/home">‹ ${esc(t("back"))}</a><h1 class="page-title" style="font-size:21px">${esc(u.name)}</h1><iframe class="ua-frame" title="${esc(u.name)}" sandbox="allow-scripts allow-modals" srcdoc="${escAttr(u.html)}"></iframe>`}
+function renderUserApp(u){return `<div class="ua-full"><iframe class="ua-frame2" title="${esc(u.name)}" sandbox="allow-scripts allow-modals" srcdoc="${escAttr(u.html)}"></iframe><a class="ua-back" href="#/home" aria-label="${esc(t("back"))}">‹</a></div>`}
 function renderCustomize(){const lay=loadLayout(),ordered=orderedApps();return `<a class="backlink" href="#/home">‹ ${esc(t("back"))}</a><h1 class="page-title">${esc(t("customize"))}</h1><p class="page-subtitle">${esc(t("custHint"))}</p><div class="cust-list">${ordered.map((x,i)=>{const hid=lay.hidden.includes(x.id);return `<div class="cust-row${hid?" off":""}"><span class="rec-ic" style="--ic:${x.color||APP_COLORS[x.id]||"#5f7adb"}">${esc(x.icon)}</span><span class="cust-name">${esc(x.name||t(x.nameKey))}</span><button type="button" class="cust-btn" data-cust="up" data-id="${x.id}" ${i===0?"disabled":""}>↑</button><button type="button" class="cust-btn" data-cust="down" data-id="${x.id}" ${i===ordered.length-1?"disabled":""}>↓</button><button type="button" class="cust-btn" data-cust="toggle" data-id="${x.id}">${esc(t(hid?"visShow":"visHide"))}</button>${x.user?`<button type="button" class="cust-btn danger2" data-cust="del" data-id="${x.id}">${esc(t("uaDelete"))}</button>`:""}</div>`}).join("")}</div>`}
 function custAction(btn){const id=btn.dataset.id,act=btn.dataset.cust,lay=loadLayout();let order=orderedApps().map(x=>x.id);
  if(act==="toggle"){lay.hidden=lay.hidden.includes(id)?lay.hidden.filter(x=>x!==id):lay.hidden.concat([id])}
